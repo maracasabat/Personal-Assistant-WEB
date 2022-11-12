@@ -50,6 +50,14 @@ django = ">=3.2.14"
 django-browser-reload = ">=1.6.0,<2.0.0"
 
 [[package]]
+name = "django-tinymce"
+version = "3.5.0"
+description = "A Django application that contains a widget to render a form field as a TinyMCE editor."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "sqlparse"
 version = "0.4.3"
 description = "A non-validating SQL parser."
@@ -68,7 +76,7 @@ python-versions = ">=2"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "a8e1e510c78a0e260f51a164ee0a74d40d7fe6c03466b1fad1ec3ffbaf7992d3"
+content-hash = "acd61d642a7c653adc4014a3f7a044fdebc601788422fb06ad4ebc05bf2a7456"
 
 [metadata.files]
 asgiref = [
@@ -86,6 +94,10 @@ django-browser-reload = [
 django-tailwind = [
     {file = "django-tailwind-3.4.0.tar.gz", hash = "sha256:b0ea5f2e2e45b86f7165673291323e46200a91cfed99b80278272a49f034c7a4"},
     {file = "django_tailwind-3.4.0-py3-none-any.whl", hash = "sha256:ce47a28b466e2e427534ee5a8c6f2ee7f7ffb6bce83b55b7ec22be994b293b65"},
+]
+django-tinymce = [
+    {file = "django-tinymce-3.5.0.tar.gz", hash = "sha256:ebe7e39e080415a0d4ca339f0f159754a7cc1dc7cd5276f32f9d3db3220134f8"},
+    {file = "django_tinymce-3.5.0-py3-none-any.whl", hash = "sha256:f9d3758670ad55912cbabdd41a14e0b6cfda47868f9c6d92a4480ca320356d53"},
 ]
 sqlparse = [
     {file = "sqlparse-0.4.3-py3-none-any.whl", hash = "sha256:0323c0ec29cd52bceabc1b4d9d579e311f3e4961b98d174201d5622a23b85e34"},
