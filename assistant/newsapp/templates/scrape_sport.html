@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Спортивні новини</title>
+    <h1>Новини спорту</h1>
+
+</head>
+<body>
+<div>
+    <h2>Усі новини</h2>
+    {% for i in sport_news %}
+    <p>{{i.sport.upper}}: {{ i.time }} - {{ i.news }}</p>
+
+    {% endfor %}
+</div>
+<br>
+</body>
+</html>
