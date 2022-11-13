@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.shortcuts import render
 from bs4 import BeautifulSoup
 import requests
@@ -36,3 +38,26 @@ def get_sport_news(request):
         sport_news.append(result)
         # print(sport_news)
     return render(request, 'scrape_sport.html', {'sport_news': sport_news})
+
+
+def get_currency(request):
+    currency = []
+    date_now = datetime.now().strftime('%Y-%m-%d')
+    base_url = 'https://minfin.com.ua/ua/currency/banks/usd/'
+    response = requests.get(base_url + date_now + '/')
+    soup = BeautifulSoup(response.text, 'html.parser')
+    content = soup.find('tbody', class_='list').find_all('tr')
+    # print(content)
+    for el in content:
+        result = {}
+        result['bank'] = el.find('a', {'class': 'mfm-black-link'}).text.strip()
+        result['buy'] = el.find('td', {'class': 'responsive-hide mfm-text-right mfm-pr0'}).text.strip()
+        if len(result['buy']) == 0:
+            result['buy'] = '0.000'
+        result['sale'] = el.find('td', {'class': 'responsive-hide mfm-text-left mfm-pl0'}).text.strip()
+        if len(result['sale']) == 0:
+            result['sale'] = '0.000'
+        result['date'] = el.find('td', {'class': 'respons-collapsed mfcur-table-refreshtime'}).text.strip()
+
+        currency.append(result)
+    return render(request, 'scrape_currency.html', {'currency': currency})
