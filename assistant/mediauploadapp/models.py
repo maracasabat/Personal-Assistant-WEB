@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from .filechecker import file_size, file_extension
 
 # Create your models here.
 
