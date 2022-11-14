@@ -8,4 +8,5 @@ urlpatterns = [
     path('currency/', views.get_currency, name='currency'),
     path('it/', views.get_it, name='it'),
     path('fashion/', views.get_fashion, name='fashion'),
+    path('books/', views.get_books, name='books'),
 ]

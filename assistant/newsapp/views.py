@@ -102,3 +102,20 @@ def get_fashion(request):
         fashion.append(result)
         # print(result)
     return render(request, 'fashion.html', {'fashion': fashion})
+
+def get_books(request):
+    books = []
+    base_url = "https://www.goodreads.com/list/show/2681.Time_Magazine_s_All_Time_100_Novels"
+    response = requests.get(base_url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    content = soup.select('table[class="tableList js-dataTooltip"] tr')
+    # print(content)
+    for el in content:
+        result = {}
+        result['number'] = el.find('td', {'class': 'number'}).text.strip()
+        result['author'] = el.find('a', {'class': 'authorName'}).text.strip()
+        result['title'] = el.find('a', {'class': 'bookTitle'}).text.strip()
+        result['rating'] = el.find('span', {'class': 'minirating'}).text.strip()
+        books.append(result)
+        # print(result)
+    return render(request, 'books.html', {'books': books})
