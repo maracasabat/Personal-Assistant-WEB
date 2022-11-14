@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новини моди</title>
+    <h1>Новини моди</h1>
+
+</head>
+<body>
+<div>
+    <h2>Останні новини моди</h2>
+
+    {% for i in fashion%}
+        <p>{{ i.tag }}: {{i.time}}</p>
+        <p>{{ i.title }}</p>
+    {% endfor %}
+</div>
+<br>
+</body>
+</html>

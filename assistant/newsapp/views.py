@@ -6,6 +6,11 @@ import requests
 
 
 # Create your views here.
+
+def main(request):
+    return render(request, 'index.html')
+
+
 def get_news(request):
     news = []
     base_url = "https://www.pravda.com.ua/news/"
@@ -61,3 +66,39 @@ def get_currency(request):
 
         currency.append(result)
     return render(request, 'scrape_currency.html', {'currency': currency})
+
+
+def get_it(request):
+    it = []
+    base_url = "https://itc.ua/ua/tehnologiyi/"
+    response = requests.get(base_url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    content = soup.select('div[class="row"]')
+    # print(content)
+    for el in content:
+        result = {}
+        try:
+            result['time'] = el.find('time', {'class': 'published'}).text.strip()
+        except AttributeError:
+            break
+        result['title'] = el.find('h2').text.strip()
+        it.append(result)
+        # print(result)
+    return render(request, 'scrape_it.html', {'it': it})
+
+
+def get_fashion(request):
+    fashion = []
+    base_url = "https://life.nv.ua/ukr/krasota-i-moda.html"
+    response = requests.get(base_url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    content = soup.select('div[class="row atom-list"] div[class="atom atom-style col-sm-6 col-lg-4"]')
+    # print(content)
+    for el in content:
+        result = {}
+        result['tag'] = el.find('span', {'class': 'atom-additional-category keep-mob'}).text.strip()
+        result['time'] = el.find('span', {'class': 'atom-additional-pub-date'}).text.strip()
+        result['title'] = el.find('div', {'class': 'text'}).text.replace(u'\xa0', u' ')
+        fashion.append(result)
+        # print(result)
+    return render(request, 'fashion.html', {'fashion': fashion})
