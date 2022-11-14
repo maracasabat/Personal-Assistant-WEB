@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
-from .models import Book, User
+from .models import File, Book, User
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.urls import reverse
 from django.core.files.storage import FileSystemStorage
 from django.views.generic import TemplateView, ListView, CreateView
-from .forms import BookForm
+from .forms import FileForm, BookForm
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -15,6 +15,9 @@ class Home(TemplateView):
 def main(request):
     return render(request, 'mediauploadapp/index.html', {})
 
+
+""" Add method for the simple upload """
+
 def upload(request):
     context = {}
     if request.method == 'POST':
@@ -23,6 +26,40 @@ def upload(request):
         name = fs.save(uploaded_file.name, uploaded_file)
         context['url'] = fs.url(name)
     return render(request, 'mediauploadapp/upload.html', context)
+
+
+""" Add methods for the file upload """
+
+
+def file_list(request):
+    files = File.objects.all()
+    return render(request, 'mediauploadapp/file_list.html', {
+        'files': files
+    })
+
+
+def upload_file(request):
+    if request.method == 'POST':
+        form = FileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('file_list')
+    else:
+        form = FileForm()
+    return render(request, 'mediauploadapp/upload_file.html', {
+        'form': form
+    })
+
+
+def delete_file(request, pk):
+    if request.method == 'POST':
+        file = File.objects.get(pk=pk)
+        file.delete()
+    return redirect('file_list')
+
+
+""" Add methods for the book upload """
+
 
 def book_list(request):
     books = Book.objects.all()
