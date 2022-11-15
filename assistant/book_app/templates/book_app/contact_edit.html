@@ -14,20 +14,20 @@
         <ul>
           <li><a href="/book_app/" role="button"> Go back to the main page </a></li>
         </ul>
-        <h3>Edit contact: {{nickname.nickname}}</h3>
+        <h3>Edit contact: {{ nickname.nickname }}</h3>
       </nav>
 
       <form method="POST" action="{% url 'contact_edit' nickname.id %}">
         {% csrf_token %}
         <div style="padding: 10px">
           <label
-            >Nickname <b>{{nickname.nickname}}</b> edit:
+            >Nickname <b>{{ nickname.nickname }}</b> edit:
             <input type="text" name="nickname" />
           </label>
         </div>
         <div style="padding: 10px">
           <label
-            >Phone <b>{{phone.phone}}</b> edit:
+            >Phone <b>{{ nickname.phone }}</b> edit:
             <input type="tel" name="phone" placeholder="+380960001122" pattern="^\+?1?\d{8,15}$" />
           </label>
         </div>
@@ -36,13 +36,13 @@
 
         <div style="padding: 10px">
           <label
-            >First name <b>{{person.name}}</b> edit:
+            >First name <b>{{ name.name }}</b> edit:
             <input type="text" name="name" />
           </label>
         </div>
         <div style="padding: 10px">
           <label
-            >Last name <b>{{person.surname}}</b> edit:
+            >Last name <b>{{ surname.surname }}</b> edit:
             <input type="text" name="surname" />
           </label>
         </div>
@@ -51,7 +51,7 @@
 
         <div style="padding: 10px">
           <label
-            >Email <b>{{email.email}}</b> edit:
+            >Email <b>{{ email.email }}</b> edit:
             <input type="email" name="email" />
           </label>
         </div>
@@ -60,7 +60,7 @@
 
         <div style="padding: 10px">
           <label
-            >Birthday <b>{{birthday.birthday}}</b> edit:
+            >Birthday <b>{{ birthday.birthday }}</b> edit:
             <input type="date" name="birthday" />
           </label>
         </div>
@@ -69,13 +69,13 @@
 
         <div style="padding: 10px">
           <label
-            >Country <b>{{address.country}}</b> edit:
+            >Country <b>{{ country.country }}</b> edit:
             <input type="text" name="country" />
           </label>
         </div>
         <div style="padding: 10px">
           <label
-            >Address <b>{{address.address}}</b> edit:
+            >Address <b>{{ address.address }}</b> edit:
             <input type="text" name="address" />
           </label>
         </div>

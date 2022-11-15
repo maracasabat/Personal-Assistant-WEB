@@ -16,6 +16,7 @@
         </ul>
         <h3>Add information to the contact {{nickname.nickname}}</h3>
       </nav>
+
       <form method="POST" action="{% url 'info' nickname.id %}">
         {% csrf_token %}
 
@@ -31,13 +32,13 @@
 
           <div style="padding: 10px">
             <label
-              >First Name: {{ name.name }}
+              >First Name <b>{{ name.name }}</b>:
               <input type="text" name="name" />
             </label>
           </div>
           <div style="padding: 10px">
             <label
-              >Last name: {{ surname.surname }}
+              >Last name <b>{{ surname.surname }}</b>:
               <input type="text" name="surname" />
             </label>
           </div>
@@ -46,7 +47,7 @@
 
           <div style="padding: 10px">
             <label
-              >Email: {{ email.email }}
+              >Email <b>{{ email.email }}</b> :
               <input type="email" name="email" />
             </label>
           </div>
@@ -55,7 +56,7 @@
 
           <div style="padding: 10px">
             <label
-              >Birthday: {{ surname.surname }}
+              >Birthday <b>{{ birthday.birthday }}</b>:
               <input type="date" name="birthday" />
             </label>
           </div>
@@ -64,13 +65,13 @@
 
           <div style="padding: 10px">
             <label
-              >Country: {{ country.country }}
+              >Country <b>{{ country.country }}</b>:
               <input type="text" name="country" />
             </label>
           </div>
           <div style="padding: 10px">
             <label
-              >Address:
+              >Address <b>{{ address.address }}</b> :
               <input type="text" name="address" />
             </label>
           </div>

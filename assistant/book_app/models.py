@@ -6,7 +6,7 @@ from django.db import models
 
 
 class Nickname(models.Model):
-    nickname = models.CharField(max_length=150, unique=True, null=False)
+    nickname = models.CharField(max_length=150, unique=True, null=False, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     phone = models.CharField(validators=[RegexValidator(
         regex=r"^\+?1?\d{8,15}$",
@@ -14,7 +14,7 @@ class Nickname(models.Model):
         code="invalid",
         inverse_match=False,
         flags=re.IGNORECASE
-    )], max_length=16, unique=True, null=True)
+    )], max_length=16, unique=True, null=True, blank=True)
 
     def __str__(self):
         return self.nickname
@@ -38,7 +38,7 @@ class Nickname(models.Model):
 
 class Name(models.Model):
     contact = models.ForeignKey(Nickname, null=True, blank=True, on_delete=models.CASCADE, related_name='names')
-    name = models.CharField(max_length=150, null=True)
+    name = models.CharField(max_length=150, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -46,15 +46,15 @@ class Name(models.Model):
 
 class Surname(models.Model):
     contact = models.ForeignKey(Nickname, null=True, blank=True, on_delete=models.CASCADE, related_name='surnames')
-    surname = models.CharField(max_length=150, null=True)
+    surname = models.CharField(max_length=150, null=True, blank=True)
 
     def __str__(self):
         return self.surname
 
 
 class Email(models.Model):
-    contact = models.ForeignKey(Nickname, null=True, blank=True, on_delete=models.CASCADE, related_name='email')
-    email = models.CharField(max_length=50, unique=False, null=True, validators=[
+    contact = models.ForeignKey(Nickname, null=True, blank=True, on_delete=models.CASCADE, related_name='emails')
+    email = models.CharField(max_length=50, unique=False, null=True, blank=True, validators=[
         EmailValidator(
             message='input correct email'
         )
@@ -65,7 +65,7 @@ class Email(models.Model):
 
 
 class Birthday(models.Model):
-    contact = models.ForeignKey(Nickname, null=True, blank=True, on_delete=models.CASCADE, related_name="birthday")
+    contact = models.ForeignKey(Nickname, null=True, blank=True, on_delete=models.CASCADE, related_name="birthdays")
     birthday = models.DateField(default=date.today, null=True)
 
     def __str__(self):
@@ -74,7 +74,7 @@ class Birthday(models.Model):
 
 class Country(models.Model):
     contact = models.ForeignKey(Nickname, null=True, blank=True, on_delete=models.CASCADE, related_name='countrys')
-    country = models.CharField(max_length=100, null=True)
+    country = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.country
@@ -82,7 +82,7 @@ class Country(models.Model):
 
 class Address(models.Model):
     contact = models.ForeignKey(Nickname, null=True, blank=True, on_delete=models.CASCADE, related_name='addresses')
-    address = models.TextField(null=True)
+    address = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.address
@@ -90,7 +90,7 @@ class Address(models.Model):
 
 class Happy(models.Model):
     contact = models.ForeignKey(Nickname, null=True, blank=True, on_delete=models.CASCADE, related_name='happys')
-    happy = models.CharField(max_length=2, null=True)
+    happy = models.CharField(max_length=2, null=True, blank=True)
 
     def __str__(self):
         return self.happy
