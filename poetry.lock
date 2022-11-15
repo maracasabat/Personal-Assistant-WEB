@@ -38,6 +38,14 @@ python-versions = ">=3.7"
 Django = ">=3.2"
 
 [[package]]
+name = "django-crispy-forms"
+version = "1.14.0"
+description = "Best way to have Django DRY forms"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "django-dotenv"
 version = "1.4.2"
 description = "foreman reads from .env. manage.py doesn't. Let's fix that."
@@ -61,6 +69,14 @@ django-browser-reload = ">=1.6.0,<2.0.0"
 name = "django-tinymce"
 version = "3.5.0"
 description = "A Django application that contains a widget to render a form field as a TinyMCE editor."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "fontawesomefree"
+version = "6.2.1"
+description = "Font Awesome Free"
 category = "main"
 optional = false
 python-versions = "*"
@@ -92,7 +108,7 @@ python-versions = ">=2"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "5a17e7d6023fec0b7a47330982ecc1d6707fc074d405467a83a0ea292246f57c"
+content-hash = "b5b7571f9a3248a961d87c5be28d172a43f84cc5f4792f211cb6ee026199756c"
 
 [metadata.files]
 asgiref = [
@@ -107,6 +123,10 @@ django-browser-reload = [
     {file = "django-browser-reload-1.6.0.tar.gz", hash = "sha256:9ca69c71796f53868bdc7421f120d147f7a64faa0d5d8c06970ba3f8061af63c"},
     {file = "django_browser_reload-1.6.0-py3-none-any.whl", hash = "sha256:31b8b2d51e8faa5878f21e6b60b8f43e1123907c6e082e9e967962ba63958829"},
 ]
+django-crispy-forms = [
+    {file = "django-crispy-forms-1.14.0.tar.gz", hash = "sha256:35887b8851a931374dd697207a8f56c57a9c5cb9dbf0b9fa54314da5666cea5b"},
+    {file = "django_crispy_forms-1.14.0-py3-none-any.whl", hash = "sha256:bc4d2037f6de602d39c0bc452ac3029d1f5d65e88458872cc4dbc01c3a400604"},
+]
 django-dotenv = [
     {file = "django-dotenv-1.4.2.tar.gz", hash = "sha256:3812bb0f4876cf31f902aad140f0645e120e51ee30eb7c40c22050f58a0e4adb"},
     {file = "django_dotenv-1.4.2-py2.py3-none-any.whl", hash = "sha256:a9b1b40a70bd321acd231926acedb9bd2c5e873e33a1873b34a7276d196a765e"},
@@ -118,6 +138,9 @@ django-tailwind = [
 django-tinymce = [
     {file = "django-tinymce-3.5.0.tar.gz", hash = "sha256:ebe7e39e080415a0d4ca339f0f159754a7cc1dc7cd5276f32f9d3db3220134f8"},
     {file = "django_tinymce-3.5.0-py3-none-any.whl", hash = "sha256:f9d3758670ad55912cbabdd41a14e0b6cfda47868f9c6d92a4480ca320356d53"},
+]
+fontawesomefree = [
+    {file = "fontawesomefree-6.2.1-py3-none-any.whl", hash = "sha256:961d015f2f2355b389429d6f18006d304573ab88455ea39cc15975a7a59f048f"},
 ]
 psycopg2-binary = [
     {file = "psycopg2-binary-2.9.5.tar.gz", hash = "sha256:33e632d0885b95a8b97165899006c40e9ecdc634a529dca7b991eb7de4ece41c"},

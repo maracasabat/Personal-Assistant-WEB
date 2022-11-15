@@ -13,6 +13,8 @@ django-tailwind = "^3.4.0"
 django-tinymce = "^3.5.0"
 psycopg2-binary = "^2.9.5"
 django-dotenv = "^1.4.2"
+django-crispy-forms = "^1.14.0"
+fontawesomefree = "^6.2.1"
 
 
 [build-system]
