@@ -1,0 +1,20 @@
+{% extends 'auth/index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <form   method="post">
+    {% csrf_token %}
+        <h3>Login Here</h3>
+       {{ form|crispy }}
+        <button >Log In</button>
+
+            <div style="margin-top: 10px" >
+                <span>Don't have an account?</span>
+                 <a href="{% url 'register' %}">
+                    <span class="text-accent cursor-pointer underline">Sign Up</span>
+                </a>
+            </div>
+        <div class="social">
+          <div class="go"><i class="fab fa-google"></i>  Google</div>
+        </div>
+    </form>
+{% endblock %}

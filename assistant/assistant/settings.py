@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'users.apps.UsersConfig',
     'tinymce',
+    'fontawesomefree',
+    'crispy_forms',
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
@@ -134,6 +136,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'login'
+
+AUTHENTICATION_BACKENDS = ['users.backends.EmailBackend']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

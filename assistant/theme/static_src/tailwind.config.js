@@ -6,6 +6,10 @@
  */
 
 module.exports = {
+    //  purge: {
+    //     enabled: true,
+    //     content: ['theme/templates/base.html'],
+    // },
     content: [
         /**
          * HTML. Paths to Django template files that will contain Tailwind CSS classes.
@@ -44,9 +48,23 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                'primary': '#080710',
+                'primary': '#1f2937',
                 'secondary': '#1845ad',
                 'accent': '#f09819',
+                'eye': '#f5d142',
+                'eyeShadow': '#6366f1',
+                'lip2': '#ec4899',
+                'lipShadow': '#f87171',
+                'lip': '#6366f1',
+                'title': '#c5d7dd',
+                'eyeYellow': '#f6e751',
+
+
+            },
+            fontFamily: {
+                'sans': ['Inter', 'sans-serif'],
+                'serif': ['Merriweather', 'serif'],
+                'mono': ['JetBrains Mono', 'monospace'],
             }
         },
     },
