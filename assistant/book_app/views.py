@@ -5,21 +5,21 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponseNotFound, HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 
-from .models import Nickname, Phone, Name, Surname, Email, Birthday, Address, Country, Happy
+from .models import Nickname, Name, Surname, Email, Birthday, Address, Country, Happy
 
 
 # Create your views here.
-# def main(request):
-#     nicknames = Nickname.objects.all()
-#     return render(request, 'book_app/index.html', {"nicknames": nicknames})
-
-
 def main(request):
     nicknames = Nickname.objects.all()
-    for nickname in nicknames:
-        phone = Phone.objects.get(id=nickname.id)
-        if nickname.pk == phone.pk:
-            return render(request, 'book_app/index.html', {"nicknames": nicknames, "phone": phone})
+    return render(request, 'book_app/index.html', {"nicknames": nicknames})
+
+
+# def main(request):
+#     nicknames = Nickname.objects.all()
+#     for nickname in nicknames:
+#         phone = Phone.objects.get(id=nickname.id)
+#         if nickname.pk == phone.pk:
+#             return render(request, 'book_app/index.html', {"nicknames": nicknames, "phone": phone})
 
 
 def contact(request):
@@ -28,9 +28,12 @@ def contact(request):
             nickname = request.POST['nickname']
             phone = request.POST['phone']
             if nickname and phone:
-                nk = Nickname(nickname=nickname)
+            # if nickname:
+                nk = Nickname(nickname=nickname, phone=phone)
                 nk.save()
-                Phone.objects.create(id=nk.id, phone=phone)
+            # if phone:
+            #     ph = Nickname(phone=phone)
+            #     ph.save()
             return redirect(to='/book_app/')
     except IntegrityError:
         return render(request, 'book_app/contact_err.html', {})
@@ -40,7 +43,7 @@ def contact(request):
 def info(request, nickname_id):
     try:
         nickname = Nickname.objects.get(pk=nickname_id)
-        phone = Phone.objects.get(pk=nickname_id)
+        phone = Nickname.objects.get(pk=nickname_id)
         if request.method == 'POST':
             # phone = request.POST['phone']
             name = request.POST['name']
@@ -95,12 +98,12 @@ def info(request, nickname_id):
 def contact_edit(request, nickname_id):
     try:
         nickname = Nickname.objects.get(pk=nickname_id)
-        phone = Phone.objects.get(pk=nickname_id)
+        phone = Nickname.objects.get(pk=nickname_id)
         if request.method == 'POST':
             nickname.nickname = request.POST.get('nickname')
-            nickname.save()
-            phone.phone = request.POST.get('phone')
-            phone.save()
+            nickname.nickname.save()
+            nickname.phone = request.POST.get('phone')
+            nickname.phonesave()
     except ObjectDoesNotExist:
         nickname = None
         phone = None
@@ -110,7 +113,7 @@ def contact_edit(request, nickname_id):
             if nickname and phone:
                 nickname_ = Nickname(pk=nickname_id, nickname=nickname)
                 nickname_.save()
-                phone_ = Phone(pk=nickname_id, phone=phone)
+                phone_ = Nickname(pk=nickname_id, phone=phone)
                 phone_.save()
 
     try:
@@ -198,7 +201,7 @@ def contact_edit(request, nickname_id):
 
 def detail(request, nickname_id):
     nickname = Nickname.objects.get(pk=nickname_id)
-    phone = Phone.objects.get(pk=nickname_id)
+    phone = Nickname.objects.get(pk=nickname_id)
 
     try:
         name = Name.objects.get(pk=nickname_id)
@@ -248,7 +251,7 @@ def delete_all(request, nickname_id):
         nickname = None
 
     try:
-        phone = Phone.objects.get(pk=nickname_id)
+        phone = Nickname.objects.get(pk=nickname_id)
         phone.delete()
     except ObjectDoesNotExist:
         phone = None

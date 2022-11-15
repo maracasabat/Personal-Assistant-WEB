@@ -42,7 +42,7 @@
                   {% for nickname in nicknames %}
                     <tr>
                       <th><a href="/book_app/detail/{{nickname.id}}">{{ nickname.nickname }}</a></th>
-                      <th>{{ phone.phone }}</th>
+                      <th>{{ nickname.phone }}</th>
                       <th><a href="/book_app/info/{{nickname.id}}">Add Info</a></th>
                       <th><a href="/book_app/contact_edit/{{nickname.id}}">Edit {{ nickname.nickname }}</a></th>
                       <th><a href="/book_app/delete_all/{{nickname.id}}">Delete</a></th>
