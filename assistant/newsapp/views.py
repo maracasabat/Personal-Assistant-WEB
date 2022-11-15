@@ -7,8 +7,8 @@ import requests
 
 # Create your views here.
 
-def main(request):
-    return render(request, 'index.html')
+# def main(request):
+#     return render(request, 'index.html')
 
 
 def get_news(request):
