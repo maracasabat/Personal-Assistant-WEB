@@ -81,66 +81,6 @@ def info(request, nickname_id):
     except Nickname.DoesNotExist:
         return HttpResponseNotFound("<h2>Not found</h2>")
 
-#
-# def contact_edit(request, nickname_id):
-#     try:
-#         nickname = Nickname.objects.get(pk=nickname_id)
-#         phone = Nickname.objects.get(pk=nickname_id)
-#         name = Name.objects.get(pk=nickname_id)
-#         surname = Surname.objects.get(pk=nickname_id)
-#         email = Email.objects.get(pk=nickname_id)
-#         birthday = Birthday.objects.get(pk=nickname_id)
-#         country = Country.objects.get(pk=nickname_id)
-#         address = Address.objects.get(pk=nickname_id)
-#
-#         if nickname or phone:
-#             Nickname.objects.create(id=nickname_id, nickname=nickname)
-#             Nickname.objects.create(pk=nickname_id, phone=phone)
-#         else:
-#             if request.method == 'POST':
-#                 nickname = request.POST['nickname']
-#                 phone = request.POST['phone']
-#                 if nickname or phone:
-#                     nickname_ = Nickname(pk=nickname_id, nickname=nickname)
-#                     nickname_.save()
-#                     phone_ = Nickname(pk=nickname_id, phone=phone)
-#                     phone_.save()
-#
-#         if name or surname or email or birthday or country or address:
-#             Name.objects.create(id=nickname_id, name=name)
-#             Surname.objects.create(pk=nickname_id, surname=surname)
-#             Email.objects.create(id=nickname_id, email=email)
-#             Birthday.objects.create(pk=nickname_id, birthday=birthday)
-#             Country.objects.create(id=nickname_id, country=country)
-#             Address.objects.create(pk=nickname_id, address=address)
-#         else:
-#             if request.method == 'POST':
-#                 name = request.POST['name']
-#                 surname = request.POST['surname']
-#                 email = request.POST['email']
-#                 birthday = request.POST['birthday']
-#                 country = request.POST['country']
-#                 address = request.POST['address']
-#                 if name or surname or email or birthday or country or address:
-#                     name_ = Nickname(pk=nickname_id, nickname=nickname)
-#                     name_.save()
-#                     surname_ = Nickname(pk=nickname_id, phone=phone)
-#                     surname_.save()
-#                     email_ = Nickname(pk=nickname_id, nickname=nickname)
-#                     email_.save()
-#                     birthday_ = Nickname(pk=nickname_id, phone=phone)
-#                     birthday_.save()
-#                     country_ = Nickname(pk=nickname_id, nickname=nickname)
-#                     country_.save()
-#                     address_ = Nickname(pk=nickname_id, phone=phone)
-#                     address_.save()
-#
-#         return render(request, 'book_app/contact_edit.html', {"nickname": nickname, "phone": phone, "name": name,
-#                                                           "surname": surname, "email": email, "birthday": birthday,
-#                                                           "country": country, "address": address})
-#     except ObjectDoesNotExist:
-#         return HttpResponseRedirect("/book_app/")
-
 
 def contact_edit(request, nickname_id):
     try:
@@ -359,61 +299,6 @@ def search_contact(request):
         nicknames = []
     return render(request, 'book_app/search_results.html', {'nicknames': nicknames})
 
-
-# def day_to_birthday(request):
-    # try:
-    #     nicknames = Nickname.objects.all()
-    #     for nickname in nicknames:
-    #         nickname = Nickname.objects.get(pk=nickname.id)
-    #     birthdays = Birthday.objects.all()
-    #     for birthday in birthdays:
-    #         birthday = Birthday.objects.get(pk=nickname.id)
-    #     happys = Happy.objects.all()
-    #     for happy in happys:
-    #         happy = Happy.objects.get(pk=nickname.id)
-    #
-    #     if nickname.id == birthday.id == happy.id:
-    #         return render(request, 'book_app/day_to_birthday.html', {'nicknames': nicknames, "birthday": birthday,
-    #                                                                      "happy": happy})
-    # except Nickname.DoesNotExist:
-    #     return render(request, 'book_app/day_to_birthday.html', {})
-
-
-# def day_to_birthday(request):
-#     try:
-#         nicknames = Nickname.objects.all()
-#         if nicknames:
-#             for nickname in nicknames:
-#                 try:
-#                     birthday = Birthday.objects.get(pk=nickname.id)
-#                     happy = Happy.objects.get(pk=nickname.id)
-#                     return render(request, 'book_app/day_to_birthday.html', {'nicknames': nicknames,
-#                                                                              "birthday": birthday,
-#                                                                              "happy": happy})
-#                 except ObjectDoesNotExist:
-#                     return render(request, 'book_app/day_to_birthday.html', {'nicknames': nicknames})
-#
-#     except Nickname.DoesNotExist:
-#         return render(request, 'book_app/day_to_birthday.html', {})
-
-# 2
-# def day_to_birthday(request):
-#     days = []
-#     try:
-#         nicknames = Nickname.objects.all()
-#         for nickname in nicknames:
-#             try:
-#                 # name = Name.objects.get(pk=nickname.id)
-#                 birthday = Birthday.objects.get(pk=nickname.id)
-#                 happy = Happy.objects.get(pk=nickname.id)
-#                 # days.append(name)
-#                 days.append(birthday)
-#                 days.append(happy)
-#                 return render(request, 'book_app/day_to_birthday.html', {'days': days})
-#             except Birthday.DoesNotExist:
-#                 return render(request, 'book_app/day_to_birthday.html', {})
-#     except Nickname.DoesNotExist:
-#         return render(request, 'book_app/day_to_birthday.html', {})
 
 def day_to_birthday(request):
     try:
