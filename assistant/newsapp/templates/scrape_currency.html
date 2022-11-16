@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Курс долара в банках України</title>
+    <h1>Курс долара в банках України</h1>
+
+</head>
+<body>
+<div>
+    <h2>Курс долара в банках на сьогодні</h2>
+    {% for i in currency %}
+    <p>{{i.bank}}: {{ i.buy }} / {{ i.sale }} {{i.date}}</p>
+
+    {% endfor %}
+</div>
+<br>
+</body>
+</html>

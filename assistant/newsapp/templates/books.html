@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Time Magazine's All-Time 100 Novels</title>
+    <h1>Time Magazine's All-Time 100 Novels</h1>
+
+</head>
+<body>
+<div>
+    <h2>Time Magazine's All-Time best 100 English language Novels from 1923 to 2005.</h2>
+
+    {% for i in books %}
+        <p>{{ i.number }}. {{i.author}} - {{i.title}} {{i.rating}}</p>
+    {% endfor %}
+</div>
+<br>
+</body>
+</html>
