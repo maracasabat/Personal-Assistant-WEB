@@ -21,7 +21,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mediauploadapp.urls')),
-    path('', include('newsapp.urls'))
-]
-# ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('newsapp/', include('newsapp.urls')),
+    path('book_app/', include('book_app.urls')),
+    path('note_app/', include('note_app.urls'))
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

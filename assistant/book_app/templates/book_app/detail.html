@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Book information</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    />
+  </head>
+  <body>
+    <main class="container">
+      <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
+        <ul>
+          <li><a href="/book_app/" role="button"> Go back to the main page </a></li>
+          <li><a href="/book_app/info/{{nickname.id}}" role="button">Add Info</a></li>
+          <li><a href="/book_app/contact_edit/{{nickname.id}}" role="button">Edit {{ nickname.nickname }}</a></li>
+          <li><a href="/book_app/delete_all/{{nickname.id}}" role="button">Delete</a></li>
+        </ul>
+      </nav>
+      <h1>{{nickname.nickname}}</h1>
+      <p>Phone: <b>{{nickname.phone}}</b></p>
+      <p>Time of creation: <kbd>{{nickname.created.date}}</kbd></p>
+      <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px"></nav>
+      <h2>Additional Information</h2>
+      <h4>First name</h4>
+        <ul>First name: <b>{{name.name}}</b></ul>
+      <h4>Second name</h4>
+        <ul>Second name: <b>{{surname.surname}}</b></ul>
+      <h4>Email</h4>
+        <ul>Email address: <b>{{email.email}}</b></ul>
+      <h4>Birthday</h4>
+        <ul>Date of birthday: <b>{{birthday.birthday}}</b></ul>
+      <h4>Happy day</h4>
+        <ul><b>{{happy.happy}}</b> days until the birthday contact <b>{{nickname.nickname}}</b></ul>
+      <h4>Country</h4>
+        <ul>Country: <b>{{country.country}}</b></ul>
+      <h4>Address</h4>
+        <ul>Full address: <b>{{address.address}}</b></ul>
+    </main>
+  </body>
+</html>
