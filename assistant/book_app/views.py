@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect, HttpResponseNotFound, HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator
 
-from .models import Nickname, Name, Surname, Email, Birthday, Address, Country, Happy
+from .models import Nickname, Name, Surname, Email, Birthday, Address, Country
 
 
 # Create your views here.
@@ -27,12 +27,8 @@ def contact(request):
             nickname = request.POST['nickname']
             phone = request.POST['phone']
             if nickname and phone:
-            # if nickname:
                 nk = Nickname(nickname=nickname, phone=phone)
                 nk.save()
-            # if phone:
-            #     ph = Nickname(phone=phone)
-            #     ph.save()
             return redirect(to='/book_app/')
     except IntegrityError:
         return render(request, 'book_app/contact_err.html', {})
@@ -82,14 +78,6 @@ def info(request, nickname_id):
                 birthday_ = Birthday(pk=nickname_id, birthday=birthday)
                 birthday_.save()
 
-                # date_lst = birthday.split('-')
-                # today = datetime.now().date()
-                # year_n = datetime.now().year
-                # date_birth = datetime(year=int(date_lst[0]), month=int(date_lst[1]),
-                #                       day=int(date_lst[2])).date().replace(year=int(year_n))
-                # happy = (date_birth - today).days
-                # Happy.objects.create(id=nickname_id, happy=happy)
-
             if country:
                 country_ = Country(pk=nickname_id, country=country)
                 country_.save()
@@ -100,10 +88,8 @@ def info(request, nickname_id):
             return HttpResponseRedirect("/book_app/")
         else:
             return render(request, 'book_app/info.html', {"nickname": nickname, "phone": phone})
-    except Nickname.DoesNotExist:
-        return HttpResponseNotFound("<h2>Not found</h2>")
-    # except:
-    #     return HttpResponseRedirect("/book_app/")
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect("/book_app/")
 
 
 def contact_edit(request, nickname_id):
@@ -134,14 +120,6 @@ def contact_edit(request, nickname_id):
                 birthday_ = Birthday(pk=nickname_id, birthday=birthday)
                 birthday_.save()
 
-                # date_lst = birthday.split('-')
-                # today = datetime.now().date()
-                # year_n = datetime.now().year
-                # date_birth = datetime(year=int(date_lst[0]), month=int(date_lst[1]),
-                #                       day=int(date_lst[2])).date().replace(year=int(year_n))
-                # happy = (date_birth - today).days
-                # Happy.objects.create(id=nickname_id, happy=happy)
-
             if country:
                 country_ = Country(pk=nickname_id, country=country)
                 country_.save()
@@ -152,25 +130,8 @@ def contact_edit(request, nickname_id):
             return HttpResponseRedirect("/book_app/")
         else:
             return render(request, 'book_app/contact_edit.html', {"nickname": nickname, "phone": phone})
-    except Nickname.DoesNotExist:
-        return HttpResponseNotFound("<h2>Not found</h2>")
-    # except:
-    #     return HttpResponseRedirect("/book_app/")
-
-# TypeError
-
-# def contact_edit(request, nickname_id):
-#     try:
-#         nickname = Nickname.objects.get(pk=nickname_id)
-#         if request.method == "POST":
-#             nickname.nickname = request.POST.get("nickname")
-#             nickname.phone = request.POST.get("phone")
-#             nickname.save()
-#             return HttpResponseRedirect("/book_app/")
-#         else:
-#             return render(request, "book_app/contact_edit.html", {"nickname": nickname})
-#     except Nickname.DoesNotExist:
-#         return render(request, "book_app/contact.html", {})
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect("/book_app/")
 
 
 def detail(request, nickname_id):
@@ -198,11 +159,6 @@ def detail(request, nickname_id):
         birthday = None
 
     try:
-        happy = Happy.objects.get(pk=nickname_id)
-    except ObjectDoesNotExist:
-        happy = None
-
-    try:
         country = Country.objects.get(pk=nickname_id)
     except ObjectDoesNotExist:
         country = None
@@ -214,7 +170,7 @@ def detail(request, nickname_id):
 
     return render(request, 'book_app/detail.html', {"nickname": nickname, "phone": phone, "name": name,
                                                     "surname": surname, "email": email, "birthday": birthday,
-                                                    "happy": happy, "country": country, "address": address})
+                                                    "country": country, "address": address})
 
 
 def delete_all(request, nickname_id):
@@ -253,12 +209,6 @@ def delete_all(request, nickname_id):
         birthday.delete()
     except ObjectDoesNotExist:
         birthday = None
-
-    try:
-        happy = Happy.objects.get(pk=nickname_id)
-        happy.delete()
-    except ObjectDoesNotExist:
-        happy = None
 
     try:
         country = Country.objects.get(pk=nickname_id)
