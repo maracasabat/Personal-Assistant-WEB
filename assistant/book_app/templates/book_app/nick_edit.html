@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Edit nickname</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    />
+  </head>
+  <body>
+    <main class="container">
+      <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
+        <ul>
+          <li><a href="/book_app/" role="button"> Go back to the main page </a></li>
+        </ul>
+        <h3>Edit contact: {{nickname.nickname}}</h3>
+      </nav>
+
+      <form method="POST" action="{% url 'nick_edit' nickname.id %}">
+        {% csrf_token %}
+        <div style="padding: 10px">
+          <label
+            >Nickname *:
+            <input type="text" name="nickname" required/>
+          </label>
+        </div>
+        <div style="padding: 10px">
+          <label
+            >Phone *:
+            <input type="tel" name="phone" placeholder="+380960001122" pattern="^\+?1?\d{8,15}$" required/>
+          </label>
+        </div>
+
+        <div class="grid">
+          <button type="reset" class="secondary">Reset</button>
+          <button type="submit">Edit</button>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>
