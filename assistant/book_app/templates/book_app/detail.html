@@ -19,6 +19,9 @@
         </ul>
       </nav>
       <h1>{{nickname.nickname}}</h1>
+      <nav style="margin-bottom: 25px;  padding-left: 0px">
+        <a href="/book_app/nick_edit/{{nickname.id}}">Edit nickname {{ nickname.nickname }}</a>
+      </nav>
       <p>Phone: <b>{{nickname.phone}}</b></p>
       <p>Time of creation: <kbd>{{nickname.created.date}}</kbd></p>
       <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px"></nav>

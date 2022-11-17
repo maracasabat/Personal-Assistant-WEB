@@ -39,7 +39,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                  {% for nickname in nicknames %}
+                  {% for nickname in page_obj %}
                     <tr>
                       <th><a href="/book_app/detail/{{nickname.id}}">{{ nickname.nickname }}</a></th>
                       <th>{{ nickname.phone }}</th>
@@ -54,17 +54,24 @@
           </div>
       </div>
 
+      <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
 
-<!--      {% for nickname in nicknames %}-->
-<!--      <ul>-->
-<!--        <li>-->
-<!--          <a href="/book_app/detail/{{nickname.id}}" role="button" class="outline">{{nickname.nickname}}</a>-->
-<!--          <a href="/book_app/info/{{nickname.id}}" role="button" class="outline">Add Info</a>-->
-<!--          <a href="/book_app/contact_edit/{{nickname.id}}" role="button" class="contrast">Edit</a>-->
-<!--          <a href="/book_app/delete_all/{{nickname.id}}" role="button" class="contrast">Delete</a>-->
-<!--        </li>-->
-<!--      </ul>-->
-<!--      {% endfor %}-->
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+      </div>
+      
     </main>
 </body>
 </html>

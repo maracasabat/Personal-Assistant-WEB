@@ -28,9 +28,9 @@
 
           {% else %}
 
-          <a href="/detail/{{note.id}}" role="button" class="secondary"
-            ><s>{{note.name}}</s></a
-          >
+          <a href="/note_app/detail/{{note.id}}" role="button" class="secondary"><s>{{note.name}}</s></a>
+          <a href="/note_app/delete/{{note.id}}" role="button" class="contrast">Delete</a>
+
           {% endif %}
         </li>
       </ul>
