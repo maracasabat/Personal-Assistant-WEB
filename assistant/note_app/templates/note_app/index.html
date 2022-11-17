@@ -18,10 +18,10 @@
         </ul>
       </nav>
 
-      {% for note in notes%}
+      {% for note in notes %}
       <ul>
         <li>
-          {%if not note.done%}
+          {%if not note.done %}
           <a href="/note_app/detail/{{note.id}}" role="button" class="outline">{{note.name}}</a>
           <a href="/note_app/done/{{note.id}}" role="button">Mark Done</a>
           <a href="/note_app/delete/{{note.id}}" role="button" class="contrast">Delete note</a>

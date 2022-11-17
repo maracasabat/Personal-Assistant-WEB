@@ -1,3 +1,4 @@
+from django.db import IntegrityError
 from django.shortcuts import render, redirect
 
 from .models import Tag, Note
@@ -15,11 +16,18 @@ def main(request):
 
 def tag(request):
     if request.method == 'POST':
-        name = request.POST['name']
-        if name:
-            tl = Tag(name=name)
-            tl.save()
-        return redirect(to='/note_app/tag/')
+        try:
+            name = request.POST['name']
+            if name:
+                tl = Tag(name=name)
+                tl.save()
+            return redirect(to='/note_app/tag/')
+        except ValueError as err:
+            return render(request, 'note_app/tag.html', {"error": err})
+        # except IntegrityError as err:
+        except IntegrityError:
+            err = "Tag is exist, try enter another tag..."
+            return render(request, 'note_app/tag.html', {"error": err})
     return render(request, 'note_app/tag.html', {})
 
 
@@ -54,6 +62,4 @@ def delete_note(request, note_id):
     note = Note.objects.get(pk=note_id)
     note.delete()
     return redirect(to='/note_app/')
-
-
 

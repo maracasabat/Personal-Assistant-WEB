@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.db import IntegrityError
 from django.db.models import Q
@@ -296,41 +296,22 @@ def search_contact(request):
 
 def day_to_birthday(request):
     try:
+        date_now = datetime.now().date()
         days = []
         all_contacts = Nickname.objects.all()
         for user in all_contacts:
-            try:
-                users = {}
-                birthday = Birthday.objects.get(pk=user.id)
-                users.update({"birthday": birthday.birthday})
-                nickname = Nickname.objects.get(pk=user.id)
-                users.update({"nickname": nickname.nickname})
-                today = datetime.now().date()
-                now_year = datetime.now().date().year
-                date_birth = datetime(year=int(now_year), month=int(birthday[1]), day=int(birthday[2])).date()
-                happy = date_birth - today
-                users.update({'happy': happy})
-                days.append(users)
-            except Birthday.DoesNotExist:
-                users['nickname'] = None
-                return render(request, 'book_app/day_to_birthday.html', {'days': days})
-    except Nickname.DoesNotExist:
+            users = {}
+            users['nickname'] = Nickname.objects.get(pk=user.id)
+            users['birthday'] = Birthday.objects.get(pk=user.id)
+            date_birth = users['birthday']
+            date = datetime(date_now.year, date_birth.birthday.month, date_birth.birthday.day)
+            date_n = datetime.strftime(date, '%Y-%m-%d')
+            happy = datetime.strptime(date_n, '%Y-%m-%d') - datetime.strptime(str(date_now), '%Y-%m-%d')
+            if happy.days < 0:
+                users['happy'] = happy + timedelta(days=365)
+            else:
+                users['happy'] = happy
+            days.append(users)
+        return render(request, 'book_app/day_to_birthday.html', {'days': days})
+    except ObjectDoesNotExist:
         return render(request, 'book_app/day_to_birthday.html', {})
-
-
-# def day_to_birthday(request):
-#     try:
-#         days = []
-#         all_contacts = Nickname.objects.all()
-#         for user in all_contacts:
-#             try:
-#                 users = {}
-#                 users['nickname'] = Nickname.objects.get(pk=user.id)
-#                 users['birthday'] = Birthday.objects.get(pk=user.id)
-#                 users['happy'] = Happy.objects.get(pk=user.id)
-#                 days.append(users)
-#             except Birthday.DoesNotExist:
-#                 users['nickname'] = None
-#                 return render(request, 'book_app/day_to_birthday.html', {'days': days})
-#     except Nickname.DoesNotExist:
-#         return render(request, 'book_app/day_to_birthday.html', {})
