@@ -43,9 +43,11 @@ def nick_edit(request, nickname_id):
             nickname.nickname = request.POST.get('nickname')
             nickname.phone = request.POST.get('phone')
             nickname.save()
-            return HttpResponseRedirect("/book_app/")
+            return redirect(to='/book_app/')
         else:
             return render(request, 'book_app/nick_edit.html', {"nickname": nickname, "phone": phone})
+    except IntegrityError:
+        return render(request, 'book_app/contact_err.html', {})
     except ObjectDoesNotExist:
         return HttpResponseRedirect("/book_app/")
 
