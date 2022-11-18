@@ -46,50 +46,50 @@ def nick_edit(request, nickname_id):
             return HttpResponseRedirect("/book_app/")
         else:
             return render(request, 'book_app/nick_edit.html', {"nickname": nickname, "phone": phone})
-    except Nickname.DoesNotExist:
-        return HttpResponseNotFound("<h2>Phone not found</h2>")
-
-
-def info(request, nickname_id):
-    try:
-        nickname = Nickname.objects.get(pk=nickname_id)
-        phone = Nickname.objects.get(pk=nickname_id)
-        if request.method == 'POST':
-            name = request.POST['name']
-            surname = request.POST['surname']
-            email = request.POST['email']
-            birthday = request.POST['birthday']
-            country = request.POST['country']
-            address = request.POST['address']
-
-            if name:
-                name_ = Name(pk=nickname_id, name=name)
-                name_.save()
-
-            if surname:
-                surname_ = Surname(pk=nickname_id, surname=surname)
-                surname_.save()
-
-            if email:
-                email_ = Email(pk=nickname_id, email=email)
-                email_.save()
-
-            if birthday:
-                birthday_ = Birthday(pk=nickname_id, birthday=birthday)
-                birthday_.save()
-
-            if country:
-                country_ = Country(pk=nickname_id, country=country)
-                country_.save()
-
-            if address:
-                address_ = Address(pk=nickname_id, address=address)
-                address_.save()
-            return HttpResponseRedirect("/book_app/")
-        else:
-            return render(request, 'book_app/info.html', {"nickname": nickname, "phone": phone})
     except ObjectDoesNotExist:
         return HttpResponseRedirect("/book_app/")
+
+
+# def info(request, nickname_id):
+#     try:
+#         nickname = Nickname.objects.get(pk=nickname_id)
+#         phone = Nickname.objects.get(pk=nickname_id)
+#         if request.method == 'POST':
+#             name = request.POST['name']
+#             surname = request.POST['surname']
+#             email = request.POST['email']
+#             birthday = request.POST['birthday']
+#             country = request.POST['country']
+#             address = request.POST['address']
+#
+#             if name:
+#                 name_ = Name(pk=nickname_id, name=name)
+#                 name_.save()
+#
+#             if surname:
+#                 surname_ = Surname(pk=nickname_id, surname=surname)
+#                 surname_.save()
+#
+#             if email:
+#                 email_ = Email(pk=nickname_id, email=email)
+#                 email_.save()
+#
+#             if birthday:
+#                 birthday_ = Birthday(pk=nickname_id, birthday=birthday)
+#                 birthday_.save()
+#
+#             if country:
+#                 country_ = Country(pk=nickname_id, country=country)
+#                 country_.save()
+#
+#             if address:
+#                 address_ = Address(pk=nickname_id, address=address)
+#                 address_.save()
+#             return HttpResponseRedirect("/book_app/")
+#         else:
+#             return render(request, 'book_app/info.html', {"nickname": nickname, "phone": phone})
+#     except ObjectDoesNotExist:
+#         return HttpResponseRedirect("/book_app/")
 
 
 def contact_edit(request, nickname_id):
@@ -171,6 +171,66 @@ def detail(request, nickname_id):
     return render(request, 'book_app/detail.html', {"nickname": nickname, "phone": phone, "name": name,
                                                     "surname": surname, "email": email, "birthday": birthday,
                                                     "country": country, "address": address})
+
+
+def delete_name(request, nickname_id):
+    try:
+        name = Name.objects.get(pk=nickname_id)
+        name.delete()
+    except ObjectDoesNotExist:
+        name = None
+
+    return detail(request, nickname_id)
+
+
+def delete_surname(request, nickname_id):
+    try:
+        surname = Surname.objects.get(pk=nickname_id)
+        surname.delete()
+    except ObjectDoesNotExist:
+        surname = None
+
+    return detail(request, nickname_id)
+
+
+def delete_email(request, nickname_id):
+    try:
+        email = Email.objects.get(pk=nickname_id)
+        email.delete()
+    except ObjectDoesNotExist:
+        email = None
+
+    return detail(request, nickname_id)
+
+
+def delete_birthday(request, nickname_id):
+    try:
+        birthday = Birthday.objects.get(pk=nickname_id)
+        birthday.delete()
+    except ObjectDoesNotExist:
+        birthday = None
+
+    return detail(request, nickname_id)
+
+
+def delete_country(request, nickname_id):
+    try:
+        country = Country.objects.get(pk=nickname_id)
+        country.delete()
+    except ObjectDoesNotExist:
+        country = None
+
+    return detail(request, nickname_id)
+
+
+def delete_address(request, nickname_id):
+    try:
+        address = Address.objects.get(pk=nickname_id)
+        address.delete()
+    except ObjectDoesNotExist:
+        address = None
+
+    return detail(request, nickname_id)
 
 
 def delete_all(request, nickname_id):

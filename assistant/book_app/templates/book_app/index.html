@@ -33,8 +33,8 @@
                     <tr>
                       <th scope="col">Nicknames</th>
                       <th scope="col">Phones</th>
-                      <th scope="col">Info</th>
-                      <th scope="col">Edit</th>
+<!--                      <th scope="col">Info</th>-->
+                      <th scope="col">Add/Edit contact</th>
                       <th scope="col">Delete</th>
                     </tr>
                 </thead>
@@ -43,8 +43,8 @@
                     <tr>
                       <th><a href="/book_app/detail/{{nickname.id}}">{{ nickname.nickname }}</a></th>
                       <th>{{ nickname.phone }}</th>
-                      <th><a href="/book_app/info/{{nickname.id}}">Add Info</a></th>
-                      <th><a href="/book_app/contact_edit/{{nickname.id}}">Edit {{ nickname.nickname }}</a></th>
+<!--                      <th><a href="/book_app/info/{{nickname.id}}">Add Info</a></th>-->
+                      <th><a href="/book_app/contact_edit/{{nickname.id}}">Add/Edit {{ nickname.nickname }}</a></th>
                       <th><a href="/book_app/delete_all/{{nickname.id}}">Delete</a></th>
                     </tr>
                   {% endfor %}
