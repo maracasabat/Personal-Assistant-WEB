@@ -18,9 +18,16 @@
         </ul>
       </nav>
 
-      {% for note in notes %}
-      <ul>
-        <li>
+      <h5 class="card-title">Search</h5>
+
+      <form action="{% url 'search_note' %}" method="get">
+        <input name="q" type="text" placeholder="Search...">
+      </form>
+
+      <div>
+        {% for note in notes %}
+        <ul>
+
           {%if not note.done %}
           <a href="/note_app/detail/{{note.id}}" role="button" class="outline">{{note.name}}</a>
           <a href="/note_app/done/{{note.id}}" role="button">Mark Done</a>
@@ -32,9 +39,29 @@
           <a href="/note_app/delete/{{note.id}}" role="button" class="contrast">Delete</a>
 
           {% endif %}
-        </li>
-      </ul>
-      {% endfor %}
+
+        </ul>
+        {% endfor %}
+       </div>
+
+<!--      <div class="pagination">-->
+<!--        <span class="step-links">-->
+<!--            {% if page_obj.has_previous %}-->
+<!--                <a href="?page=1">&laquo; first</a>-->
+<!--                <a href="?page={{ page_obj.previous_page_number }}">previous</a>-->
+<!--            {% endif %}-->
+
+<!--            <span class="current">-->
+<!--                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.-->
+<!--            </span>-->
+
+<!--            {% if page_obj.has_next %}-->
+<!--                <a href="?page={{ page_obj.next_page_number }}">next</a>-->
+<!--                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>-->
+<!--            {% endif %}-->
+<!--        </span>-->
+<!--      </div>-->
+
     </main>
   </body>
 </html>

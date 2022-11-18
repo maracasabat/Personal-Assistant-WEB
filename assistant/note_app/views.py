@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.db import IntegrityError
 from django.shortcuts import render, redirect
 
@@ -5,13 +6,20 @@ from .models import Tag, Note
 
 
 # Create your views here.
-# def main(request):
-#     return render(request, 'note_app/index.html', {})
-
 
 def main(request):
     notes = Note.objects.all()
     return render(request, 'note_app/index.html', {"notes": notes})
+
+# no work
+# def main(request):
+#     notes = Note.objects.all()
+#     paginator = Paginator(notes, 5)
+#
+#     page_number = request.GET.get("page")
+#     page_obj = paginator.get_page(page_number)
+#
+#     return render(request, 'note_app/index.html', {"page_obj": page_obj})
 
 
 def tag(request):
@@ -63,3 +71,11 @@ def delete_note(request, note_id):
     note.delete()
     return redirect(to='/note_app/')
 
+
+def search_note(request):
+    if request.method == 'GET':
+        query = request.GET.get('q')
+        notes = Note.objects.filter(name__icontains=query)
+    else:
+        notes = []
+    return render(request, 'note_app/search_note.html', {'notes': notes})
