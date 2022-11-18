@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'users.apps.UsersConfig',
     'tinymce',
-    # 'fontawesomefree',
+    'fontawesomefree',
     'crispy_forms',
     'book_app',
     'note_app',
