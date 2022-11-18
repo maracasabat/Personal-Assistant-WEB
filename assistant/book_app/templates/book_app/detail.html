@@ -20,16 +20,20 @@
       </nav>
       <h1>{{nickname.nickname}}</h1>
       <nav style="margin-bottom: 25px;  padding-left: 0px">
-        <a href="/book_app/nick_edit/{{nickname.id}}">Edit nickname {{ nickname.nickname }}</a>
+        <a href="/book_app/nick_edit/{{nickname.id}}" role="button">Edit nickname {{ nickname.nickname }}</a>
       </nav>
       <p>Phone: <b>{{nickname.phone}}</b></p>
       <p>Time of creation: <kbd>{{nickname.created.date}}</kbd></p>
       <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px"></nav>
       <h2>Additional Information</h2>
+
+
+
       <h4>First name</h4>
       <ul>
         {% if name.name %}
         First name: <b>{{name.name}}</b>
+        <a href="/book_app/edit_name/{{nickname.id}}" role="button">Edit name</a>
         <a href="/book_app/delete_name/{{nickname.id}}" role="button">Delete</a>
         {% else %}
         First name: <b>{{name.name}}</b>
@@ -41,6 +45,7 @@
       <ul>
         {% if surname.surname %}
         Second name: <b>{{surname.surname}}</b>
+        <a href="/book_app/edit_surname/{{nickname.id}}" role="button">Edit surname</a>
         <a href="/book_app/delete_surname/{{nickname.id}}" role="button">Delete</a>
         {% else %}
         Second name: <b>{{surname.surname}}</b>
@@ -52,6 +57,7 @@
       <ul>
         {% if email.email %}
         Email address: <b>{{email.email}}</b>
+        <a href="/book_app/edit_email/{{nickname.id}}" role="button">Edit email</a>
         <a href="/book_app/delete_email/{{nickname.id}}" role="button">Delete</a>
         {% else %}
         Email address: <b>{{email.email}}</b>
@@ -62,6 +68,7 @@
       <ul>
         {% if birthday.birthday %}
         Date of birthday: <b>{{birthday.birthday}}</b>
+        <a href="/book_app/edit_birthday/{{nickname.id}}" role="button">Edit birthday</a>
         <a href="/book_app/delete_birthday/{{nickname.id}}" role="button">Delete</a>
         {% else %}
         Date of birthday: <b>{{birthday.birthday}}</b>
@@ -74,6 +81,7 @@
       <ul>
         {% if country.country %}
         Country: <b>{{country.country}}</b>
+        <a href="/book_app/edit_country/{{nickname.id}}" role="button">Edit country</a>
         <a href="/book_app/delete_country/{{nickname.id}}" role="button">Delete</a>
         {% else %}
         Country: <b>{{country.country}}</b>
@@ -84,6 +92,7 @@
       <ul>
         {% if address.address %}
         Full address: <b>{{address.address}}</b>
+        <a href="/book_app/edit_address/{{nickname.id}}" role="button">Edit address</a>
         <a href="/book_app/delete_address/{{nickname.id}}" role="button">Delete</a>
         {% else %}
         Full address: <b>{{address.address}}</b>

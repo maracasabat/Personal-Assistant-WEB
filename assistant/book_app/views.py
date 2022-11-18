@@ -106,6 +106,10 @@ def contact_edit(request, nickname_id):
             country = request.POST['country']
             address = request.POST['address']
 
+            # if phone:
+            #     phone = Phone(pk=nickname_id, phone=phone)
+            #     phone.save()
+
             if name:
                 name_ = Name(pk=nickname_id, name=name)
                 name_.save()
@@ -135,6 +139,102 @@ def contact_edit(request, nickname_id):
     except IntegrityError:
         err = "Email is exist, try enter another email..."
         return render(request, 'book_app/contact_edit.html', {"nickname": nickname, "phone": phone, "error": err})
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect("/book_app/")
+
+
+def edit_name(request, nickname_id):
+    try:
+        nickname = Nickname.objects.get(pk=nickname_id)
+        phone = Nickname.objects.get(pk=nickname_id)
+        if request.method == 'POST':
+            name = request.POST['name']
+            if name:
+                name_ = Name(pk=nickname_id, name=name)
+                name_.save()
+            return detail(request, nickname_id)
+        else:
+            return render(request, 'book_app/edit_name.html', {"nickname": nickname, "phone": phone})
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect("/book_app/")
+
+
+def edit_surname(request, nickname_id):
+    try:
+        nickname = Nickname.objects.get(pk=nickname_id)
+        phone = Nickname.objects.get(pk=nickname_id)
+        if request.method == 'POST':
+            surname = request.POST['surname']
+            if surname:
+                surname_ = Surname(pk=nickname_id, surname=surname)
+                surname_.save()
+            return detail(request, nickname_id)
+        else:
+            return render(request, 'book_app/edit_surname.html', {"nickname": nickname, "phone": phone})
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect("/book_app/")
+
+
+def edit_email(request, nickname_id):
+    try:
+        nickname = Nickname.objects.get(pk=nickname_id)
+        phone = Nickname.objects.get(pk=nickname_id)
+        if request.method == 'POST':
+            email = request.POST['email']
+            if email:
+                email_ = Email(pk=nickname_id, email=email)
+                email_.save()
+            return detail(request, nickname_id)
+        else:
+            return render(request, 'book_app/edit_email.html', {"nickname": nickname, "phone": phone})
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect("/book_app/")
+
+
+def edit_birthday(request, nickname_id):
+    try:
+        nickname = Nickname.objects.get(pk=nickname_id)
+        phone = Nickname.objects.get(pk=nickname_id)
+        if request.method == 'POST':
+            birthday = request.POST['birthday']
+            if birthday:
+                birthday_ = Birthday(pk=nickname_id, birthday=birthday)
+                birthday_.save()
+            return detail(request, nickname_id)
+        else:
+            return render(request, 'book_app/edit_birthday.html', {"nickname": nickname, "phone": phone})
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect("/book_app/")
+
+
+def edit_country(request, nickname_id):
+    try:
+        nickname = Nickname.objects.get(pk=nickname_id)
+        phone = Nickname.objects.get(pk=nickname_id)
+        if request.method == 'POST':
+            country = request.POST['country']
+            if country:
+                country_ = Country(pk=nickname_id, country=country)
+                country_.save()
+            return detail(request, nickname_id)
+        else:
+            return render(request, 'book_app/edit_country.html', {"nickname": nickname, "phone": phone})
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect("/book_app/")
+
+
+def edit_address(request, nickname_id):
+    try:
+        nickname = Nickname.objects.get(pk=nickname_id)
+        phone = Nickname.objects.get(pk=nickname_id)
+        if request.method == 'POST':
+            address = request.POST['address']
+            if address:
+                address_ = Address(pk=nickname_id, address=address)
+                address_.save()
+            return detail(request, nickname_id)
+        else:
+            return render(request, 'book_app/edit_address.html', {"nickname": nickname, "phone": phone})
     except ObjectDoesNotExist:
         return HttpResponseRedirect("/book_app/")
 

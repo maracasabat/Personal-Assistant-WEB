@@ -22,4 +22,11 @@ urlpatterns = [
     path('delete_country/<int:nickname_id>', views.delete_country, name='delete_country'),
     path('delete_address/<int:nickname_id>', views.delete_address, name='delete_address'),
 
+    path('edit_name/<int:nickname_id>', views.edit_name, name='edit_name'),
+    path('edit_surname/<int:nickname_id>', views.edit_surname, name='edit_surname'),
+    path('edit_email/<int:nickname_id>', views.edit_email, name='edit_email'),
+    path('edit_birthday/<int:nickname_id>', views.edit_birthday, name='edit_birthday'),
+    path('edit_country/<int:nickname_id>', views.edit_country, name='edit_country'),
+    path('edit_address/<int:nickname_id>', views.edit_address, name='edit_address'),
+
 ]

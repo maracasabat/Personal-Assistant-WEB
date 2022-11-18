@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Nickname, Name, Surname, Email, Birthday, Country, Address
+# from .models import Nickname, Name, Surname, Email, Birthday, Country, Address, Phone
 # Register your models here.
 
 
@@ -10,4 +11,6 @@ admin.site.register(Email)
 admin.site.register(Birthday)
 admin.site.register(Country)
 admin.site.register(Address)
+
+# admin.site.register(Phone)
 

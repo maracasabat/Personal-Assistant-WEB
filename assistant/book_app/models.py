@@ -19,6 +19,9 @@ class Nickname(models.Model):
     def __str__(self):
         return self.nickname
 
+    # def all_phones_to_string(self):
+    #     return ", ".join([phone.phone for phone in self.phones.all()])
+
 
 # class Phone(models.Model):
 #     phone = models.CharField(validators=[RegexValidator(
