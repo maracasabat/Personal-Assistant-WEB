@@ -132,6 +132,9 @@ def contact_edit(request, nickname_id):
             return HttpResponseRedirect("/book_app/")
         else:
             return render(request, 'book_app/contact_edit.html', {"nickname": nickname, "phone": phone})
+    except IntegrityError:
+        err = "Email is exist, try enter another email..."
+        return render(request, 'book_app/contact_edit.html', {"nickname": nickname, "phone": phone, "error": err})
     except ObjectDoesNotExist:
         return HttpResponseRedirect("/book_app/")
 
@@ -326,4 +329,4 @@ def day_to_birthday(request):
             days.append(users)
         return render(request, 'book_app/day_to_birthday.html', {'days': days})
     except ObjectDoesNotExist:
-        return render(request, 'book_app/day_to_birthday.html', {})
+        return render(request, 'book_app/day_to_birthday.html', {'days': days})

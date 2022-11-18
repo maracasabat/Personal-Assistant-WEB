@@ -54,7 +54,7 @@ class Surname(models.Model):
 
 class Email(models.Model):
     contact = models.ForeignKey(Nickname, null=True, blank=True, on_delete=models.CASCADE, related_name='emails')
-    email = models.CharField(max_length=50, unique=False, null=True, blank=True, validators=[
+    email = models.CharField(max_length=50, unique=True, null=True, blank=True, validators=[
         EmailValidator(
             message='input correct email'
         )
