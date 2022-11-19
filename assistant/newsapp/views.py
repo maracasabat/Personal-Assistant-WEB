@@ -7,9 +7,9 @@ import requests
 
 
 # Create your views here.
-@login_required
-def main(request):
-    return render(request, 'index.html')
+# @login_required
+# def main(request):
+#     return render(request, 'index.html')
 
 @login_required
 def get_news(request):

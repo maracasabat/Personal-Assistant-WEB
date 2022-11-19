@@ -3,6 +3,7 @@ name = "personal-assistant-web"
 version = "0.1.0"
 description = ""
 authors = ["Ivan Yevpat <maracasabat@gmail.com>"]
+license = "MIT"
 readme = "README.md"
 packages = [{include = "personal_assistant_web"}]
 
@@ -17,6 +18,8 @@ django-crispy-forms = "^1.14.0"
 fontawesomefree = "^6.2.1"
 Pillow = "^9.3.0"
 bs4 = "^0.0.1"
+beautifulsoup4 = "^4.11.1"
+requests = "^2.28.1"
 
 
 [build-system]
