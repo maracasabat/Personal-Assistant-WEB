@@ -1,16 +1,17 @@
 from datetime import datetime
 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from bs4 import BeautifulSoup
 import requests
 
 
 # Create your views here.
-
+@login_required
 def main(request):
     return render(request, 'index.html')
 
-
+@login_required
 def get_news(request):
     news = []
     base_url = "https://www.pravda.com.ua/news/"
@@ -27,7 +28,7 @@ def get_news(request):
         # print(news)
     return render(request, 'scrape.html', {'news': news})
 
-
+@login_required
 def get_sport_news(request):
     sport_news = []
     base_url = "https://sport.ua/uk/uk"
@@ -44,7 +45,7 @@ def get_sport_news(request):
         # print(sport_news)
     return render(request, 'scrape_sport.html', {'sport_news': sport_news})
 
-
+@login_required
 def get_currency(request):
     currency = []
     date_now = datetime.now().strftime('%Y-%m-%d')
@@ -67,7 +68,7 @@ def get_currency(request):
         currency.append(result)
     return render(request, 'scrape_currency.html', {'currency': currency})
 
-
+@login_required
 def get_it(request):
     it = []
     base_url = "https://itc.ua/ua/tehnologiyi/"
@@ -86,7 +87,7 @@ def get_it(request):
         # print(result)
     return render(request, 'scrape_it.html', {'it': it})
 
-
+@login_required
 def get_fashion(request):
     fashion = []
     base_url = "https://life.nv.ua/ukr/krasota-i-moda.html"
@@ -103,6 +104,8 @@ def get_fashion(request):
         # print(result)
     return render(request, 'fashion.html', {'fashion': fashion})
 
+
+@login_required
 def get_books(request):
     books = []
     base_url = "https://www.goodreads.com/list/show/2681.Time_Magazine_s_All_Time_100_Novels"
