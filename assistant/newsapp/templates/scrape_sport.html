@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Спортивні новини</title>
-    <h1>Новини спорту</h1>
+{% extends 'base.html' %}
+{% block header %}
+    <div class="flex-col items-center" style='align-items: center; justify-content: center; display: flex'>
+        <h2 class='flex font-bold text-3xl text-gray-900 tracking-tight uppercase mb-5'> Sport News</h2>
+        <div class="flex">{% include 'includes/tabs.html' %}</div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="font-serif">
+        {% for i in sport_news %}
+        <p>{{i.sport.upper}}: {{ i.time }} - {{ i.news }}</p>
 
-</head>
-<body>
-<div>
-    <h2>Останні спортивні новини</h2>
-    {% for i in sport_news %}
-    <p>{{i.sport.upper}}: {{ i.time }} - {{ i.news }}</p>
-
-    {% endfor %}
-</div>
-<br>
-</body>
-</html>
+        {% endfor %}
+    </div>
+{% endblock %}

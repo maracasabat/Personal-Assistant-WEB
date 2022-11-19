@@ -20,12 +20,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = 'django-insecure-ttjeuxhphtzdtb-g!#lwoxe@9kwj2=mq%803it3n_!!uu$$4o4'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = str(os.environ.get('DEBUG')) == '1'
 
 ALLOWED_HOSTS = []
+if not DEBUG:
+    ALLOWED_HOSTS += [os.environ.get('ALLOWED_HOST')]
 # Application definition
 
 INSTALLED_APPS = [
@@ -144,6 +146,13 @@ LOGIN_URL = 'login'
 
 AUTHENTICATION_BACKENDS = ['users.backends.EmailBackend']
 
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'mediauploadapp/media')
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -184,7 +193,4 @@ TINYMCE_DEFAULT_CONFIG = {
     'image_caption': True,
 }
 
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'mediauploadapp/media')
 

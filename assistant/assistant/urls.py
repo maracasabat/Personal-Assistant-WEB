@@ -19,15 +19,16 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-                  path('', include('mediauploadapp.urls')),
+                  path('', include('users.urls')),
+                  path('', include('main.urls')),
+                  # path(' ', include('mediauploadapp.urls')),
                   path('newsapp/', include('newsapp.urls')),
                   path('book_app/', include('book_app.urls')),
                   path('note_app/', include('note_app.urls')),
-                  path('', include('users.urls')),
-                  path('', include('main.urls')),
                   path('admin/', admin.site.urls),
                   path('__reload__/', include('django_browser_reload.urls')),
                   path('tinymce/', include('tinymce.urls')),
-              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+              # ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout, authenticate, get_user_model
 from django.contrib import messages
-from .forms import UserRegistrationForm, UserLoginForm
+from .forms import UserRegistrationForm, UserLoginForm, UserUpdateForm
 from django.contrib.auth.decorators import login_required
 
 from .decorators import unauthenticated_user
@@ -9,7 +9,10 @@ from .decorators import unauthenticated_user
 
 # Create your views here.
 @unauthenticated_user
-def register(request):
+def register_view(request):
+    # if request.user.is_authenticated:
+    #     return redirect("main:homepage")
+
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
 
@@ -33,6 +36,9 @@ def register(request):
 
 @unauthenticated_user
 def custom_login(request):
+    # if request.user.is_authenticated:
+    #     return redirect("main:homepage")
+
     if request.method == "POST":
         form = UserLoginForm(request=request, data=request.POST)
         if form.is_valid():
@@ -64,3 +70,27 @@ def custom_logout(request):
     logout(request)
     messages.info(request, "Logged out successfully!")
     return redirect('main:homepage')
+
+
+@login_required
+def custom_settings(request, username):
+    if request.method == "POST":
+        user = request.user
+        form = UserUpdateForm(request.POST, request.FILES, instance=user)
+
+        if form.is_valid():
+            user_form = form.save()
+            messages.success(request, f'{user_form.username}, Your profile has been updated!')
+            return redirect("settings", user_form.username)
+
+        for error in list(form.errors.values()):
+            messages.error(request, error)
+
+    user = get_user_model().objects.get(username=username)
+    if user:
+        form = UserUpdateForm(instance=user)
+        return render(request=request,
+                      template_name="main/settingsPage.html",
+                      context={"form": form})
+    else:
+        return redirect('main:homepage')

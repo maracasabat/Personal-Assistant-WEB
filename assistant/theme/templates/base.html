@@ -64,6 +64,7 @@
   box-sizing: border-box;
 }
 
+
     </style>
   </head>
 
@@ -73,13 +74,21 @@
 
  {% include 'includes/navigation.html' %}
       <!--    HEADER-->
+      <header class="flex relative  bg-white shadow flex items-center ">
+        <div class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8 ">
 
-    {% include 'includes/header.html' %}
+            {% block header %}{% endblock %}
+        <div class="flex absolute right-10 top-5 ">
+{#            {% include 'includes/messages.html' %}#}
+        </div>
+
+        </div>
+      </header>
 
       <!--    DASHBOARD-->
       <main>
         <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-          <div class="px-4 py-6 sm:px-0">
+          <div class="px-4 sm:px-0">
             <div
               class="h-full rounded-lg border-4 border-dashed border-gray-200 flex items-center bg-gray-100"
             >
@@ -87,7 +96,8 @@
                 <div
                   class="flex items-center justify-center font-sans overflow-hidden p-5"
                 >
-                  {% block content %} {% endblock %}
+                    {% block tabs %}{% endblock %}
+                  {% block content %}{% endblock %}
                 </div>
               </div>
             </div>
@@ -98,9 +108,13 @@
     </div>
 
     <script>
-        currentLinks = document.querySelectorAll('a[href="'+document.URL+'"]')
-        currentLinks.forEach(link => link.classList.add('bg-gray-900'))
-
+        let links = document.querySelectorAll('.nav a');
+        links.forEach(link => {
+            const currentLink = document.URL;
+            if (link.href === currentLink) {
+                link.classList.add('bg-gray-900');
+            }
+        });
     </script>
   <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
   </body>
