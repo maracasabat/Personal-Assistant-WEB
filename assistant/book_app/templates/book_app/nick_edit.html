@@ -19,6 +19,13 @@
 
       <form method="POST" action="{% url 'nick_edit' nickname.id %}">
         {% csrf_token %}
+
+        {% if error %}
+          <div>
+            <mark>{{ error }}</mark>
+          </div>
+        {% endif %}
+
         <div style="padding: 10px">
           <label
             >Nickname *:

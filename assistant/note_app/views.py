@@ -7,19 +7,19 @@ from .models import Tag, Note
 
 # Create your views here.
 
-def main(request):
-    notes = Note.objects.all()
-    return render(request, 'note_app/index.html', {"notes": notes})
-
-# no work
 # def main(request):
 #     notes = Note.objects.all()
-#     paginator = Paginator(notes, 5)
-#
-#     page_number = request.GET.get("page")
-#     page_obj = paginator.get_page(page_number)
-#
-#     return render(request, 'note_app/index.html', {"page_obj": page_obj})
+#     return render(request, 'note_app/index.html', {"notes": notes})
+
+
+def main(request):
+    notes = Note.objects.all()
+    paginator = Paginator(notes, 5)
+
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'note_app/index.html', {"page_obj": page_obj})
 
 
 def tag(request):

@@ -19,24 +19,24 @@ class Nickname(models.Model):
     def __str__(self):
         return self.nickname
 
+
+class Telephone(models.Model):
+    telephone = models.CharField(validators=[RegexValidator(
+        regex=r"^\+?1?\d{8,15}$",
+        message="input correct phone",
+        code="invalid",
+        inverse_match=False,
+        flags=re.IGNORECASE
+    )], max_length=16, unique=True, blank=True, null=True)
+    # telephone = models.TextField(blank=True, null=True, unique=True)
+    contact = models.ForeignKey(Nickname, null=True, blank=True, on_delete=models.CASCADE, related_name='telephones')
+
+    def __str__(self):
+        return f'{self.telephone}'
+
     # def all_phones_to_string(self):
-    #     return ", ".join([phone.phone for phone in self.phones.all()])
-
-
-# class Phone(models.Model):
-#     phone = models.CharField(validators=[RegexValidator(
-#         regex=r"^\+?1?\d{8,15}$",
-#         message="input correct phone",
-#         code="invalid",
-#         inverse_match=False,
-#         flags=re.IGNORECASE
-#     )], max_length=16, unique=True)
-#     # phone = PhoneNumberField(blank=True)
-#     contact = models.ForeignKey(Nickname, null=True, blank=True, on_delete=models.CASCADE, related_name='phones')
-
-
-    # def __str__(self):
-    #     return f'{self.phone}'
+    #     return ", ".join([telephone.telephone for telephone in self.telephones.all()])
+    #
 
 
 class Name(models.Model):

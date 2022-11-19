@@ -27,7 +27,16 @@
       <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px"></nav>
       <h2>Additional Information</h2>
 
-
+      <h4>Additional phone</h4>
+      <ul>
+        {% if telephone.telephone %}
+        Phone: <b>{{telephone.telephone}}</b>
+        <a href="/book_app/edit_telephone/{{nickname.id}}" role="button">Edit</a>
+        <a href="/book_app/delete_telephone/{{nickname.id}}" role="button">Delete</a>
+        {% else %}
+        Phones: <b>{{telephone.telephone}}</b>
+        {% endif %}
+      </ul>
 
       <h4>First name</h4>
       <ul>

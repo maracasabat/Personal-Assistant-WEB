@@ -19,15 +19,14 @@
       <form method="POST" action="{% url 'contact_edit' nickname.id %}">
         {% csrf_token %}
 
-<!--          <div style="padding: 10px">-->
-<!--            <label-->
-<!--              >Add new phone:-->
-<!--              <input type="tel" name="phone" placeholder="+380960001122" pattern="^\+?1?\d{8,15}$" />-->
-<!--            </label>-->
-<!--            <h6>Existing number: {{phone.phone}}</h6>-->
-<!--          </div>-->
+          <div style="padding: 10px">
+            <label
+              >Additional phone <b>{{ telephone.telephone }}</b>:
+              <input type="tel" name="telephone" placeholder="+380960001122" pattern="^\+?1?\d{8,15}$" />
+            </label>
+          </div>
 
-<!--          <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px"></nav>-->
+          <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px"></nav>
 
           <div style="padding: 10px">
             <label
@@ -35,6 +34,7 @@
               <input type="text" name="name" />
             </label>
           </div>
+
           <div style="padding: 10px">
             <label
               >Last name <b>{{ surname.surname }}</b>:

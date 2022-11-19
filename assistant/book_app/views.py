@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect, HttpResponseNotFound, HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator
 
-from .models import Nickname, Name, Surname, Email, Birthday, Address, Country
+from .models import Nickname, Name, Surname, Email, Birthday, Address, Country, Telephone
 
 
 # Create your views here.
@@ -47,51 +47,10 @@ def nick_edit(request, nickname_id):
         else:
             return render(request, 'book_app/nick_edit.html', {"nickname": nickname, "phone": phone})
     except IntegrityError:
-        return render(request, 'book_app/contact_err.html', {})
+        err = "Data already exists, try enter another phone..."
+        return render(request, 'book_app/nick_edit.html', {"nickname": nickname, "phone": phone, "error": err})
     except ObjectDoesNotExist:
         return HttpResponseRedirect("/book_app/")
-
-
-# def info(request, nickname_id):
-#     try:
-#         nickname = Nickname.objects.get(pk=nickname_id)
-#         phone = Nickname.objects.get(pk=nickname_id)
-#         if request.method == 'POST':
-#             name = request.POST['name']
-#             surname = request.POST['surname']
-#             email = request.POST['email']
-#             birthday = request.POST['birthday']
-#             country = request.POST['country']
-#             address = request.POST['address']
-#
-#             if name:
-#                 name_ = Name(pk=nickname_id, name=name)
-#                 name_.save()
-#
-#             if surname:
-#                 surname_ = Surname(pk=nickname_id, surname=surname)
-#                 surname_.save()
-#
-#             if email:
-#                 email_ = Email(pk=nickname_id, email=email)
-#                 email_.save()
-#
-#             if birthday:
-#                 birthday_ = Birthday(pk=nickname_id, birthday=birthday)
-#                 birthday_.save()
-#
-#             if country:
-#                 country_ = Country(pk=nickname_id, country=country)
-#                 country_.save()
-#
-#             if address:
-#                 address_ = Address(pk=nickname_id, address=address)
-#                 address_.save()
-#             return HttpResponseRedirect("/book_app/")
-#         else:
-#             return render(request, 'book_app/info.html', {"nickname": nickname, "phone": phone})
-#     except ObjectDoesNotExist:
-#         return HttpResponseRedirect("/book_app/")
 
 
 def contact_edit(request, nickname_id):
@@ -99,6 +58,7 @@ def contact_edit(request, nickname_id):
         nickname = Nickname.objects.get(pk=nickname_id)
         phone = Nickname.objects.get(pk=nickname_id)
         if request.method == 'POST':
+            telephone = request.POST['telephone']
             name = request.POST['name']
             surname = request.POST['surname']
             email = request.POST['email']
@@ -106,9 +66,9 @@ def contact_edit(request, nickname_id):
             country = request.POST['country']
             address = request.POST['address']
 
-            # if phone:
-            #     phone = Phone(pk=nickname_id, phone=phone)
-            #     phone.save()
+            if telephone:
+                telephone_ = Telephone(pk=nickname_id, telephone=telephone)
+                telephone_.save()
 
             if name:
                 name_ = Name(pk=nickname_id, name=name)
@@ -139,6 +99,22 @@ def contact_edit(request, nickname_id):
     except IntegrityError:
         err = "Email is exist, try enter another email..."
         return render(request, 'book_app/contact_edit.html', {"nickname": nickname, "phone": phone, "error": err})
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect("/book_app/")
+
+
+def edit_telephone(request, nickname_id):
+    try:
+        nickname = Nickname.objects.get(pk=nickname_id)
+        phone = Nickname.objects.get(pk=nickname_id)
+        if request.method == 'POST':
+            telephone = request.POST['telephone']
+            if telephone:
+                telephone_ = Telephone(pk=nickname_id, telephone=telephone)
+                telephone_.save()
+            return detail(request, nickname_id)
+        else:
+            return render(request, 'book_app/edit_telephone.html', {"nickname": nickname, "phone": phone})
     except ObjectDoesNotExist:
         return HttpResponseRedirect("/book_app/")
 
@@ -244,6 +220,11 @@ def detail(request, nickname_id):
     phone = Nickname.objects.get(pk=nickname_id)
 
     try:
+        telephone = Telephone.objects.get(pk=nickname_id)
+    except ObjectDoesNotExist:
+        telephone = None
+
+    try:
         name = Name.objects.get(pk=nickname_id)
     except ObjectDoesNotExist:
         name = None
@@ -273,9 +254,19 @@ def detail(request, nickname_id):
     except ObjectDoesNotExist:
         address = None
 
-    return render(request, 'book_app/detail.html', {"nickname": nickname, "phone": phone, "name": name,
+    return render(request, 'book_app/detail.html', {"nickname": nickname, "phone": phone, "telephone": telephone, "name": name,
                                                     "surname": surname, "email": email, "birthday": birthday,
                                                     "country": country, "address": address})
+
+
+def delete_telephone(request, nickname_id):
+    try:
+        telephone = Telephone.objects.get(pk=nickname_id)
+        telephone.delete()
+    except ObjectDoesNotExist:
+        telephone = None
+
+    return detail(request, nickname_id)
 
 
 def delete_name(request, nickname_id):
@@ -350,6 +341,12 @@ def delete_all(request, nickname_id):
         phone.delete()
     except ObjectDoesNotExist:
         phone = None
+
+    try:
+        telephone = Telephone.objects.get(pk=nickname_id)
+        telephone.delete()
+    except ObjectDoesNotExist:
+        telephone = None
 
     try:
         name = Name.objects.get(pk=nickname_id)
