@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Books</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    />
+  </head>
+<body>
+  <main class="container">
+      <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
+        <ul>
+          <li><a href="/book_app/contact/" role="button">Add Contact</a></li>
+          <li><a href="/book_app/" role="button"> Go back to the main page </a></li>
+        </ul>
+      </nav>
+
+
+      <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Search Results</h5>
+            <p class="card-text">
+              <table class="table">
+                <thead>
+                    <tr>
+                      <th scope="col">Nicknames</th>
+                      <th scope="col">Phones</th>
+                      <th scope="col">Info</th>
+                      <th scope="col">Edit</th>
+                      <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {% for nickname in nicknames %}
+                    <tr>
+                      <th><a href="/book_app/detail/{{nickname.id}}">{{ nickname.nickname }}</a></th>
+                      <th>{{ nickname.phone }}</th>
+                      <th><a href="/book_app/info/{{nickname.id}}">Add Info</a></th>
+                      <th><a href="/book_app/contact_edit/{{nickname.id}}">Edit {{ nickname.nickname }}</a></th>
+                      <th><a href="/book_app/delete_all/{{nickname.id}}">Delete</a></th>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </form>
+          </div>
+      </div>
+
+    </main>
+</body>
+</html>

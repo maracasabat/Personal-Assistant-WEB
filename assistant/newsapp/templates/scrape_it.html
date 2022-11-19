@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новини. Технології</title>
+    <h1>Новини ІТ</h1>
+
+</head>
+<body>
+<div>
+    <h2>Останні новини інформаційних технологій</h2>
+
+    {% for i in it %}
+        <p>{{ i.time }}: {{i.title}}</p>
+    {% endfor %}
+</div>
+<br>
+</body>
+</html>

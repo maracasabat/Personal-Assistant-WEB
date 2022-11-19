@@ -19,17 +19,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
-print(SECRET_KEY)
+
+SECRET_KEY = 'django-insecure-ttjeuxhphtzdtb-g!#lwoxe@9kwj2=mq%803it3n_!!uu$$4o4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = str(os.environ.get('DEBUG')) == '1'  # 1 is True, 0 is False
-print(DEBUG)
+DEBUG = True
 
 ALLOWED_HOSTS = []
-if not DEBUG:
-    ALLOWED_HOSTS += [os.environ.get('ALLOWED_HOST')]
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -45,8 +41,12 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'users.apps.UsersConfig',
     'tinymce',
-    'fontawesomefree',
+    # 'fontawesomefree',
     'crispy_forms',
+    'book_app',
+    'note_app',
+    'mediauploadapp',
+    'newsapp',
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
@@ -86,21 +86,21 @@ WSGI_APPLICATION = 'assistant.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB_NAME'),
-        'USER': os.environ.get('POSTGRES_USER'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': os.environ.get('host', 'localhost'),
-        'PORT': os.environ.get('POSTGRES_PORT', '5432'),
-        'OPTIONS': {
-            'connect_timeout': 1,
-        },
-    },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': os.environ.get('POSTGRES_DB_NAME'),
+    #     'USER': os.environ.get('POSTGRES_USER'),
+    #     'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+    #     'HOST': os.environ.get('host', 'localhost'),
+    #     'PORT': os.environ.get('POSTGRES_PORT', '5432'),
+    #     'OPTIONS': {
+    #         'connect_timeout': 1,
+    #     },
+    # },
 }
 
 # Password validation
@@ -151,6 +151,7 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 #  Configuring Tailwind
 
 TAILWIND_APP_NAME = 'theme'
@@ -184,3 +185,8 @@ TINYMCE_DEFAULT_CONFIG = {
     "height": "600px",
     'image_caption': True,
 }
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'mediauploadapp/media')
+
