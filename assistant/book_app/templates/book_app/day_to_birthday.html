@@ -19,7 +19,9 @@
       <h5 class="card-title">Birthdays</h5>
         <ul>
           {% for day in days %}
-            <li>{{ day.happy }} days to birthday contact {{ day.nickname }}:  {{ day.birthday }}</li>
+            {% if day.happy.days < 30 %}
+            <li>{{ day.happy.days }} days to birthday contact {{ day.nickname }}:  {{ day.birthday }}</li>
+            {% endif %}
           {% endfor %}
         </ul>
     </main>
