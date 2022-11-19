@@ -1,6 +1,7 @@
 import os
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from tinymce.models import HTMLField
 
 
 # Create your models here.
@@ -18,7 +19,7 @@ class CustomUser(AbstractUser):
 
     email = models.EmailField(unique=True)
     status = models.CharField(max_length=100, choices=STATUS, default='regular')
-    description = models.TextField("Description", max_length=600, default='', blank=True)
+    description = HTMLField("Description", max_length=600, default='', blank=True)
     first_name = models.CharField("First Name", max_length=100, default='', blank=True)
     last_name = models.CharField("Last Name", max_length=100, default='', blank=True)
     avatar = models.ImageField(upload_to=image_upload_to, blank=True, null=True, default='default/avatar.webp')

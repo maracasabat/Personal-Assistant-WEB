@@ -5,7 +5,7 @@ from django.shortcuts import render
 # Create your views here.
 @login_required
 def homepage(request):
-    return render(request, "base.html")
+    return render(request, "main/homePage.html")
 
 
 @login_required
