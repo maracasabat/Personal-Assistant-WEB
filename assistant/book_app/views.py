@@ -1,5 +1,7 @@
 from datetime import datetime, timedelta
 
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
@@ -11,6 +13,7 @@ from .models import Nickname, Name, Surname, Email, Birthday, Address, Country, 
 
 
 # Create your views here.
+@login_required
 def main(request):
     nicknames = Nickname.objects.all()
     paginator = Paginator(nicknames, 5)
@@ -21,6 +24,7 @@ def main(request):
     return render(request, 'book_app/index.html', {"page_obj": page_obj})
 
 
+@login_required
 def contact(request):
     try:
         if request.method == 'POST':
@@ -29,12 +33,15 @@ def contact(request):
             if nickname and phone:
                 nk = Nickname(nickname=nickname, phone=phone)
                 nk.save()
+                messages.success(request, "Contact added successfully")
             return redirect(to='/book_app/')
     except IntegrityError:
-        return render(request, 'book_app/contact_err.html', {})
+        messages.error(request, "Data already exists, try enter another phone...")
+        # return render(request, 'book_app/contact_err.html', {})
     return render(request, 'book_app/contact.html', {})
 
 
+@login_required
 def nick_edit(request, nickname_id):
     try:
         nickname = Nickname.objects.get(pk=nickname_id)
@@ -48,11 +55,13 @@ def nick_edit(request, nickname_id):
             return render(request, 'book_app/nick_edit.html', {"nickname": nickname, "phone": phone})
     except IntegrityError:
         err = "Data already exists, try enter another phone..."
+        messages.error(request, err)
         return render(request, 'book_app/nick_edit.html', {"nickname": nickname, "phone": phone, "error": err})
     except ObjectDoesNotExist:
         return HttpResponseRedirect("/book_app/")
 
 
+@login_required
 def contact_edit(request, nickname_id):
     try:
         nickname = Nickname.objects.get(pk=nickname_id)
@@ -98,11 +107,13 @@ def contact_edit(request, nickname_id):
             return render(request, 'book_app/contact_edit.html', {"nickname": nickname, "phone": phone})
     except IntegrityError:
         err = "Email is exist, try enter another email..."
+        messages.error(request, err)
         return render(request, 'book_app/contact_edit.html', {"nickname": nickname, "phone": phone, "error": err})
     except ObjectDoesNotExist:
         return HttpResponseRedirect("/book_app/")
 
 
+@login_required
 def edit_telephone(request, nickname_id):
     try:
         nickname = Nickname.objects.get(pk=nickname_id)
@@ -119,6 +130,7 @@ def edit_telephone(request, nickname_id):
         return HttpResponseRedirect("/book_app/")
 
 
+@login_required
 def edit_name(request, nickname_id):
     try:
         nickname = Nickname.objects.get(pk=nickname_id)
@@ -135,6 +147,7 @@ def edit_name(request, nickname_id):
         return HttpResponseRedirect("/book_app/")
 
 
+@login_required
 def edit_surname(request, nickname_id):
     try:
         nickname = Nickname.objects.get(pk=nickname_id)
@@ -151,6 +164,7 @@ def edit_surname(request, nickname_id):
         return HttpResponseRedirect("/book_app/")
 
 
+@login_required
 def edit_email(request, nickname_id):
     try:
         nickname = Nickname.objects.get(pk=nickname_id)
@@ -167,6 +181,7 @@ def edit_email(request, nickname_id):
         return HttpResponseRedirect("/book_app/")
 
 
+@login_required
 def edit_birthday(request, nickname_id):
     try:
         nickname = Nickname.objects.get(pk=nickname_id)
@@ -183,6 +198,7 @@ def edit_birthday(request, nickname_id):
         return HttpResponseRedirect("/book_app/")
 
 
+@login_required
 def edit_country(request, nickname_id):
     try:
         nickname = Nickname.objects.get(pk=nickname_id)
@@ -199,6 +215,7 @@ def edit_country(request, nickname_id):
         return HttpResponseRedirect("/book_app/")
 
 
+@login_required
 def edit_address(request, nickname_id):
     try:
         nickname = Nickname.objects.get(pk=nickname_id)
@@ -215,6 +232,7 @@ def edit_address(request, nickname_id):
         return HttpResponseRedirect("/book_app/")
 
 
+@login_required
 def detail(request, nickname_id):
     nickname = Nickname.objects.get(pk=nickname_id)
     phone = Nickname.objects.get(pk=nickname_id)
@@ -254,11 +272,13 @@ def detail(request, nickname_id):
     except ObjectDoesNotExist:
         address = None
 
-    return render(request, 'book_app/detail.html', {"nickname": nickname, "phone": phone, "telephone": telephone, "name": name,
-                                                    "surname": surname, "email": email, "birthday": birthday,
-                                                    "country": country, "address": address})
+    return render(request, 'book_app/detail.html',
+                  {"nickname": nickname, "phone": phone, "telephone": telephone, "name": name,
+                   "surname": surname, "email": email, "birthday": birthday,
+                   "country": country, "address": address})
 
 
+@login_required
 def delete_telephone(request, nickname_id):
     try:
         telephone = Telephone.objects.get(pk=nickname_id)
@@ -269,6 +289,7 @@ def delete_telephone(request, nickname_id):
     return detail(request, nickname_id)
 
 
+@login_required
 def delete_name(request, nickname_id):
     try:
         name = Name.objects.get(pk=nickname_id)
@@ -279,6 +300,7 @@ def delete_name(request, nickname_id):
     return detail(request, nickname_id)
 
 
+@login_required
 def delete_surname(request, nickname_id):
     try:
         surname = Surname.objects.get(pk=nickname_id)
@@ -289,6 +311,7 @@ def delete_surname(request, nickname_id):
     return detail(request, nickname_id)
 
 
+@login_required
 def delete_email(request, nickname_id):
     try:
         email = Email.objects.get(pk=nickname_id)
@@ -299,6 +322,7 @@ def delete_email(request, nickname_id):
     return detail(request, nickname_id)
 
 
+@login_required
 def delete_birthday(request, nickname_id):
     try:
         birthday = Birthday.objects.get(pk=nickname_id)
@@ -309,6 +333,7 @@ def delete_birthday(request, nickname_id):
     return detail(request, nickname_id)
 
 
+@login_required
 def delete_country(request, nickname_id):
     try:
         country = Country.objects.get(pk=nickname_id)
@@ -319,6 +344,7 @@ def delete_country(request, nickname_id):
     return detail(request, nickname_id)
 
 
+@login_required
 def delete_address(request, nickname_id):
     try:
         address = Address.objects.get(pk=nickname_id)
@@ -329,6 +355,7 @@ def delete_address(request, nickname_id):
     return detail(request, nickname_id)
 
 
+@login_required
 def delete_all(request, nickname_id):
     try:
         nickname = Nickname.objects.get(pk=nickname_id)
@@ -386,7 +413,7 @@ def delete_all(request, nickname_id):
 
     return redirect(to='/book_app/')
 
-
+@login_required
 def search_contact(request):
     if request.method == 'GET':
         query = request.GET.get('q')
@@ -397,6 +424,7 @@ def search_contact(request):
         nicknames = []
     return render(request, 'book_app/search_results.html', {'nicknames': nicknames})
 
+
 # def search_contact(request):
 #     if request.method == 'GET':
 #         query = request.GET.get('q')
@@ -405,7 +433,7 @@ def search_contact(request):
 #         nicknames = []
 #     return render(request, 'book_app/search_results.html', {'nicknames': nicknames})
 
-
+# @login_required
 def day_to_birthday(request):
     try:
         date_now = datetime.now().date()

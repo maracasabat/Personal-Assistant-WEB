@@ -6,9 +6,13 @@
     </div>
 {% endblock %}
 {% block content %}
-    <div class="font-serif text-2xl bg-gradient-to-r from-indigo-600 to-indigo-300 rounded-lg text-white size">
+    <div class="font-serif text-gray-100">
         {% for i in it %}
-            <p>{{ i.time }}: {{i.title}}</p>
+{#            <p>{{ i.time }}: {{i.title}}</p>#}
+             <p class=" border-b shadow py-2">
+                <span class="font-bold mr-3 text-lip">{{ i.time }}</span>
+                <span>{{i.title}}</span>
+            </p>
         {% endfor %}
     </div>
 {% endblock %}

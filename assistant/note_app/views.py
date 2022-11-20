@@ -1,3 +1,5 @@
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db import IntegrityError
 from django.shortcuts import render, redirect
@@ -11,7 +13,7 @@ from .models import Tag, Note
 #     notes = Note.objects.all()
 #     return render(request, 'note_app/index.html', {"notes": notes})
 
-
+@login_required
 def main(request):
     notes = Note.objects.all()
     paginator = Paginator(notes, 5)
@@ -22,6 +24,7 @@ def main(request):
     return render(request, 'note_app/index.html', {"page_obj": page_obj})
 
 
+@login_required
 def tag(request):
     if request.method == 'POST':
         try:
@@ -29,16 +32,20 @@ def tag(request):
             if name:
                 tl = Tag(name=name)
                 tl.save()
+                messages.success(request, f"Tag {name} created")
             return redirect(to='/note_app/tag/')
         except ValueError as err:
+            messages.error(request, err)
             return render(request, 'note_app/tag.html', {"error": err})
         # except IntegrityError as err:
         except IntegrityError:
             err = "Tag is exist, try enter another tag..."
+            messages.error(request, err)
             return render(request, 'note_app/tag.html', {"error": err})
     return render(request, 'note_app/tag.html', {})
 
 
+@login_required
 def note(request):
     if request.method == 'POST':
         name = request.POST['name']
@@ -46,32 +53,37 @@ def note(request):
         list_tags = request.POST.getlist('tags')
         if name and description:
             tags = Tag.objects.filter(name__in=list_tags)
-            note = Note.objects.create(name=name, description=description,)
+            note = Note.objects.create(name=name, description=description, )
             for tag in tags.iterator():
                 note.tags.add(tag)
+            messages.success(request, f"Note {name} created")
         return redirect(to='/note_app/note/')
 
     tags = Tag.objects.all()
     return render(request, 'note_app/note.html', {"tags": tags})
 
 
+@login_required
 def detail(request, note_id):
     note = Note.objects.get(pk=note_id)
     note.tag_list = ', '.join([str(name) for name in note.tags.all()])
     return render(request, 'note_app/detail.html', {"note": note})
 
 
+@login_required
 def set_done(request, note_id):
     Note.objects.filter(pk=note_id).update(done=True)
     return redirect(to='/note_app/')
 
 
+@login_required
 def delete_note(request, note_id):
     note = Note.objects.get(pk=note_id)
     note.delete()
     return redirect(to='/note_app/')
 
 
+@login_required
 def search_note(request):
     if request.method == 'GET':
         query = request.GET.get('q')

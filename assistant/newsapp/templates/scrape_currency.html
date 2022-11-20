@@ -6,9 +6,14 @@
     </div>
 {% endblock %}
 {% block content %}
-    <div class="font-serif text-2xl bg-gradient-to-r from-indigo-600 to-indigo-300 rounded-lg text-white size">
+    <div class="font-serif text-gray-100">
         {% for i in currency %}
-        <p>{{i.bank}}: {{ i.buy }} / {{ i.sale }} {{i.date}}</p>
+{#        <p>{{i.bank}}: {{ i.buy }} / {{ i.sale }} {{i.date}}</p>#}
+            <p class="font-bold mr-3 text-lip">{{i.bank}}</p>
+            <p class=" border-b shadow py-2">
+                <span class="font-bold mr-3">{{i.date}}</span>
+                <span class=" ">{{ i.buy }} / {{ i.sale }}</span>
+            </p>
         {% endfor %}
     </div>
 {% endblock %}

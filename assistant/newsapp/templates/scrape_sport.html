@@ -6,10 +6,15 @@
     </div>
 {% endblock %}
 {% block content %}
-    <div class="font-serif text-2xl bg-gradient-to-r from-indigo-600 to-indigo-300 rounded-lg text-white size">
+    <div class="font-serif text-gray-100">
         {% for i in sport_news %}
-        <p>{{i.sport.upper}}: {{ i.time }} - {{ i.news }}</p>
+{#        <p>{{i.sport.upper}}: {{ i.time }} - {{ i.news }}</p>#}
+        <p class="font-bold mr-3 text-lip">{{i.sport.title}}</p>
+            <p class=" border-b shadow py-2">
+                <span class="font-bold mr-3">{{ i.time }}</span>
+                <span class=" ">{{ i.news }}</span>
 
+            </p>
         {% endfor %}
     </div>
 {% endblock %}
