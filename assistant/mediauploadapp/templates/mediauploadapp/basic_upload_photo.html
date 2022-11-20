@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <div class="flex-col items-center" style='align-items: center; justify-content: center; display: flex'>
+        <h2 class='flex font-bold text-3xl text-gray-900 tracking-tight mb-5'> Basic Photo Upload</h2>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+
+
+{% block javascript %}
+    {% load static %}
+  {# JQUERY FILE UPLOAD SCRIPTS #}
+  <script src="{% static 'js/jquery-file-upload/vendor/jquery.ui.widget.js' %}"></script>
+  <script src="{% static 'js/jquery-file-upload/jquery.iframe-transport.js' %}"></script>
+  <script src="{% static 'js/jquery-file-upload/jquery.fileupload.js' %}"></script>
+
+  {# PHOTOS PAGE SCRIPTS #}
+  <script src="{% static 'mediauploadapp/js/basic-upload-photo.js' %}"></script>
+{% endblock %}
+
+{% block photos_content %}
+  <div style="margin-bottom: 20px;">
+    <button type="button" class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 ">
+      <span class="glyphicon glyphicon-cloud-upload"></span> Upload photos
+    </button>
+    <input id="fileupload" type="file" name="file" multiple
+           style="display: none;"
+           data-url="{% url 'basic_upload' %}"
+           data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+  </div>
+
+  </div>
+  <table id="gallery" class="min-w-full text-center">
+    <thead class="border-b bg-gray-800">
+      <tr>
+        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Photo</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for photo in photos %}
+        <tr>
+          <td><a href="{{ photo.file.url }}">{{ photo.file.name }}</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+
+{% endblock %}
