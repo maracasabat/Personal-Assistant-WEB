@@ -94,3 +94,8 @@ def custom_settings(request, username):
                       context={"form": form})
     else:
         return redirect('main:homepage')
+
+
+def signup_redirect(request):
+    messages.error(request, "Something wrong here, it may be that you already have account!")
+    return redirect("main:homepage")

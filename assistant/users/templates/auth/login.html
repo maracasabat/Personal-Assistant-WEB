@@ -1,11 +1,12 @@
 {% extends 'auth/index.html' %}
 {% load crispy_forms_tags %}
+{% load socialaccount %}
 {% block content %}
     <form   method="post">
     {% csrf_token %}
         <h3>Login Here</h3>
        {{ form|crispy }}
-        <button >Log In</button>
+        <button class="btn" >Log In</button>
 
             <div style="margin-top: 10px" >
                 <span>Don't have an account?</span>
@@ -14,7 +15,15 @@
                 </a>
             </div>
         <div class="social">
-          <div class="go"><i class="fab fa-google"></i>  Google</div>
+{#            <button class=" google bg-transparent w-full px-3 py-2 border-2 border-['#626167'] rounded text-white >#}
+            <button class="google">
+                <a href="{% provider_login_url 'google'%}?next=/">
+                    <i class="fab fa-google text-accent"></i>
+                    Login with Google
+
+                </a>
+            </button>
+{#          <div class="go"><i class="fab fa-google"></i>  Google</div>#}
         </div>
     </form>
 {% endblock %}
