@@ -6,7 +6,7 @@
     </div>
 {% endblock %}
 {% block content %}
-    <div class="font-serif">
+    <div class="font-serif text-2xl bg-gradient-to-r from-indigo-600 to-indigo-300 rounded-lg text-white size">
         {% for i in books %}
             <p>{{ i.number }}. {{i.author}} - {{i.title}} {{i.rating}}</p>
         {% endfor %}
