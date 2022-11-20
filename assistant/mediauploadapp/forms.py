@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from .models import File, Book
+from .models import File, Book, Photo
 from .filechecker import file_size, book_size, book_extension
 
 
@@ -18,3 +18,9 @@ class BookForm(forms.ModelForm):
     class Meta:
         model = Book
         fields = ('title', 'author', 'pdf', 'cover', 'publication_date')
+
+
+class PhotoForm(forms.ModelForm):
+    class Meta:
+        model = Photo
+        fields = ('file', )

@@ -1,23 +1,29 @@
-{% extends 'mediauploadapp/base.html' %}
+{% extends 'base.html' %}
+
+{% block header %}
+    <div class="flex-col items-center" style='align-items: center; justify-content: center; display: flex'>
+        <h2 class='flex font-bold text-3xl text-gray-900 tracking-tight uppercase mb-5'> Books</h2>
+        <div class="flex">{% include 'mediauploadapp/includes/tabs.html' %}</div>
+    </div>
+{% endblock %}
 
 {% block content %}
 
   {% block content_header %}
-    <h2>Books</h2>
     <p>
-      <a href="{% url 'upload_book' %}" class="btn btn-primary">Upload book</a>
+      <a href="{% url 'upload_book' %}" class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 ">Upload book</a>
     </p>
   {% endblock %}
-
-  <table class="table mb-0">
-    <thead>
+    </div>
+  <table class="min-w-full text-center">
+    <thead class="border-b bg-gray-800">
       <tr>
-        <th>Cover</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Publication date</th>
-        <th>Download</th>
-        <th>Delete</th>
+        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Cover</th>
+        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Title</th>
+        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Author</th>
+        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Publication date</th>
+        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Download</th>
+        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -34,14 +40,14 @@
           <td>{{ book.author }}</td>
           <td>{{ book.publication_date }}</td>
           <td>
-            <a href="{{ book.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
+            <a href="{{ book.pdf.url }}" class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 " target="_blank">
               Download PDF
             </a>
           </td>
           <td>
             <form method="post" action="{% url 'delete_book' book.pk %}">
               {% csrf_token %}
-              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+              <button type="submit" class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 ">Delete</button>
             </form>
           </td>
         </tr>
