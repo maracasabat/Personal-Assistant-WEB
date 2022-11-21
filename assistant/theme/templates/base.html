@@ -9,6 +9,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     {% tailwind_css %}
+{#       <link#}
+{#      rel="stylesheet"#}
+{#      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"#}
+{#    />#}
     <style media="screen">
       {#@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");#}
 
@@ -76,7 +80,7 @@
       <!--    HEADER-->
       <header class="flex relative  bg-white shadow flex items-center ">
         <div class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8 ">
-
+{#            {% block title %}{% endblock %}#}
             {% block header %}{% endblock %}
         <div class="flex flex-col absolute right-10 top-5 ">
             {% include 'includes/messages.html' %}
@@ -86,7 +90,7 @@
       </header>
 
       <!--    DASHBOARD-->
-      <main>
+      <main class="bg-primary">
         <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
           <div class="px-4 sm:px-0">
             <div

@@ -6,9 +6,14 @@
     </div>
 {% endblock %}
 {% block content %}
-    <div class="font-serif text-2xl bg-gradient-to-r from-indigo-600 to-indigo-300 rounded-lg text-white size">
+    <div class="font-serif text-gray-100">
         {% for i in books %}
-            <p>{{ i.number }}. {{i.author}} - {{i.title}} {{i.rating}}</p>
+{#            <p>{{ i.number }}. {{i.author}} - {{i.title}} {{i.rating}}</p>#}
+            <p class=" border-b shadow py-2">
+                <span class="font-bold mr-3">{{ i.number }}</span>
+                <span class="font-bold mr-3">{{i.author}} - {{i.title}}</span>
+                <span class="text-lip mr-3" style="color: #6366f1">{{i.rating}}</span>
+            </p>
         {% endfor %}
     </div>
 {% endblock %}
