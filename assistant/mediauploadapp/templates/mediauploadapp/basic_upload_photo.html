@@ -22,7 +22,7 @@
 {% endblock %}
 
 {% block photos_content %}
-  <div style="margin-bottom: 20px;">
+  <div class="text-gray-300" style="margin-bottom: 20px;">
     <button type="button" class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 ">
       <span class="glyphicon glyphicon-cloud-upload"></span> Upload photos
     </button>
@@ -32,7 +32,7 @@
            data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
   </div>
 
-  </div>
+{#  </div>#}
   <table id="gallery" class="min-w-full text-center">
     <thead class="border-b bg-gray-800">
       <tr>
