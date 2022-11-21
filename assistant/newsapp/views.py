@@ -28,6 +28,7 @@ def get_news(request):
         # print(news)
     return render(request, 'scrape.html', {'news': news})
 
+
 @login_required
 def get_sport_news(request):
     sport_news = []
@@ -44,6 +45,7 @@ def get_sport_news(request):
         sport_news.append(result)
         # print(sport_news)
     return render(request, 'scrape_sport.html', {'sport_news': sport_news})
+
 
 @login_required
 def get_currency(request):
@@ -68,24 +70,25 @@ def get_currency(request):
         currency.append(result)
     return render(request, 'scrape_currency.html', {'currency': currency})
 
+
 @login_required
 def get_it(request):
     it = []
-    base_url = "https://itc.ua/ua/tehnologiyi/"
-    response = requests.get(base_url)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    content = soup.select('div[class="row"]')
-    # print(content)
-    for el in content:
-        result = {}
-        try:
-            result['time'] = el.find('time', {'class': 'published'}).text.strip()
-        except AttributeError:
-            break
-        result['title'] = el.find('h2').text.strip()
-        it.append(result)
+    base_url = 'https://portaltele.com.ua'
+    urls = ['/', '/page/2', '/page/3', '/page/4', '/page/5', '/page/6', '/page/7', '/page/8', '/page/9']
+    for url in urls:
+        response = requests.get(base_url + url)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        content = soup.select('div[class="row"] div[class="post__text"]')
+        # print(content)
+        for el in content:
+            result = {}
+            result['title'] = el.find('h3').text.strip()
+            result['time'] = el.find('time', {'class': 'time published'}).text.strip()
+            it.append(result)
         # print(result)
     return render(request, 'scrape_it.html', {'it': it})
+
 
 @login_required
 def get_fashion(request):
