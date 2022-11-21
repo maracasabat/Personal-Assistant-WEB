@@ -74,17 +74,17 @@ def get_currency(request):
 @login_required
 def get_it(request):
     it = []
-    base_url = 'https://portaltele.com.ua'
-    urls = ['/', '/page/2', '/page/3', '/page/4', '/page/5', '/page/6', '/page/7', '/page/8', '/page/9']
+    base_url = 'https://focus.ua/uk/technologies/list'
+    urls = ['/', '?page=2', '?page=3', '?page=4', '?page=5', '?page=6', '?page=7', '?page=8', '?page=9']
     for url in urls:
         response = requests.get(base_url + url)
         soup = BeautifulSoup(response.text, 'html.parser')
-        content = soup.select('div[class="row"] div[class="post__text"]')
+        content = soup.select('div[class="c-card-list__main"]')
         # print(content)
         for el in content:
             result = {}
-            result['title'] = el.find('h3').text.strip()
-            result['time'] = el.find('time', {'class': 'time published'}).text.strip()
+            result['title'] = el.find('a', {'class': 'c-card-list__link'}).text.strip()
+            result['time'] = el.find('time', {'class': 'c-card-list__date'}).text.strip()
             it.append(result)
         # print(result)
     return render(request, 'scrape_it.html', {'it': it})
