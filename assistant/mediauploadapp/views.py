@@ -188,7 +188,7 @@ class BasicUploadView(View):
             data = {'is_valid': True, 'name': photo.file.name, 'url': photo.file.url}
         else:
             data = {'is_valid': False}
-        return JsonResponse(data)
+        return redirect('basic_upload')
 
 
 class ProgressBarUploadView(View):
