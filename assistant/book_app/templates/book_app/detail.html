@@ -29,13 +29,19 @@
 
       <h4>Additional phone</h4>
       <ul>
-        {% if telephone.telephone %}
-        Phone: <b>{{telephone.telephone}}</b>
-        <a href="/book_app/edit_telephone/{{nickname.id}}" role="button">Edit</a>
-        <a href="/book_app/delete_telephone/{{nickname.id}}" role="button">Delete</a>
-        {% else %}
-        Phones: <b>{{telephone.telephone}}</b>
-        {% endif %}
+        Phones
+        {% for telephone in telephones %}
+          {% if telephone.contact_id == nickname.id %}
+            {% if telephone.telephone %}
+            <li>  {{telephone.telephone}}
+              <a href="/book_app/delete_telephone/{{nickname.id}}/{{telephone.telephone}}"
+                 role="button">Delete</a>
+            </li>
+            {% else %}
+            Phones: <b>{{telephone.telephone}}</b>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
       </ul>
 
       <h4>First name</h4>

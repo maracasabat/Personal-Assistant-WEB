@@ -16,7 +16,7 @@ urlpatterns = [
     path('delete_all/<int:nickname_id>', views.delete_all, name='delete_all'),
     path('day_to_birthday/', views.day_to_birthday, name='day_to_birthday'),
 
-    path('delete_telephone/<int:nickname_id>', views.delete_telephone, name='delete_telephone'),
+    path('delete_telephone/<int:nickname_id>/<telephone>', views.delete_telephone, name='delete_telephone'),
     path('delete_name/<int:nickname_id>', views.delete_name, name='delete_name'),
     path('delete_surname/<int:nickname_id>', views.delete_surname, name='delete_surname'),
     path('delete_email/<int:nickname_id>', views.delete_email, name='delete_email'),
@@ -24,7 +24,7 @@ urlpatterns = [
     path('delete_country/<int:nickname_id>', views.delete_country, name='delete_country'),
     path('delete_address/<int:nickname_id>', views.delete_address, name='delete_address'),
 
-    path('edit_telephone/<int:nickname_id>', views.edit_telephone, name='edit_telephone'),
+    # path('edit_telephone/<int:nickname_id>', views.edit_telephone, name='edit_telephone'),
     path('edit_name/<int:nickname_id>', views.edit_name, name='edit_name'),
     path('edit_surname/<int:nickname_id>', views.edit_surname, name='edit_surname'),
     path('edit_email/<int:nickname_id>', views.edit_email, name='edit_email'),
