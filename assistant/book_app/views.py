@@ -76,58 +76,60 @@ def contact_edit(request, nickname_id):
             address = request.POST['address']
 
             if telephone:
-                telephone_ = Telephone(pk=nickname_id, telephone=telephone)
-                telephone_.save()
+                telephone = Telephone()
+                telephone.telephone = request.POST.get('telephone')
+                telephone.contact_id = nickname_id
+                telephone.save()
 
             if name:
-                name_ = Name(pk=nickname_id, name=name)
+                name_ = Name(pk=nickname_id, name=name, contact_id=nickname_id)
                 name_.save()
 
             if surname:
-                surname_ = Surname(pk=nickname_id, surname=surname)
+                surname_ = Surname(pk=nickname_id, surname=surname, contact_id=nickname_id)
                 surname_.save()
 
             if email:
-                email_ = Email(pk=nickname_id, email=email)
+                email_ = Email(pk=nickname_id, email=email, contact_id=nickname_id)
                 email_.save()
 
             if birthday:
-                birthday_ = Birthday(pk=nickname_id, birthday=birthday)
+                birthday_ = Birthday(pk=nickname_id, birthday=birthday, contact_id=nickname_id)
                 birthday_.save()
 
             if country:
-                country_ = Country(pk=nickname_id, country=country)
+                country_ = Country(pk=nickname_id, country=country, contact_id=nickname_id)
                 country_.save()
 
             if address:
-                address_ = Address(pk=nickname_id, address=address)
+                address_ = Address(pk=nickname_id, address=address, contact_id=nickname_id)
                 address_.save()
             return HttpResponseRedirect("/book_app/")
         else:
             return render(request, 'book_app/contact_edit.html', {"nickname": nickname, "phone": phone})
     except IntegrityError:
-        err = "Email is exist, try enter another email..."
+        err = "Data already exists, try again..."
         messages.error(request, err)
         return render(request, 'book_app/contact_edit.html', {"nickname": nickname, "phone": phone, "error": err})
     except ObjectDoesNotExist:
         return HttpResponseRedirect("/book_app/")
 
 
-@login_required
-def edit_telephone(request, nickname_id):
-    try:
-        nickname = Nickname.objects.get(pk=nickname_id)
-        phone = Nickname.objects.get(pk=nickname_id)
-        if request.method == 'POST':
-            telephone = request.POST['telephone']
-            if telephone:
-                telephone_ = Telephone(pk=nickname_id, telephone=telephone)
-                telephone_.save()
-            return detail(request, nickname_id)
-        else:
-            return render(request, 'book_app/edit_telephone.html', {"nickname": nickname, "phone": phone})
-    except ObjectDoesNotExist:
-        return HttpResponseRedirect("/book_app/")
+# @login_required
+# def edit_telephone(request, nickname_id):
+#     try:
+#         nickname = Nickname.objects.get(pk=nickname_id)
+#         phone = Nickname.objects.get(pk=nickname_id)
+#         if request.method == 'POST':
+#             telephone = request.POST['telephone']
+#             if telephone:
+#                 telephone_ = Telephone(pk=nickname_id, telephone=telephone)
+#                 telephone_.save()
+#             return detail(request, nickname_id)
+#         else:
+#             return render(request, 'book_app/edit_telephone.html', {"nickname": nickname, "phone": phone})
+#     except ObjectDoesNotExist:
+#         return HttpResponseRedirect("/book_app/")
 
 
 @login_required
@@ -138,7 +140,7 @@ def edit_name(request, nickname_id):
         if request.method == 'POST':
             name = request.POST['name']
             if name:
-                name_ = Name(pk=nickname_id, name=name)
+                name_ = Name(pk=nickname_id, name=name, contact_id=nickname_id)
                 name_.save()
             return detail(request, nickname_id)
         else:
@@ -155,7 +157,7 @@ def edit_surname(request, nickname_id):
         if request.method == 'POST':
             surname = request.POST['surname']
             if surname:
-                surname_ = Surname(pk=nickname_id, surname=surname)
+                surname_ = Surname(pk=nickname_id, surname=surname, contact_id=nickname_id)
                 surname_.save()
             return detail(request, nickname_id)
         else:
@@ -172,7 +174,7 @@ def edit_email(request, nickname_id):
         if request.method == 'POST':
             email = request.POST['email']
             if email:
-                email_ = Email(pk=nickname_id, email=email)
+                email_ = Email(pk=nickname_id, email=email, contact_id=nickname_id)
                 email_.save()
             return detail(request, nickname_id)
         else:
@@ -189,7 +191,7 @@ def edit_birthday(request, nickname_id):
         if request.method == 'POST':
             birthday = request.POST['birthday']
             if birthday:
-                birthday_ = Birthday(pk=nickname_id, birthday=birthday)
+                birthday_ = Birthday(pk=nickname_id, birthday=birthday, contact_id=nickname_id)
                 birthday_.save()
             return detail(request, nickname_id)
         else:
@@ -206,7 +208,7 @@ def edit_country(request, nickname_id):
         if request.method == 'POST':
             country = request.POST['country']
             if country:
-                country_ = Country(pk=nickname_id, country=country)
+                country_ = Country(pk=nickname_id, country=country, contact_id=nickname_id)
                 country_.save()
             return detail(request, nickname_id)
         else:
@@ -223,7 +225,7 @@ def edit_address(request, nickname_id):
         if request.method == 'POST':
             address = request.POST['address']
             if address:
-                address_ = Address(pk=nickname_id, address=address)
+                address_ = Address(pk=nickname_id, address=address, contact_id=nickname_id)
                 address_.save()
             return detail(request, nickname_id)
         else:
@@ -238,9 +240,9 @@ def detail(request, nickname_id):
     phone = Nickname.objects.get(pk=nickname_id)
 
     try:
-        telephone = Telephone.objects.get(pk=nickname_id)
+        telephones = Telephone.objects.all()
     except ObjectDoesNotExist:
-        telephone = None
+        telephones = None
 
     try:
         name = Name.objects.get(pk=nickname_id)
@@ -273,15 +275,15 @@ def detail(request, nickname_id):
         address = None
 
     return render(request, 'book_app/detail.html',
-                  {"nickname": nickname, "phone": phone, "telephone": telephone, "name": name,
+                  {"nickname": nickname, "phone": phone, "telephones": telephones, "name": name,
                    "surname": surname, "email": email, "birthday": birthday,
                    "country": country, "address": address})
 
 
 @login_required
-def delete_telephone(request, nickname_id):
+def delete_telephone(request, nickname_id, telephone=None):
     try:
-        telephone = Telephone.objects.get(pk=nickname_id)
+        telephone = Telephone.objects.get(telephone=telephone)
         telephone.delete()
     except ObjectDoesNotExist:
         telephone = None
@@ -433,7 +435,7 @@ def search_contact(request):
 #         nicknames = []
 #     return render(request, 'book_app/search_results.html', {'nicknames': nicknames})
 
-# @login_required
+@login_required
 def day_to_birthday(request):
     try:
         date_now = datetime.now().date()
