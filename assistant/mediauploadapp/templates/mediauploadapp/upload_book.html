@@ -7,7 +7,7 @@
     </div>
 {% endblock %}
 {% block content %}
-  <form method="post" enctype="multipart/form-data">
+  <form method="post" enctype="multipart/form-data" class="text-amber-600">
     {% csrf_token %}
     {{ form|crispy }}
     <button type="submit" class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 ">Upload book</button>

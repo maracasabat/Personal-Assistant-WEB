@@ -16,7 +16,7 @@ urlpatterns = [
     path('class/books/upload/', views.UploadBookView.as_view(), name='class_upload_book'),
 
     path('photos/', views.photo_list, name='photo_list'),
-    path('photodb/clear/', views.clear_database, name='clear_database'),
+    path('photos/clear/', views.clear_database, name='clear_database'),
     path('basicphoto/upload/', views.BasicUploadView.as_view(), name='basic_upload'),
     path('progressbar/upload/', views.ProgressBarUploadView.as_view(), name='progress_bar_upload'),
     path('draganddrop/upload/', views.DragAndDropUploadView.as_view(), name='drag_and_drop_upload'),

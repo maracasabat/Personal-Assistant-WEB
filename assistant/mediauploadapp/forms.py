@@ -9,7 +9,7 @@ class FileForm(forms.ModelForm):
 
     class Meta:
         model = File
-        fields = ('title', 'file', 'publication_date')
+        fields = ('title', 'file', 'category', 'publication_date')
 
 
 class BookForm(forms.ModelForm):
@@ -21,6 +21,7 @@ class BookForm(forms.ModelForm):
 
 
 class PhotoForm(forms.ModelForm):
+    file = forms.FileField(required=True, validators=[file_size])
     class Meta:
         model = Photo
         fields = ('file', )

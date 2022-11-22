@@ -1,14 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.timezone import now
-
+from django.core.validators import FileExtensionValidator
+from .filechecker import file_size
 
 # Create your models here.
 
 
 class File(models.Model):
+    CATEGORY = (
+        ('video', ('Video')),
+        ('image', ('Image')),
+        ('document', ('Document')),
+        ('music', ('Music')),
+        ('other', ('Other')),
+    )
     title = models.CharField(max_length=100)
     file = models.FileField(upload_to='files/')
+    category = models.CharField('File Category', max_length=40, choices=CATEGORY, default='other')
     publication_date = models.DateTimeField(default=now, blank=True)
 
     def __str__(self):
@@ -36,5 +45,6 @@ class Book(models.Model):
 
 class Photo(models.Model):
     title = models.CharField(max_length=255, blank=True)
-    file = models.FileField(upload_to='photos/')
+    file = models.FileField(upload_to='photos/',
+                            validators=[FileExtensionValidator(allowed_extensions=['jpg', 'png', 'svg', 'jpeg'])])
     uploaded_at = models.DateTimeField(auto_now_add=True)

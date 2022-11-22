@@ -1,4 +1,7 @@
+import random
+
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from .models import File, Book, Photo, User
 from django.http import HttpResponseRedirect
@@ -27,12 +30,15 @@ def main(request):
 @login_required
 def upload(request):
     context = {}
-    if request.method == 'POST':
-        uploaded_file = request.FILES['document']
-        fs = FileSystemStorage()
-        name = fs.save(uploaded_file.name, uploaded_file)
-        context['url'] = fs.url(name)
-    return render(request, 'mediauploadapp/upload.html', context)
+    try:
+        if request.method == 'POST':
+            uploaded_file = request.FILES['document']
+            fs = FileSystemStorage()
+            name = fs.save(uploaded_file.name, uploaded_file)
+            context['url'] = fs.url(name)
+        return render(request, 'mediauploadapp/upload.html', context)
+    except KeyError:
+        return render(request, 'mediauploadapp/upload.html', {})
 
 
 """ Add methods for the file upload """
@@ -113,10 +119,16 @@ class UploadBookView(CreateView):
 
 @login_required
 def photo_list(request):
-    books = Photo.objects.all()
-    return render(request, 'mediauploadapp/photo_list.html', {
-        'books': books
-    })
+    photos = Photo.objects.all()
+    if photos:
+        photo = random.choice(photos).file.url
+        return render(request, 'mediauploadapp/photo_list_basic.html', {
+            'photo': photo
+        })
+    else:
+        return render(request, 'mediauploadapp/photo_list_basic.html', {
+            'photo': "https://demofree.sirv.com/nope-not-here.jpg"
+        })
 
 
 class BasicUploadView(View):

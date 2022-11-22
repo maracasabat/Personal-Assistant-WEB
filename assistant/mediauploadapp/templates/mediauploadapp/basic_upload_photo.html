@@ -8,8 +8,6 @@
 
 {% block content %}
 
-
-
 {% block javascript %}
     {% load static %}
   {# JQUERY FILE UPLOAD SCRIPTS #}
@@ -22,31 +20,74 @@
 {% endblock %}
 
 {% block photos_content %}
-  <div class="text-gray-300" style="margin-bottom: 20px;">
-    <button type="button" class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 ">
-      <span class="glyphicon glyphicon-cloud-upload"></span> Upload photos
-    </button>
-    <input id="fileupload" type="file" name="file" multiple
-           style="display: none;"
-           data-url="{% url 'basic_upload' %}"
-           data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+  <div style="margin-bottom: 20px;">
+  <label class="inline-block mb-2 text-gray-500">Upload Image(jpg,png,svg,jpeg)</label>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="file" id="fileupload" data-url="{% url 'basic_upload' %}">
+    <button class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" type="submit">Upload a photo</button>
+  </form>
+
   </div>
 
-{#  </div>#}
+  </div>
   <table id="gallery" class="min-w-full text-center">
-    <thead class="border-b bg-gray-800">
+    <thead class="border-b bg-gray-800 ">
       <tr>
-        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Photo</th>
+        <th scope="col" class="text-sm flex-bold text-white px-7 py-5 text-2xl ">All Photos</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody >
       {% for photo in photos %}
+
+          <!-- Image gird -->
+        <div class="p-4 grid grid-cols-4 gap-4 ">
+
+            <div>
+                <img class="w-full h-full object-cover cursor-pointer"
+                 src="{{ photo.file.url }}" alt="Flower"
+            onclick="showModal(src)" />
+            </div>
+
+        </div>
+
         <tr>
-          <td><a href="{{ photo.file.url }}">{{ photo.file.name }}</a></td>
+          <td><a class = "text-gray-500" href="{{ photo.file.url }}">{{ photo.file.name }}</a></td>
         </tr>
       {% endfor %}
     </tbody>
+
   </table>
+      <!-- The Modal -->
+    <div id="modal"
+        class="hidden fixed top-0 left-0 z-80 w-screen h-screen bg-black/70 flex justify-center items-center">
+
+        <!-- The close button -->
+        <a class="fixed z-90 top-6 right-8 text-white text-5xl font-bold" href="javascript:void(0)"
+            onclick="closeModal()">&times;</a>
+
+        <!-- A big image will be displayed here -->
+        <img id="modal-img" class="max-w-[800px] max-h-[600px] object-cover" />
+    </div>
+
+    <script>
+        // Get the modal by id
+        var modal = document.getElementById("modal");
+
+        // Get the modal image tag
+        var modalImg = document.getElementById("modal-img");
+
+        // this function is called when a small image is clicked
+        function showModal(src) {
+            modal.classList.remove('hidden');
+            modalImg.src = src;
+        }
+
+        // this function is called when the close button is clicked
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+    </script>
 {% endblock %}
 
 {% endblock %}
