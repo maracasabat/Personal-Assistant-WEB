@@ -42,7 +42,7 @@
   </table>
   <div class="flex-col items-center" style='align-items: center; justify-content: center; display: flex'>
     <h1 class="text-sm font-medium text-white px-6 py-4">
-      Hello <span class="animate-waving-hand">👋🏻</span>, here are ALL your files
+      Hello <span class="animate-waving-hand">👋🏻</span>, here are your VIDEO files
     </h1>
   </div>
   <hr class="my-10 h-px bg-opacity g-gray-200 dark:bg-opacity">
@@ -57,7 +57,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for file in files %}
+      {% for file in files_video %}
         <tr class="text-gray-300">
           <td>{{ file.title }}</td>
           <td>{{ file.category }}</td>
@@ -65,8 +65,8 @@
           <td>
             <a class="pointer px-6 py-4 flex items-center justify-center text-green-600" href="{{ file.file.url }}" target="_blank">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-              </svg>
+  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+</svg>
 
             </a>
           </td>

@@ -47,9 +47,54 @@ def upload(request):
 @login_required
 def file_list(request):
     files = File.objects.all()
+    files_video = File.objects.all().filter(category="video")
+    files_image = File.objects.all().filter(category="image")
+    files_document = File.objects.all().filter(category="document")
+    files_music = File.objects.all().filter(category="music")
+    files_other = File.objects.all().filter(category="other")
     return render(request, 'mediauploadapp/file_list.html', {
-        'files': files
-    })
+            'files': files,
+            'files_video': files_video,
+            'files_image': files_image,
+            'files_document': files_document,
+            'files_music': files_music,
+            'files_other': files_other
+        })
+
+@login_required
+def file_list_image(request):
+    files_image = File.objects.all().filter(category="image")
+    return render(request, 'mediauploadapp/file_list_image.html', {
+            'files_image': files_image,
+        })
+
+@login_required
+def file_list_video(request):
+    files_video = File.objects.all().filter(category="video")
+    return render(request, 'mediauploadapp/file_list_video.html', {
+            'files_video': files_video,
+        })
+
+@login_required
+def file_list_document(request):
+    files_document = File.objects.all().filter(category="document")
+    return render(request, 'mediauploadapp/file_list_document.html', {
+            'files_document': files_document,
+        })
+
+@login_required
+def file_list_music(request):
+    files_music = File.objects.all().filter(category="music")
+    return render(request, 'mediauploadapp/file_list_music.html', {
+            'files_music': files_music,
+        })
+
+@login_required
+def file_list_other(request):
+    files_other = File.objects.all().filter(category="other")
+    return render(request, 'mediauploadapp/file_list_other.html', {
+            'files_other': files_other,
+        })
 
 
 @login_required
@@ -143,7 +188,7 @@ class BasicUploadView(View):
             data = {'is_valid': True, 'name': photo.file.name, 'url': photo.file.url}
         else:
             data = {'is_valid': False}
-        return JsonResponse(data)
+        return redirect('basic_upload')
 
 
 class ProgressBarUploadView(View):
@@ -182,3 +227,11 @@ def clear_database(request):
         photo.file.delete()
         photo.delete()
     return redirect(request.POST.get('next'))
+
+
+@login_required
+def delete_photo(request, pk):
+    if request.method == 'POST':
+        file = Photo.objects.get(pk=pk)
+        file.delete()
+    return redirect('basic_upload')

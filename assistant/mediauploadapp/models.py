@@ -48,3 +48,10 @@ class Photo(models.Model):
     file = models.FileField(upload_to='photos/',
                             validators=[FileExtensionValidator(allowed_extensions=['jpg', 'png', 'svg', 'jpeg'])])
     uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+    def delete(self, *args, **kwargs):
+        self.file.delete()
+        super().delete(*args, **kwargs)
