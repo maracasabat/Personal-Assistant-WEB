@@ -42,7 +42,7 @@
   </table>
   <div class="flex-col items-center" style='align-items: center; justify-content: center; display: flex'>
     <h1 class="text-sm font-medium text-white px-6 py-4">
-      Hello <span class="animate-waving-hand">👋🏻</span>, here are ALL your files
+      Hello <span class="animate-waving-hand">👋🏻</span>, here are your MUSIC files
     </h1>
   </div>
   <hr class="my-10 h-px bg-opacity g-gray-200 dark:bg-opacity">
@@ -57,7 +57,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for file in files %}
+      {% for file in files_music %}
         <tr class="text-gray-300">
           <td>{{ file.title }}</td>
           <td>{{ file.category }}</td>
