@@ -415,6 +415,7 @@ def delete_all(request, nickname_id):
 
     return redirect(to='/book_app/')
 
+
 @login_required
 def search_contact(request):
     if request.method == 'GET':
@@ -426,14 +427,6 @@ def search_contact(request):
         nicknames = []
     return render(request, 'book_app/search_results.html', {'nicknames': nicknames})
 
-
-# def search_contact(request):
-#     if request.method == 'GET':
-#         query = request.GET.get('q')
-#         nicknames = Nickname.objects.filter(nickname__icontains=query)
-#     else:
-#         nicknames = []
-#     return render(request, 'book_app/search_results.html', {'nicknames': nicknames})
 
 @login_required
 def day_to_birthday(request):
@@ -448,12 +441,14 @@ def day_to_birthday(request):
             date_birth = users['birthday']
             date = datetime(date_now.year, date_birth.birthday.month, date_birth.birthday.day)
             date_n = datetime.strftime(date, '%Y-%m-%d')
-            happy = datetime.strptime(date_n, '%Y-%m-%d') - datetime.strptime(str(date_now), '%Y-%m-%d')
+            happy = (datetime.strptime(date_n, '%Y-%m-%d') - datetime.strptime(str(date_now), '%Y-%m-%d'))
             if happy.days < 0:
                 users['happy'] = happy + timedelta(days=365)
             else:
                 users['happy'] = happy
             days.append(users)
+        days.sort(key=lambda x: x['happy'])
         return render(request, 'book_app/day_to_birthday.html', {'days': days})
     except ObjectDoesNotExist:
+        days = None
         return render(request, 'book_app/day_to_birthday.html', {'days': days})
