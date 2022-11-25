@@ -15,7 +15,7 @@ from .models import Tag, Note
 
 @login_required
 def main(request):
-    notes = Note.objects.all()
+    notes = Note.objects.filter(author=request.user).all()
     paginator = Paginator(notes, 5)
 
     page_number = request.GET.get("page")
@@ -53,7 +53,7 @@ def note(request):
         list_tags = request.POST.getlist('tags')
         if name and description:
             tags = Tag.objects.filter(name__in=list_tags)
-            note = Note.objects.create(name=name, description=description, )
+            note = Note.objects.create(name=name, description=description, author=request.user)
             for tag in tags.iterator():
                 note.tags.add(tag)
             messages.success(request, f"Note {name} created")
