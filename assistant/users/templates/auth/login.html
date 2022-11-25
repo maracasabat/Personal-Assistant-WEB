@@ -23,13 +23,13 @@
                 <span class="text-accent cursor-pointer underline">Sign Up</span>
             </a>
         </div>
-        <div class="social">{#            <button class=" google bg-transparent w-full px-3 py-2 border-2 border-['#626167'] rounded text-white >#}
-            <button class="google">
+        <div class="social">
+            <p class="google flex items-center justify-center w-full p-2.5">
                 <a class="flex items-center justify-center" href="{% provider_login_url 'google'%}?next=/">
                     {% include 'includes/googleIcon.svg' %}
                     <span class="text-gray-300 ml-3" >Sign in with Google</span>
                 </a>
-            </button>
+            </p>
         </div>
     </form>
 {% endblock %}
