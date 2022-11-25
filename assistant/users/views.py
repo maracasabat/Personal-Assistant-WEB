@@ -9,7 +9,7 @@ from .decorators import unauthenticated_user
 
 # Create your views here.
 @unauthenticated_user
-def register_view(request):
+def register_view(request, backend='users.backends.EmailBackend'):
     # if request.user.is_authenticated:
     #     return redirect("main:homepage")
 
@@ -18,7 +18,7 @@ def register_view(request):
 
         if form.is_valid():
             user = form.save()
-            login(request, user)
+            login(request, user, backend=backend)
             messages.success(request, f"Welcome {user.username}!")
             return redirect("main:homepage")
         else:
