@@ -58,7 +58,7 @@
             <li class="flex justify-between items-center mb-2">
                 <div class="flex items-center">
                     <h4 class="bold text-gray-300">First name:</h4>
-                    <p class="text-1xl text-accent lowercase ml-5">{{name.name}}</p>
+                    <p class="text-1xl text-accent capitalize ml-5">{{name.name}}</p>
                 </div>
                 <div class="flex items-center justify-center">
                     <a class="pointer px-3 flex items-center justify-center text-green-600" href="/book_app/edit_name/{{nickname.id}}" role="button">{% include 'includes/edit.svg' %}</a>
@@ -75,7 +75,7 @@
             <li class="flex justify-between items-center mb-2">
             <div class="flex items-center">
                     <h4 class="bold text-gray-300">Second name:</h4>
-                    <p class="text-1xl text-accent lowercase ml-5">{{surname.surname}}</p>
+                    <p class="text-1xl text-accent capitalize ml-5">{{surname.surname}}</p>
                 </div>
             <div class="flex items-center justify-center">
                 <a class="pointer px-3 flex items-center justify-center text-green-600" href="/book_app/edit_surname/{{nickname.id}}" role="button">{% include 'includes/edit.svg' %}</a>
@@ -128,7 +128,7 @@
             <li class="flex justify-between items-center mb-2">
                 <div class="flex items-center">
                     <h4 class="bold text-gray-300">Country:</h4>
-                    <p class="text-1xl text-accent lowercase ml-5">{{country.country}}</p>
+                    <p class="text-1xl text-accent capitalize ml-5">{{country.country}}</p>
                 </div>
                 <div class="flex items-center justify-center">
                     <a class="pointer px-3 flex items-center justify-center text-green-600" href="/book_app/edit_country/{{nickname.id}}" role="button">{% include 'includes/edit.svg' %}</a>
@@ -145,7 +145,7 @@
             <li class="flex justify-between items-center mb-2">
                 <div class="flex items-center">
                     <h4 class="bold text-gray-300">Full address:</h4>
-                    <p class="text-1xl text-accent lowercase ml-5">{{address.address}}</p>
+                    <p class="text-1xl text-accent capitalize ml-5">{{address.address}}</p>
                 </div>
                 <div class="flex items-center justify-center">
                     <a class="pointer px-3 flex items-center justify-center text-green-600" href="/book_app/edit_address/{{nickname.id}}" role="button">{% include 'includes/edit.svg' %}</a>
