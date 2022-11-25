@@ -6,24 +6,30 @@
     {% csrf_token %}
         <h3>Login Here</h3>
        {{ form|crispy }}
+
+        {% if messages %}
+            <ul style="margin: auto" >
+        {% for message in messages %}
+                <li style="color: red; font-size: small; list-style: none; text-align: end">{{ message }}</li>
+        {% endfor %}
+            </ul>
+        {% endif %}
+
         <button class="btn" >Log In</button>
 
-            <div style="margin-top: 10px" >
-                <span>Don't have an account?</span>
-                 <a href="{% url 'register' %}">
-                    <span class="text-accent cursor-pointer underline">Sign Up</span>
-                </a>
-            </div>
-        <div class="social">
-{#            <button class=" google bg-transparent w-full px-3 py-2 border-2 border-['#626167'] rounded text-white >#}
+        <div class="mt-2.5"  >
+            <span>Don't have an account?</span>
+             <a href="{% url 'register' %}">
+                <span class="text-accent cursor-pointer underline">Sign Up</span>
+            </a>
+        </div>
+        <div class="social">{#            <button class=" google bg-transparent w-full px-3 py-2 border-2 border-['#626167'] rounded text-white >#}
             <button class="google">
-                <a href="{% provider_login_url 'google'%}?next=/">
-                    <i class="fab fa-google text-accent"></i>
-                    Login with Google
-
+                <a class="flex items-center justify-center" href="{% provider_login_url 'google'%}?next=/">
+                    {% include 'includes/googleIcon.svg' %}
+                    <span class="text-gray-300 ml-3" >Sign in with Google</span>
                 </a>
             </button>
-{#          <div class="go"><i class="fab fa-google"></i>  Google</div>#}
         </div>
     </form>
 {% endblock %}

@@ -53,7 +53,7 @@ def custom_login(request):
 
         else:
             for error in list(form.errors.values()):
-                messages.error(request, error)
+                messages.error(request, 'Invalid form data')
 
     form = UserLoginForm()
 
