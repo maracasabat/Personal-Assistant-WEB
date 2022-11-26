@@ -115,23 +115,6 @@ def contact_edit(request, nickname_id):
         return HttpResponseRedirect("/book_app/")
 
 
-# @login_required
-# def edit_telephone(request, nickname_id):
-#     try:
-#         nickname = Nickname.objects.get(pk=nickname_id)
-#         phone = Nickname.objects.get(pk=nickname_id)
-#         if request.method == 'POST':
-#             telephone = request.POST['telephone']
-#             if telephone:
-#                 telephone_ = Telephone(pk=nickname_id, telephone=telephone)
-#                 telephone_.save()
-#             return detail(request, nickname_id)
-#         else:
-#             return render(request, 'book_app/edit_telephone.html', {"nickname": nickname, "phone": phone})
-#     except ObjectDoesNotExist:
-#         return HttpResponseRedirect("/book_app/")
-
-
 @login_required
 def edit_name(request, nickname_id):
     try:
@@ -422,7 +405,7 @@ def search_contact(request):
         query = request.GET.get('q')
         nicknames = Nickname.objects.filter(
             Q(nickname__icontains=query) | Q(phone__icontains=query)
-        )
+        ).filter(author=request.user)
     else:
         nicknames = []
     return render(request, 'book_app/search_results.html', {'nicknames': nicknames})

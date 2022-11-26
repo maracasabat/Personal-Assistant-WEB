@@ -4,7 +4,8 @@ from django.db import models
 
 # Create your models here.
 class Tag(models.Model):
-    name = models.CharField(max_length=25, unique=True, null=False)
+    name = models.CharField(max_length=25, null=False)
+    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name

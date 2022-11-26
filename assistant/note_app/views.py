@@ -30,7 +30,7 @@ def tag(request):
         try:
             name = request.POST['name']
             if name:
-                tl = Tag(name=name)
+                tl = Tag(name=name, author=request.user)
                 tl.save()
                 messages.success(request, f"Tag {name} created")
             return redirect(to='/note_app/tag/')
@@ -52,14 +52,14 @@ def note(request):
         description = request.POST['description']
         list_tags = request.POST.getlist('tags')
         if name and description:
-            tags = Tag.objects.filter(name__in=list_tags)
+            tags = Tag.objects.filter(name__in=list_tags).filter(author=request.user).all()
             note = Note.objects.create(name=name, description=description, author=request.user)
             for tag in tags.iterator():
                 note.tags.add(tag)
             messages.success(request, f"Note {name} created")
         return redirect(to='/note_app/note/')
 
-    tags = Tag.objects.all()
+    tags = Tag.objects.filter(author=request.user).all()
     return render(request, 'note_app/note.html', {"tags": tags})
 
 
@@ -87,7 +87,7 @@ def delete_note(request, note_id):
 def search_note(request):
     if request.method == 'GET':
         query = request.GET.get('q')
-        notes = Note.objects.filter(name__icontains=query)
+        notes = Note.objects.filter(name__icontains=query, author=request.user)
     else:
         notes = []
     return render(request, 'note_app/search_note.html', {'notes': notes})
