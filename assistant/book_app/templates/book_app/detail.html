@@ -21,7 +21,7 @@
 
       </div>
     <div class="flex justify-between items-center mb-2">
-      <h4 class="bold text-2xl text-gray-300 uppercase">Phone: </h4> <p class="text-1xl text-gray-300">{{nickname.phone}}</p>
+      <h4 class="bold text-gray-300 ">Phone: </h4> <p class="text-1xl text-gray-300">{{nickname.phone}}</p>
     </div>
     <div class="flex justify-between items-center mb-2">
       <h4 class="bold text-gray-300">Time of creation:</h4><kbd class="text-1xl text-gray-300 lowercase">{{nickname.created.date}}</kbd>
@@ -29,29 +29,44 @@
       <nav class="mb-5 border-b-2 mt-5"></nav>
 
     <div class="flex justify-between items-center mb-2">
-      <h4 class="bold text-gray-300">Additional Information:</h4>
+      <h4 class="bold text-gray-300 italic mx-auto">Additional Information:</h4>
       <p class="text-1xl text-gray-300 lowercase"></p>
     </div>
-    <div class="flex justify-between items-center mb-2">
-      <h4 class="bold text-gray-300">Additional phone:</h4>
-      <p class="text-1xl text-gray-300 lowercase"></p>
-    </div>
+{#    <div class="flex justify-between items-center mb-2">#}
+{#      <h4 class="bold text-gray-300">Additional phone:</h4>#}
+{#      <p class="text-1xl text-gray-300 lowercase"></p>#}
+{#    </div>#}
 
-      <ul>
-        {% if telephone.telephone %}
-            <div class="flex justify-between items-center mb-2">
-                <h4 class="bold text-gray-300">Phone:</h4>
-                <p class="text-1xl text-gray-300 lowercase">{{telephone.telephone}}</p>
-             </div>
+{#      <ul class="">#}
+{#        {% if telephone.telephone %}#}
+{#            <div class="flex justify-between items-center mb-2">#}
+{#                <h4 class="bold text-gray-300">Phone:</h4>#}
+{#                <p class="text-1xl text-gray-300 lowercase">{{telephone.telephone}}</p>#}
+{#             </div>#}
 {#        Phone: <b>{{telephone.telephone}}</b>#}
-        <a class="pointer px-6 py-2 flex items-center justify-center text-green-600" href="/book_app/edit_telephone/{{nickname.id}}" role="button">{% include 'includes/edit.svg' %}</a>
-        <a class="pointer px-6 py-2 flex items-center justify-center text-red-600" href="/book_app/delete_telephone/{{nickname.id}}" role="button">{% include 'includes/delete.svg' %}</a>
-        {% else %}
-            <div class="flex justify-between items-center mb-2">
-                <h4 class="bold text-gray-300">Phones:</h4>
-                <p class="text-1xl text-gray-300 lowercase">{{telephone.telephone}}</p>
-             </div>
-        {% endif %}
+{#        <a class="pointer px-6 py-2 flex items-center justify-center text-green-600" href="/book_app/edit_telephone/{{nickname.id}}" role="button">{% include 'includes/edit.svg' %}</a>#}
+{#        <a class="pointer px-6 py-2 flex items-center justify-center text-red-600" href="/book_app/delete_telephone/{{nickname.id}}" role="button">{% include 'includes/delete.svg' %}</a>#}
+{#        {% else %}#}
+{#            <div class="flex justify-between items-center mb-2">#}
+{#                <h4 class="bold text-gray-300">Phones:</h4>#}
+{#                <p class="text-1xl text-gray-300 lowercase">{{telephone.telephone}}</p>#}
+{#             </div>#}
+{#        {% endif %}#}
+{#      </ul>#}
+    <ul class="pb-4 text-gray-300">
+        <h5 class="mb-2">Phones:</h5>
+        {% for telephone in telephones %}
+          {% if telephone.contact_id == nickname.id %}
+            {% if telephone.telephone %}
+            <li class="mb-1 flex items-center justify-between text-accent">  {{telephone.telephone}}
+              <a href="/book_app/delete_telephone/{{nickname.id}}/{{telephone.telephone}}"
+                 class="pointer px-3 flex items-center justify-center text-red-600" type="href">{% include 'includes/delete.svg' %}</a>
+            </li>
+            {% else %}
+            <h5 class="mb-2">Phones:</h5> <b class="text-gray-200">{{telephone.telephone}}</b>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
       </ul>
       <ul>
         {% if name.name %}
