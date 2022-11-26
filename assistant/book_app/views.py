@@ -433,7 +433,7 @@ def day_to_birthday(request):
     try:
         date_now = datetime.now().date()
         days = []
-        all_contacts = Nickname.objects.all()
+        all_contacts = Nickname.objects.filter(author=request.user)
         for user in all_contacts:
             users = {}
             users['nickname'] = Nickname.objects.get(pk=user.id)
