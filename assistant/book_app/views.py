@@ -15,7 +15,7 @@ from .models import Nickname, Name, Surname, Email, Birthday, Address, Country, 
 # Create your views here.
 @login_required
 def main(request):
-    nicknames = Nickname.objects.all()
+    nicknames = Nickname.objects.filter(author=request.user).all()
     paginator = Paginator(nicknames, 5)
 
     page_number = request.GET.get("page")
@@ -31,7 +31,7 @@ def contact(request):
             nickname = request.POST['nickname']
             phone = request.POST['phone']
             if nickname and phone:
-                nk = Nickname(nickname=nickname, phone=phone)
+                nk = Nickname(nickname=nickname, phone=phone, author=request.user)
                 nk.save()
                 messages.success(request, "Contact added successfully")
             return redirect(to='/book_app/')

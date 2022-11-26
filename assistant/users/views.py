@@ -9,7 +9,7 @@ from .decorators import unauthenticated_user
 
 # Create your views here.
 @unauthenticated_user
-def register_view(request):
+def register_view(request, backend='users.backends.EmailBackend'):
     # if request.user.is_authenticated:
     #     return redirect("main:homepage")
 
@@ -18,7 +18,7 @@ def register_view(request):
 
         if form.is_valid():
             user = form.save()
-            login(request, user)
+            login(request, user, backend=backend)
             messages.success(request, f"Welcome {user.username}!")
             return redirect("main:homepage")
         else:
@@ -53,7 +53,7 @@ def custom_login(request):
 
         else:
             for error in list(form.errors.values()):
-                messages.error(request, error)
+                messages.error(request, 'Invalid form data')
 
     form = UserLoginForm()
 
@@ -68,7 +68,7 @@ def custom_login(request):
 @login_required
 def custom_logout(request):
     logout(request)
-    messages.info(request, "Logged out successfully!")
+    # messages.info(request, "Logged out successfully!")
     return redirect('main:homepage')
 
 

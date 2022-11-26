@@ -17,10 +17,7 @@
         <div class="font-medium flex-col justify-center items-center py-3">
             <label for="telephone" class="text-gray-300 flex">Additional phone <b>{{ telephone.telephone }}</b>:</label>
               <input class="flex w-full border border-lip rounded-lg" type="tel" id="telephone" name="telephone" placeholder="+380960001122" pattern="^\+?1?\d{8,15}$" />
-
           </div>
-
-{#          <nav style="margin-bottom: 20px; border-bottom: 1px solid whitesmoke; padding-left: 30px"></nav>#}
 
         <div class="font-medium flex-col justify-center items-center py-3">
             <label for="name" class="text-gray-300 flex">First Name <b>{{ name.name }}</b>:</label>
@@ -32,28 +29,23 @@
               <input class="flex w-full border border-lip rounded-lg" type="text" id="surname" name="surname" />
           </div>
 
-{#          <nav style="margin-bottom: 20px; border-bottom: 1px solid whitesmoke; padding-left: 30px"></nav>#}
 
         <div class="font-medium flex-col justify-center items-center py-3">
-<!--            <ul>-->
+
             {% if error %}
             <div>
               <mark>{{ error }}</mark>
             </div>
             {% endif %}
-<!--            </ul>-->
+
             <label for="email" class="text-gray-300 flex">Email <b>{{ email.email }}</b> :</label>
               <input class="flex w-full border border-lip rounded-lg" type="email" id="email" name="email" />
           </div>
-
-{#          <nav style="margin-bottom: 20px; border-bottom: 1px solid whitesmoke; padding-left: 30px"></nav>#}
 
         <div class="font-medium flex-col justify-center items-center py-3">
             <label for="birthday" class="text-gray-300 flex" >Birthday <b>{{ birthday.birthday }}</b>:</label>
               <input class="flex w-full border border-lip rounded-lg" type="date" id="birthday" name="birthday" />
           </div>
-
-{#          <nav style="margin-bottom: 20px; border-bottom: 1px solid whitesmoke; padding-left: 30px"></nav>#}
 
         <div class="font-medium flex-col justify-center items-center py-3">
             <label for="country" class="text-gray-300 flex">Country <b>{{ country.country }}</b>:</label>
@@ -63,8 +55,6 @@
             <label for="address" class="text-gray-300 flex">Address <b>{{ address.address }}</b> :</label>
               <input class="flex w-full border border-lip rounded-lg" type="text" id="address" name="address" />
           </div>
-
-{#          <nav style="margin-bottom: 20px; border-bottom: 1px solid whitesmoke; padding-left: 30px"></nav>#}
 
         <div class="flex items-center justify-between mt-5 gap-5">
           <button type="reset" class="text-white w-1/2 px-5 py-2 border-2 border rounded-lg bg-gray-500 hover:bg-gray-700 transition">Reset</button>
