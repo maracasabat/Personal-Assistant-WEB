@@ -26,7 +26,7 @@ The first thing to do is to clone the repository:
 
 ```sh
 $ git clone git@github.com:maracasabat/Personal-Assistant-WEB.git
-$ cd Personal-Assistant-WEB
+$ cd assistant
 ```
 
 Activate virtual environment and install dependencies:
