@@ -1,10 +1,11 @@
 # Personal-Assistant-WEB
-The final WEB project based on the Web framework - Django.
+The personal WEB-application based on the Web framework - Django.
 
+The application allows you to store your contacts personal data, adding notes, processing your gallery and getting last news.  
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
-
+* [Setup](#setup)
 
 ## General info
 This is your **personal** web-assistant that helps to organise:
@@ -20,3 +21,25 @@ Project is mainly based on:
 * Backend: python and JavaScript
 
 
+## Setup
+The first thing to do is to clone the repository:
+
+```sh
+$ git clone git@github.com:maracasabat/Personal-Assistant-WEB.git
+$ cd Personal-Assistant-WEB
+```
+
+Activate virtual environment and install dependencies:
+
+```sh
+$ poetry shell
+(env)$ poetry install
+```
+
+Once `poetry` has finished downloading the dependencies:
+```sh
+(env)$ cd assistant
+(env)$ python manage.py migrate
+(env)$ python manage.py runserver
+```
+And navigate to `http://127.0.0.1:8000/.
