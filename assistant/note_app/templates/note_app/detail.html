@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block header %}
+    {% include 'includes/headerNote.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="h-screen py-6 w-96">
+      <nav class="mb-5 border-b-4" >
+        <ul class="flex items-center justify-center gap-3 mb-10">
+          <li><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/note_app/" role="button"> Go back to the main page </a></li>
+        </ul>
+      </nav>
+      <h1 class="bold text-2xl text-accent uppercase">{{note.name}}</h1>
+      <p class="text-gray-300 bold text-2xl">Description: <small class="mx-3 text-accent text-2xl">{{note.description}}</small></p>
+      <p class="text-gray-300 bold text-2xl whitespace-nowrap">Date: <kbd class="mx-3 whitespace-nowrap text-lg text-accent text-2xl">{{note.created.date}}</kbd></p>
+      {% if note.done %}
+      <p class="text-gray-300 bold text-2xl">Status: <ins class="text-green-600 mx-3 text-2xl">Completed</ins></p>
+      {% else %}
+      <p class="text-gray-300 bold text-2xl">Status: <ins class="mx-3 text-red-600">Not implemented</ins></p>
+      {% endif %}
+
+      <p class="text-gray-300 bold text-2xl">Tags: <small class="mx-3 text-accent text-2xl">
+        {{ note.tag_list }}
+      </small></p>
+
+    </div>
+{% endblock %}

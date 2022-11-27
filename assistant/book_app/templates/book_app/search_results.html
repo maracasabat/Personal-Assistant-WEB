@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block header %}
+    {% include 'includes/headerBook.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="h-screen py-6">
+      <nav class="mb-5 border-b-4" >
+        <ul class="flex items-center justify-center gap-3 mb-10">
+          <li><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/book_app/contact/" role="button">Add Contact</a></li>
+          <li><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/book_app/" role="button"> Go back to the main page </a></li>
+        </ul>
+      </nav>
+
+
+      <div class="mt-5">
+          <div class="card-body">
+            <h4 class="font-medium leading-tight text-2xl pb-3 text-gray-300">Search Results</h4>
+              <table class="min-w-full text-center border shadow ">
+                <thead class="bg-lip text-gray-300 border-b ">
+                    <tr class="">
+                      <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">Nicknames</th>
+                      <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">Phones</th>
+                      <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">Details</th>
+                      <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">Edit</th>
+                      <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-gray-50 text-centre">
+                  {% for nickname in nicknames %}
+                    <tr class="border-b shadow hover:bg-indigo-100">
+                      <th class="pointer px-6 py-4">{{ nickname.nickname }}</th>
+                      <th class="pointer px-6 py-4">{{ nickname.phone }}</th>
+                      <th><a class="pointer px-6 py-4 flex items-center justify-center text-green-600" href="/book_app/detail/{{nickname.id}}">
+{#                          {% include 'includes/edit.svg' %}#}
+                          {% include 'includes/details.svg' %}
+                      </a></th>
+                      <th><a class="pointer px-6 py-4 flex items-center justify-center text-green-600" href="/book_app/contact_edit/{{nickname.id}}">
+                          {% include 'includes/edit.svg' %}
+{#                          {{ nickname.nickname }}#}
+                      </a></th>
+                      <th><a class="pointer px-6 py-4 flex items-center justify-center text-red-600" href="/book_app/delete_all/{{nickname.id}}">
+                          {% include 'includes/delete.svg' %}
+                      </a></th>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </form>
+          </div>
+      </div>
+
+    </div>
+{% endblock %}

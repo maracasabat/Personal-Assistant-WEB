@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block header %}
+    {% include 'includes/headerBook.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="h-screen py-6 w-1/2 overflow-auto" >
+      <nav class="border-b-4 flex items-center justify-between pb-10" >
+        <ul>
+          <li><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/book_app/" role="button"> Go back to the main page </a></li>
+        </ul>
+        <h3><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/book_app/nick_edit/{{nickname.id}}">Edit information to the contact {{nickname.nickname}}</a></h3>
+      </nav>
+      <form method="POST" action="{% url 'edit_country' nickname.id %}">
+        {% csrf_token %}
+
+          <div class="font-medium flex-col justify-center items-center py-3">
+            <label class="text-gray-300 flex pb-2" for="country">Country <b>{{ country.country }}</b>:</label>
+              <input class="flex w-full border border-lip rounded-lg" type="text" name="country" id="country" />
+          </div>
+
+          <div class="flex items-center justify-between mt-5 gap-5">
+            <button type="reset" class="text-white w-1/2 px-5 py-2 border-2 border rounded-lg bg-gray-500 hover:bg-gray-700 transition">Reset</button>
+            <button type="submit" class="text-white w-1/2 px-5 py-2 border-2 border rounded-lg bg-purple-500 hover:bg-purple-700 transition" >Edit</button>
+          </div>
+      </form>
+    </div>
+{% endblock %}

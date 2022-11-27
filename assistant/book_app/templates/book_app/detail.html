@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% block header %}
+    {% include 'includes/headerBook.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="h-screen py-6">
+      <nav class="mb-5 border-b-4" >
+        <ul class="flex items-center justify-center gap-3 mb-10">
+          <li><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/book_app/" role="button"> Go back to the main page </a></li>
+          <li><a class="text-white px-5 py-2 border-2 border-green-600 rounded-lg bg-gradient-to-r from-green-600 to-green-400 hover:bg-gradient-to-l hover:from-green-600 hover:to-green-400 transition" href="/book_app/contact_edit/{{nickname.id}}" role="button">
+{#              {{ nickname.nickname }}#}
+              Edit Contact
+          </a></li>
+          <li><a class="text-white px-5 py-2 border-2 border-red-600 rounded-lg bg-gradient-to-r from-red-600 to-red-400 hover:bg-gradient-to-l hover:from-red-600 hover:to-red-400 transition" href="/book_app/delete_all/{{nickname.id}}" role="button">Delete</a></li>
+        </ul>
+      </nav>
+      <div class="flex justify-between items-center">
+          <h4 class="bold text-2xl text-accent uppercase">{{nickname.nickname}}</h4>
+          <a class="pointer px-6 py-4 flex items-center justify-center text-green-600" href="/book_app/nick_edit/{{nickname.id}}" role="button"> {% include 'includes/edit.svg' %} {{ nickname.nickname }}</a>
+
+      </div>
+    <div class="flex justify-between items-center mb-2">
+      <h4 class="bold text-gray-300 ">Phone: </h4> <p class="text-1xl text-gray-300">{{nickname.phone}}</p>
+    </div>
+    <div class="flex justify-between items-center mb-2">
+      <h4 class="bold text-gray-300">Time of creation:</h4><kbd class="text-1xl text-gray-300 lowercase">{{nickname.created.date}}</kbd>
+    </div>
+      <nav class="mb-5 border-b-2 mt-5"></nav>
+
+    <div class="flex justify-between items-center mb-2">
+      <h4 class="bold text-gray-300 italic mx-auto">Additional Information:</h4>
+      <p class="text-1xl text-gray-300 lowercase"></p>
+    </div>
+{#    <div class="flex justify-between items-center mb-2">#}
+{#      <h4 class="bold text-gray-300">Additional phone:</h4>#}
+{#      <p class="text-1xl text-gray-300 lowercase"></p>#}
+{#    </div>#}
+
+{#      <ul class="">#}
+{#        {% if telephone.telephone %}#}
+{#            <div class="flex justify-between items-center mb-2">#}
+{#                <h4 class="bold text-gray-300">Phone:</h4>#}
+{#                <p class="text-1xl text-gray-300 lowercase">{{telephone.telephone}}</p>#}
+{#             </div>#}
+{#        Phone: <b>{{telephone.telephone}}</b>#}
+{#        <a class="pointer px-6 py-2 flex items-center justify-center text-green-600" href="/book_app/edit_telephone/{{nickname.id}}" role="button">{% include 'includes/edit.svg' %}</a>#}
+{#        <a class="pointer px-6 py-2 flex items-center justify-center text-red-600" href="/book_app/delete_telephone/{{nickname.id}}" role="button">{% include 'includes/delete.svg' %}</a>#}
+{#        {% else %}#}
+{#            <div class="flex justify-between items-center mb-2">#}
+{#                <h4 class="bold text-gray-300">Phones:</h4>#}
+{#                <p class="text-1xl text-gray-300 lowercase">{{telephone.telephone}}</p>#}
+{#             </div>#}
+{#        {% endif %}#}
+{#      </ul>#}
+    <ul class="pb-4 text-gray-300">
+        <h5 class="mb-2">Phones:</h5>
+        {% for telephone in telephones %}
+          {% if telephone.contact_id == nickname.id %}
+            {% if telephone.telephone %}
+            <li class="mb-1 flex items-center justify-between text-accent">  {{telephone.telephone}}
+              <a href="/book_app/delete_telephone/{{nickname.id}}/{{telephone.telephone}}"
+                 class="pointer px-3 flex items-center justify-center text-red-600" type="href">{% include 'includes/delete.svg' %}</a>
+            </li>
+            {% else %}
+            <h5 class="mb-2">Phones:</h5> <b class="text-gray-200">{{telephone.telephone}}</b>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+      <ul>
+        {% if name.name %}
+            <li class="flex justify-between items-center mb-2">
+                <div class="flex items-center">
+                    <h4 class="bold text-gray-300">First name:</h4>
+                    <p class="text-1xl text-accent capitalize ml-5">{{name.name}}</p>
+                </div>
+                <div class="flex items-center justify-center">
+                    <a class="pointer px-3 flex items-center justify-center text-green-600" href="/book_app/edit_name/{{nickname.id}}" role="button">{% include 'includes/edit.svg' %}</a>
+                    <a class="pointer px-3 flex items-center justify-center text-red-600" href="/book_app/delete_name/{{nickname.id}}" role="button">{% include 'includes/delete.svg' %}</a>
+                </div>
+            </li>
+        {% else %}
+            <h4 class="bold text-gray-300 mb-2">First name</h4>
+        {% endif %}
+      </ul>
+
+      <ul>
+        {% if surname.surname %}
+            <li class="flex justify-between items-center mb-2">
+            <div class="flex items-center">
+                    <h4 class="bold text-gray-300">Second name:</h4>
+                    <p class="text-1xl text-accent capitalize ml-5">{{surname.surname}}</p>
+                </div>
+            <div class="flex items-center justify-center">
+                <a class="pointer px-3 flex items-center justify-center text-green-600" href="/book_app/edit_surname/{{nickname.id}}" role="button">{% include 'includes/edit.svg' %}</a>
+                <a class="pointer px-3 flex items-center justify-center text-red-600" href="/book_app/delete_surname/{{nickname.id}}" role="button">{% include 'includes/delete.svg' %}</a>
+            </div>
+            </li>
+        {% else %}
+            <h4 class="bold text-gray-300 mb-2">Second name:</h4>
+        {% endif %}
+      </ul>
+
+      <ul>
+        {% if email.email %}
+             <li class="flex justify-between items-center mb-2">
+                <div class="flex items-center">
+                    <h4 class="bold text-gray-300">Email address:</h4>
+                    <p class="text-1xl text-accent lowercase ml-5">{{email.email}}</p>
+                </div>
+                <div class="flex items-center justify-center">
+                <a class="pointer px-3 flex items-center justify-center text-green-600" href="/book_app/edit_email/{{nickname.id}}" role="button">{% include 'includes/edit.svg' %}</a>
+                <a class="pointer px-3 flex items-center justify-center text-red-600" href="/book_app/delete_email/{{nickname.id}}" role="button">{% include 'includes/delete.svg' %}</a>
+            </div>
+            </li>
+        {% else %}
+                <h4 class="bold text-gray-300 mb-2">Email address: </h4>
+        {% endif %}
+      </ul>
+
+      <ul>
+        {% if birthday.birthday %}
+             <li class="flex justify-between items-center mb-2">
+                <div class="flex items-center">
+                    <h4 class="bold text-gray-300">Date of birthday:</h4>
+                    <p class="text-1xl text-accent lowercase ml-5">{{birthday.birthday}}</p>
+                </div>
+                <div class="flex items-center justify-center">
+                    <a class="pointer px-3 flex items-center justify-center text-green-600" href="/book_app/edit_birthday/{{nickname.id}}" role="button">{% include 'includes/edit.svg' %}</a>
+                    <a class="pointer px-3 flex items-center justify-center text-red-600" href="/book_app/delete_birthday/{{nickname.id}}" role="button">{% include 'includes/delete.svg' %}</a>
+                </div>
+            </li>
+        {% else %}
+            <h4 class="bold text-gray-300 mb-2">Date of birthday: </h4>
+        {% endif %}
+      </ul>
+
+<!--      <h4>Happy day</h4>-->
+<!--        <ul><b>{{day.happy.days}}</b> days until the birthday contact <b>{{nickname.nickname}}</b></ul>-->
+      <ul>
+        {% if country.country %}
+            <li class="flex justify-between items-center mb-2">
+                <div class="flex items-center">
+                    <h4 class="bold text-gray-300">Country:</h4>
+                    <p class="text-1xl text-accent capitalize ml-5">{{country.country}}</p>
+                </div>
+                <div class="flex items-center justify-center">
+                    <a class="pointer px-3 flex items-center justify-center text-green-600" href="/book_app/edit_country/{{nickname.id}}" role="button">{% include 'includes/edit.svg' %}</a>
+                    <a class="pointer px-3 flex items-center justify-center text-red-600" href="/book_app/delete_country/{{nickname.id}}" role="button">{% include 'includes/delete.svg' %}</a>
+                </div>
+            </li>
+        {% else %}
+            <h4 class="bold text-gray-300 mb-2">Country: </h4>
+        {% endif %}
+      </ul>
+
+      <ul>
+        {% if address.address %}
+            <li class="flex justify-between items-center mb-2">
+                <div class="flex items-center">
+                    <h4 class="bold text-gray-300">Full address:</h4>
+                    <p class="text-1xl text-accent capitalize ml-5">{{address.address}}</p>
+                </div>
+                <div class="flex items-center justify-center">
+                    <a class="pointer px-3 flex items-center justify-center text-green-600" href="/book_app/edit_address/{{nickname.id}}" role="button">{% include 'includes/edit.svg' %}</a>
+                    <a class="pointer px-3 flex items-center justify-center text-red-600" href="/book_app/delete_address/{{nickname.id}}" role="button">{% include 'includes/delete.svg' %}</a>
+                </div>
+            </li>
+        {% else %}
+            <h4 class="bold text-gray-300 mb-2">Full address: </h4>
+        {% endif %}
+      </ul>
+
+    </div>
+{% endblock %}

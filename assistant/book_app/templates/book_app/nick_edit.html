@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block header %}
+    {% include 'includes/headerBook.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="h-screen py-6 w-2/5" >
+      <nav class="border-b-4 flex items-center justify-between pb-10" >
+        <ul class="flex items-center justify-center gap-3 ">
+          <li><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/book_app/" role="button"> Go back to the main page </a></li>
+        </ul>
+        <h3 class="text-white px-5 text-lg ">Edit contact:<span class="ml-3 text-accent ">{{nickname.nickname}}</span> </h3>
+      </nav>
+
+      <form method="POST" action="{% url 'nick_edit' nickname.id %}">
+        {% csrf_token %}
+
+        {% if error %}
+          <div>
+            <mark>{{ error }}</mark>
+          </div>
+        {% endif %}
+
+        <div class="font-medium flex-col justify-center items-center pb-3">
+          <label class="text-gray-300 flex" for="nickname">Nickname *:</label>
+            <input class="flex w-full border border-lip rounded-lg" type="text" name="nickname" id="nickname" required />
+        </div>
+        <div class="font-medium flex-col justify-center items-center pb-3">
+          <label class="text-gray-300 flex" for="phone">Phone *:</label>
+            <input class="flex w-full border border-lip rounded-lg placeholder:opacity-50" type="tel" id="phone" name="phone" placeholder="+380960001122" pattern="^\+?1?\d{8,15}$" required />
+        </div>
+
+        <div class="flex items-center justify-between mt-5 gap-5">
+          <button type="reset" class="text-white w-1/2 px-5 py-2 border-2 border rounded-lg bg-gray-500 hover:bg-gray-700 transition">Reset</button>
+          <button type="submit" class="text-white w-1/2 px-5 py-2 border-2 border rounded-lg bg-purple-500 hover:bg-purple-700 transition" >Edit</button>
+        </div>
+      </form>
+    </div>
+{% endblock %}

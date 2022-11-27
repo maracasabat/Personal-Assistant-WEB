@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block header %}
+    {% include 'includes/headerBook.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="h-screen py-6">
+    <nav class="mb-5 border-b-4" >
+        <ul class="flex items-center justify-center gap-3 mb-10">
+          <li><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/note_app/note/" role="button">Add note</a></li>
+          <li><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/note_app/tag/" role="button">Add Tag</a></li>
+          <li><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/note_app/" role="button"> Go back to the main page </a></li>
+        </ul>
+      </nav>
+
+    <h4 class="font-medium leading-tight text-2xl pb-3 text-gray-300">Search Results:</h4>
+
+    <table class="min-w-full text-center border shadow">
+      <thead class="bg-lip text-gray-300 border-b ">
+            <tr>
+              <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">TASK</th>
+              <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">STATUS</th>
+              <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">DELETE</th>
+            </tr>
+      </thead>
+      <tbody class="bg-gray-50 text-centre">
+        {% for note in notes %}
+            <tr class="border-b shadow hover:bg-indigo-100 text-md font-medium">
+                {%if not note.done %}
+
+                    <td><a class="pointer px-6 py-4 whitespace-nowrap text-gray-900 " href="/note_app/detail/{{note.id}}" role="button" class="outline">{{note.name}}</a></td>
+                    <td><a class="pointer px-6 py-4 flex items-center justify-center text-green-600" href="/note_app/done/{{note.id}}" role="button">
+                        {% include 'includes/edit.svg' %}
+                    </a></td>
+                    <td><a class="pointer px-6 py-4 flex items-center justify-center text-red-600" href="/note_app/delete/{{note.id}}" role="button">
+                        {% include 'includes/delete.svg' %}
+                    </a></td>
+
+                    {% else %}
+
+                    <td><a class="pointer px-6 py-4 whitespace-nowrap text-gray-900" href="/note_app/detail/{{note.id}}" role="button" ><s>{{note.name}}</s></a></td>
+                    <td class="pointer px-6 py-4 flex items-center justify-center text-green-600">{% include 'includes/checked.svg' %}</td>
+                    <td><a class="pointer px-6 py-4 flex items-center justify-center text-red-600" href="/note_app/delete/{{note.id}}" role="button">
+                        {% include 'includes/delete.svg' %}
+                    </a></td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+{% endblock %}

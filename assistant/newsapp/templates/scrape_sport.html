@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block header %}
+    <div class="flex-col items-center" style='align-items: center; justify-content: center; display: flex'>
+        <h2 class='flex font-bold text-3xl text-gray-900 tracking-tight uppercase mb-5'> Sport News</h2>
+        <div class="flex">{% include 'includes/tabs.html' %}</div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="font-serif text-gray-100">
+        {% for i in sport_news %}
+{#        <p>{{i.sport.upper}}: {{ i.time }} - {{ i.news }}</p>#}
+        <p class="font-bold mr-3 text-lip">{{i.sport.title}}</p>
+            <p class=" border-b shadow py-2">
+                <span class="font-bold mr-3">{{ i.time }}</span>
+                <span class=" ">{{ i.news }}</span>
+
+            </p>
+        {% endfor %}
+    </div>
+{% endblock %}

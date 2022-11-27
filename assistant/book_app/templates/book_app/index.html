@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block header %}
+    {% include 'includes/headerBook.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="h-screen py-6">
+      <nav class="mb-5 border-b-4" >
+        <ul class="flex items-center justify-center gap-3 mb-10">
+          <li><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/book_app/contact/" role="button">Add Contact</a></li>
+          <li><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/book_app/" role="button"> Go back to the main page </a></li>
+          <li><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/book_app/day_to_birthday/" role="button"> Birthday </a></li>
+        </ul>
+      </nav>
+
+      <h4 class="font-medium leading-tight text-lg text-gray-300 mb-1">Search</h4>
+
+      <form action="{% url 'search_results' %}" method="get">
+        <input class="w-full rounded-lg border-lip " name="q" type="text" placeholder="Search...">
+      </form>
+
+      <div class="mt-5">
+          <div class="card-body">
+            <h4 class="font-medium leading-tight text-2xl pb-3 text-gray-300">Contacts Book</h4>
+              <table class="min-w-full text-center border shadow">
+                <thead class="bg-lip text-gray-300 border-b ">
+                    <tr>
+                      <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">Nicknames</th>
+                      <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">Phones</th>
+<!--                      <th scope="col">Info</th>-->
+                      <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">Add/Edit contact</th>
+                      <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-gray-50 text-centre">
+                  {% for nickname in page_obj %}
+                    <tr class="border-b shadow hover:bg-indigo-100">
+                      <td><a  href="/book_app/detail/{{nickname.id}}">{{ nickname.nickname }}</a></td>
+                      <td>{{ nickname.phone }}</td>
+<!--                      <th><a href="/book_app/info/{{nickname.id}}">Add Info</a></th>-->
+                      <td>
+                          <a class="pointer px-6 py-4 flex items-center justify-center text-green-600" href="{% url 'contact_edit' nickname.id %}">
+                          {% include 'includes/edit.svg' %}
+                          {{ nickname.nickname }}
+                      </a></td>
+                      <td>
+                          <a class="pointer px-6 py-4 flex items-center justify-center text-red-600" href="{% url 'delete_all' nickname.id %}">
+                                {% include 'includes/delete.svg' %}
+
+                          </a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+{#            </form>#}
+          </div>
+      </div>
+
+      <div class="pagination text-gray-300 mt-3 text-center">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+      </div>
+      
+    </div>
+{% endblock %}

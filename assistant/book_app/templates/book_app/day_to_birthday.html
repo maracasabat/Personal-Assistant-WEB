@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block header %}
+    {% include 'includes/headerBook.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="h-screen py-6">
+      <nav class="mb-5 border-b-4" >
+        <ul class="flex items-center justify-center gap-3 mb-10">
+          <li><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/book_app/contact/" role="button">Add Contact</a></li>
+          <li><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/book_app/" role="button"> Go back to the main page </a></li>
+        </ul>
+      </nav>
+      <h5 class="text-accent bold text-2xl uppercase mb-5">Birthdays:</h5>
+        <ul class="text-gray-300">
+          {% for day in days %}
+                <li class="flex justify-between items-center"><span class="capitalize font-bold text-accent">{{ day.nickname }}</span></li>
+                <li class="flex justify-between items-center">Days to birthday:<span class="font-bold text-green-600">{{ day.happy.days }} days</span></li>
+                <li class="flex justify-between items-center mb-8">Birthday:<span class="font-bold text-green-600">{{ day.birthday }}</span></li>
+{#                <li class="text-gray-300">{{ day.happy.days }} days to birthday <span class="capitalize ml-10">{{ day.nickname }}:  {{ day.birthday }}</span></li>#}
+          {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
