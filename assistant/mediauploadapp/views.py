@@ -46,55 +46,60 @@ def upload(request):
 
 @login_required
 def file_list(request):
-    files = File.objects.all()
-    files_video = File.objects.all().filter(category="video")
-    files_image = File.objects.all().filter(category="image")
-    files_document = File.objects.all().filter(category="document")
-    files_music = File.objects.all().filter(category="music")
-    files_other = File.objects.all().filter(category="other")
+    files = File.objects.filter(author_id=request.user).all()
+    files_video = File.objects.all().filter(category="video", author_id=request.user)
+    files_image = File.objects.all().filter(category="image", author_id=request.user)
+    files_document = File.objects.all().filter(category="document", author_id=request.user)
+    files_music = File.objects.all().filter(category="music", author_id=request.user)
+    files_other = File.objects.all().filter(category="other", author_id=request.user)
     return render(request, 'mediauploadapp/file_list.html', {
-            'files': files,
-            'files_video': files_video,
-            'files_image': files_image,
-            'files_document': files_document,
-            'files_music': files_music,
-            'files_other': files_other
-        })
+        'files': files,
+        'files_video': files_video,
+        'files_image': files_image,
+        'files_document': files_document,
+        'files_music': files_music,
+        'files_other': files_other
+    })
+
 
 @login_required
 def file_list_image(request):
-    files_image = File.objects.all().filter(category="image")
+    files_image = File.objects.all().filter(category="image", author_id=request.user)
     return render(request, 'mediauploadapp/file_list_image.html', {
-            'files_image': files_image,
-        })
+        'files_image': files_image,
+    })
+
 
 @login_required
 def file_list_video(request):
-    files_video = File.objects.all().filter(category="video")
+    files_video = File.objects.all().filter(category="video", author_id=request.user)
     return render(request, 'mediauploadapp/file_list_video.html', {
-            'files_video': files_video,
-        })
+        'files_video': files_video,
+    })
+
 
 @login_required
 def file_list_document(request):
-    files_document = File.objects.all().filter(category="document")
+    files_document = File.objects.all().filter(category="document", author_id=request.user)
     return render(request, 'mediauploadapp/file_list_document.html', {
-            'files_document': files_document,
-        })
+        'files_document': files_document,
+    })
+
 
 @login_required
 def file_list_music(request):
-    files_music = File.objects.all().filter(category="music")
+    files_music = File.objects.all().filter(category="music", author_id=request.user)
     return render(request, 'mediauploadapp/file_list_music.html', {
-            'files_music': files_music,
-        })
+        'files_music': files_music,
+    })
+
 
 @login_required
 def file_list_other(request):
-    files_other = File.objects.all().filter(category="other")
+    files_other = File.objects.all().filter(category="other", author_id=request.user)
     return render(request, 'mediauploadapp/file_list_other.html', {
-            'files_other': files_other,
-        })
+        'files_other': files_other,
+    })
 
 
 @login_required
@@ -102,7 +107,9 @@ def upload_file(request):
     if request.method == 'POST':
         form = FileForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            file = form.save(commit=False)
+            file.author_id = request.user
+            file.save()
             return redirect('file_list')
     else:
         form = FileForm()
@@ -114,7 +121,7 @@ def upload_file(request):
 @login_required
 def delete_file(request, pk):
     if request.method == 'POST':
-        file = File.objects.get(pk=pk)
+        file = File.objects.get(pk=pk, author_id=request.user)
         file.delete()
     return redirect('file_list')
 
@@ -124,7 +131,7 @@ def delete_file(request, pk):
 
 @login_required
 def book_list(request):
-    books = Book.objects.all()
+    books = Book.objects.filter(author_id=request.user).all()
     return render(request, 'mediauploadapp/book_list.html', {
         'books': books
     })
@@ -135,7 +142,9 @@ def upload_book(request):
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            book = form.save(commit=False)
+            book.author_id = request.user
+            book.save()
             return redirect('book_list')
     else:
         form = BookForm()
@@ -147,7 +156,7 @@ def upload_book(request):
 @login_required
 def delete_book(request, pk):
     if request.method == 'POST':
-        book = Book.objects.get(pk=pk)
+        book = Book.objects.get(pk=pk, author_id=request.user)
         book.delete()
     return redirect('book_list')
 
@@ -164,7 +173,7 @@ class UploadBookView(CreateView):
 
 @login_required
 def photo_list(request):
-    photos = Photo.objects.all()
+    photos = Photo.objects.filter(author_id=request.user).all()
     if photos:
         photo = random.choice(photos).file.url
         return render(request, 'mediauploadapp/photo_list_basic.html', {
@@ -178,13 +187,15 @@ def photo_list(request):
 
 class BasicUploadView(View):
     def get(self, request):
-        photos_list = Photo.objects.all()
+        photos_list = Photo.objects.filter(author_id=request.user).all()
         return render(self.request, 'mediauploadapp/basic_upload_photo.html', {'photos': photos_list})
 
     def post(self, request):
         form = PhotoForm(self.request.POST, self.request.FILES)
         if form.is_valid():
-            photo = form.save()
+            photo = form.save(commit=False)
+            photo.author_id = request.user
+            photo.save()
             data = {'is_valid': True, 'name': photo.file.name, 'url': photo.file.url}
         else:
             data = {'is_valid': False}
@@ -193,13 +204,15 @@ class BasicUploadView(View):
 
 class ProgressBarUploadView(View):
     def get(self, request):
-        photos_list = Photo.objects.all()
+        photos_list = Photo.objects.filter(author_id=request.user).all()
         return render(self.request, 'mediauploadapp/progress_bar_upload_photo.html', {'photos': photos_list})
 
     def post(self, request):
         form = PhotoForm(self.request.POST, self.request.FILES)
         if form.is_valid():
-            photo = form.save()
+            photo = form.save(commit=False)
+            photo.author_id = request.user
+            photo.save()
             data = {'is_valid': True, 'name': photo.file.name, 'url': photo.file.url}
         else:
             data = {'is_valid': False}
@@ -208,13 +221,15 @@ class ProgressBarUploadView(View):
 
 class DragAndDropUploadView(View):
     def get(self, request):
-        photos_list = Photo.objects.all()
+        photos_list = Photo.objects.filter(author_id=request.user).all()
         return render(self.request, 'mediauploadapp/drag_and_drop_upload_photo.html', {'photos': photos_list})
 
     def post(self, request):
         form = PhotoForm(self.request.POST, self.request.FILES)
         if form.is_valid():
-            photo = form.save()
+            photo = form.save(commit=False)
+            photo.author_id = request.user
+            photo.save()
             data = {'is_valid': True, 'name': photo.file.name, 'url': photo.file.url}
         else:
             data = {'is_valid': False}
@@ -223,7 +238,7 @@ class DragAndDropUploadView(View):
 
 @login_required
 def clear_database(request):
-    for photo in Photo.objects.all():
+    for photo in Photo.objects.filter(author_id=request.user).all():
         photo.file.delete()
         photo.delete()
     return redirect(request.POST.get('next'))
@@ -232,6 +247,6 @@ def clear_database(request):
 @login_required
 def delete_photo(request, pk):
     if request.method == 'POST':
-        file = Photo.objects.get(pk=pk)
+        file = Photo.objects.get(pk=pk, author_id=request.user)
         file.delete()
     return redirect('basic_upload')
