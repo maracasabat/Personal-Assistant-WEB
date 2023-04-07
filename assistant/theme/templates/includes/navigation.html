@@ -49,7 +49,21 @@
             </div>
             <div class="hidden md:block">
               <div class="ml-4 flex items-start md:ml-6">
-                  <p class="text-[#6366f1] px-3 py-2 rounded-md text-sm font-medium">Hello, {{ user.username }}</p>
+              <!--Theme Switcher-->
+                  <a href="{% url 'main:change-theme' %}">
+                      {% if is_dark_theme %}
+
+                          <button type="button" class="rounded-full  p-1 text-gray-400 hover:text-white duration-300 ">
+                                {% include 'includes/icons/sun.svg' %}
+                            </button>
+
+                      {% else %}
+                            <button type="button" class="rounded-full  p-1 text-gray-400 hover:text-white duration-300 ">
+                              {% include 'includes/icons/moon.svg' %}
+                          </button>
+                      {% endif %}
+                  </a>
+{#                  <p class="text-[#6366f1] px-3 py-2 rounded-md text-sm font-medium">Hello, {{ user.username }}</p>#}
                   <a href="{% url 'settings' user.username %}">
                   <button type="button" class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
               <span class="sr-only p-1">User Settings</span>
@@ -93,6 +107,8 @@
                 </div>
               </div>
             </div>
+              {% include 'includes/mob_menu_btn.html' %}
           </div>
         </div>
+        {% include 'includes/mob_menu.html' %}
       </nav>
