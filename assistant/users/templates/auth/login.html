@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% load socialaccount %}
 {% block content %}
-    <form   method="post">
+    <form class="auth-form"  method="post">
     {% csrf_token %}
         <h3>Login Here</h3>
        {{ form|crispy }}
