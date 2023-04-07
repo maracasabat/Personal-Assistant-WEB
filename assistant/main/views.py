@@ -36,9 +36,9 @@ def gallery_page(request):
 def settings_page(request):
     return render(request, "main/settingsPage.html")
 
-# @login_required
-# def team(request):
-#     return render(request, "pages/team.html")
+@login_required
+def team(request):
+    return render(request, "main/team.html")
 
 
 def change_theme(request, **kwargs):

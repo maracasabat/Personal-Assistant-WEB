@@ -5,67 +5,19 @@
     <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <link rel="icon" href="{% static 'images/favicon.svg' %}">
+      <link rel="stylesheet" href="{% static 'css/eyes.css' %}">
     <title>My Book</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     {% tailwind_css %}
 
-    <style media="screen">
-        .eyes {
-          position: relative;
-          width: 30px;
-          height: 30px;
-          background: transparent;
-          margin: -2px 0 0 0;
-          border-radius: 50%;
-            box-shadow: 0 5px 45px rgba(0, 0, 0, 0.5), inset 0 0 5px #6366f1, inset 0 0 15px #6366f1;
-          transition: border-radius 0.2s ease-in;
-        }
-
-        .eyesLogo {
-          position: relative;
-          width: 30px;
-          height: 30px;
-          background: white;
-          {#margin: -2px 0 0 0;#}
-          border-radius: 50%;
-            box-shadow: 0 5px 45px rgba(0, 0, 0, 0.5), inset 0 0 5px #6366f1, inset 0 0 15px #6366f1;
-          transition: border-radius 0.2s ease-in;
-        }
-
-        .eyesLogo::before {
-          content: '';
-          position: absolute;
-          width: 22px;
-          height: 22px;
-          border-radius: 50%;
-          background: #273444;
-          box-shadow: 0 0 5px #f5d142;
-          transform: translate(5%, 5%);
-          border: 2px solid #f6e751;
-          box-sizing: border-box;
-        }
-
-        .eyes::before {
-          content: '';
-          position: absolute;
-          width: 22px;
-          height: 22px;
-          border-radius: 50%;
-          background: #273444;
-          box-shadow: 0 0 5px #273444;
-          transform: translate(5%, 5%);
-          border: 2px solid #f7e852;
-          box-sizing: border-box;
-        }
-    </style>
   </head>
 
-  <body>
-    <div class="min-h-full">
+  <body class="h-full text-bg-gray-600  dark:text-gray-50 bg-gradient-to-br dark:from-[#012210] dark:to-[#009c4c] from-[#9dc9b3] to-white overflow-hidden">
+    <div class="min-h-screen overflow-auto">
       <!--    NAVIGATION-->
-
  {% include 'includes/navigation.html' %}
+ {% include 'includes/footer.html' %}
       <!--    HEADER-->
       <header class="flex relative  bg-white shadow flex items-center ">
         <div class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8 ">
