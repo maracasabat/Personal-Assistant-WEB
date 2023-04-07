@@ -8,7 +8,7 @@ from django.db import models
 
 
 class Nickname(models.Model):
-    nickname = models.CharField(max_length=150, unique=True, null=False, blank=True)
+    nickname = models.CharField(max_length=150, null=False, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     phone = models.CharField(validators=[RegexValidator(
         regex=r"^\+?1?\d{8,15}$",
@@ -16,7 +16,7 @@ class Nickname(models.Model):
         code="invalid",
         inverse_match=False,
         flags=re.IGNORECASE
-    )], max_length=16, unique=True, null=True, blank=True)
+    )], max_length=16, null=True, blank=True)
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True)
 
     def __str__(self):
@@ -30,7 +30,7 @@ class Telephone(models.Model):
         code="invalid",
         inverse_match=False,
         flags=re.IGNORECASE
-    )], max_length=16, unique=True, blank=True, null=True)
+    )], max_length=16, blank=True, null=True)
     # telephone = models.TextField(blank=True, null=True, unique=True)
     contact = models.ForeignKey(Nickname, null=True, blank=True, on_delete=models.CASCADE, related_name='telephones')
 
@@ -60,7 +60,7 @@ class Surname(models.Model):
 
 class Email(models.Model):
     contact = models.ForeignKey(Nickname, null=True, blank=True, on_delete=models.CASCADE, related_name='emails')
-    email = models.CharField(max_length=50, unique=True, null=True, blank=True, validators=[
+    email = models.CharField(max_length=50, null=True, blank=True, validators=[
         EmailValidator(
             message='input correct email'
         )
