@@ -7,13 +7,13 @@
     <div class="h-screen py-6">
       <nav class="mb-5 border-b-4" >
         <ul class="flex items-center justify-center gap-3 mb-10">
-          <li><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/book_app/contact/" role="button">Add Contact</a></li>
-          <li><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/book_app/" role="button"> Go back to the main page </a></li>
-          <li><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/book_app/day_to_birthday/" role="button"> Birthday </a></li>
+          <li><a class="text-white px-5 py-2 border-2 border-lip dark:border-[#1a4cda] rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 dark:from-[#1a4cda] dark:to-[#293c72] transition" href="/book_app/contact/" role="button">Add Contact</a></li>
+          <li><a class="text-white px-5 py-2 border-2 border-lip dark:border-[#1a4cda] rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 dark:from-[#1a4cda] dark:to-[#293c72] transition" href="/book_app/" role="button"> Go back to the main page </a></li>
+          <li><a class="text-white px-5 py-2 border-2 border-lip dark:border-[#1a4cda] rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 dark:from-[#1a4cda] dark:to-[#293c72] transition" href="/book_app/day_to_birthday/" role="button"> Birthday </a></li>
         </ul>
       </nav>
 
-      <h4 class="font-medium leading-tight text-lg text-gray-300 mb-1">Search</h4>
+      <h4 class="font-medium leading-tight text-lg text-gray-800 dark:text-gray-300 mb-1">Search</h4>
 
       <form action="{% url 'search_results' %}" method="get">
         <input class="w-full rounded-lg border-lip " name="q" type="text" placeholder="Search...">
@@ -21,9 +21,9 @@
 
       <div class="mt-5">
           <div class="card-body">
-            <h4 class="font-medium leading-tight text-2xl pb-3 text-gray-300">Contacts Book</h4>
+            <h4 class="font-medium leading-tight text-2xl pb-3 text-gray-800 dark:text-gray-300">Contacts Book</h4>
               <table class="min-w-full text-center border shadow">
-                <thead class="bg-lip text-gray-300 border-b ">
+                <thead class="bg-lip dark:bg-[#1a4cda] text-gray-300 border-b ">
                     <tr>
                       <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">Nicknames</th>
                       <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">Phones</th>

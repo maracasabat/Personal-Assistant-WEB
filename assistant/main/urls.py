@@ -9,5 +9,7 @@ urlpatterns = [
     path("phonebook", views.phonebook_page, name="phonebook"),
     path("notebook", views.notebook_page, name="notebook"),
     path("gallery", views.gallery_page, name="gallery"),
+    path("team", views.team, name="team"),
+    path('switch_theme', views.change_theme, name='change-theme'),
 
 ]

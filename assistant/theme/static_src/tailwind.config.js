@@ -6,6 +6,7 @@
  */
 
 module.exports = {
+    darkMode: "class",
     //  purge: {
     //     enabled: true,
     //     content: ['theme/templates/base.html'],
