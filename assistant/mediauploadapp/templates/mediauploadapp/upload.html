@@ -10,7 +10,7 @@
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <input class="text-gray-300 rounded-lg" type="file" name="document">
-    <button class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" type="submit">Upload file</button>
+    <button class="text-white px-5 py-2 border-2 border-lip dark:border-[#1a4cda] rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 dark:from-[#1a4cda] dark:to-[#293c72] transition"  type="submit">Upload file</button>
   </form>
 
   {% if url %}
