@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from newsapp.views import get_news
 from book_app.views import main as phonebook_main
 from note_app.views import main as note_main
-# from mediauploadapp.views import main as media_main
+from mediauploadapp.views import main as media_main
 
 
 # Create your views here.

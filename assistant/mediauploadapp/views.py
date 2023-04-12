@@ -1,5 +1,4 @@
 import random
-
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
@@ -16,12 +15,12 @@ from django.urls import reverse_lazy
 
 # Create your views here.
 class Home(TemplateView):
-    template_name = 'mediauploadapp/index.html'
+    template_name = 'mediauploadapp/file_list.html'
 
 
 @login_required
 def main(request):
-    return render(request, 'mediauploadapp/index.html', {})
+    return render(request, 'mediauploadapp/file_list.html', {})
 
 
 """ Add method for the simple upload """

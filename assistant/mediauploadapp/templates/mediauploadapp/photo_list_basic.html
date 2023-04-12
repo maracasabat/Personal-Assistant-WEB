@@ -16,36 +16,44 @@
   <div class="row text-accent flex flex-col">
     <div class="col-md-3">
       <div class="flex justify-center">
-          <div class="text-white px-5 py-2 mt-5 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400">
-            <a href="{% url 'basic_upload' %}" class=" block text-center px-6 py-2 border-b border-gray-200 w-full hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-0 focus:bg-gray-200 focus:text-gray-600 transition duration-500 cursor-pointer ">
+{#          <div class="text-white px-5 py-2 pb-5 border-2 border-lip dark:border-[#1a4cda] rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 dark:from-[#1a4cda] dark:to-[#293c72] transition">#}
+            <a href="{% url 'basic_upload' %}" class="text-white px-5 py-2 mb-5 border-2 border-lip dark:border-[#1a4cda] rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 dark:from-[#1a4cda] dark:to-[#293c72] transition">
                  Upload Your Photo
             </a>
         </div>
       </div>
-
-
-
-<div class="flex justify-center">
-  <form method="post" action="{% url 'clear_database' %}">
-    {% csrf_token %}
-    <input type="hidden" name="next" value="{{ request.path }}">
-    <button type="submit" class="text-white px-5 py-2 mt-5 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400" >
-      Clear Database
-    </button>
-  </form>
-</div>
-
 {% block photos_content %}
 
 <div class="flex justify-center">
     <h2 class='text-sm flex-bold text-white px-7 py-5 text-2xl'>Photo Example</h2>
 </div>
-<div class="flex justify-center">
-    <img class="object-scale-down h-48 w-96 ..." src={{ photo}}
-        onclick="showModal(src) " >
-
+<div class="flex justify-center rounded-lg">
+    <img class="object-scale-down h-48 w-96 ..." src={{ photo}} onclick="showModal(src)">
 </div>
     <div id="divID"></div>
+
+
+<div class="flex justify-center mb-5">
+  <form method="post" action="{% url 'clear_database' %}">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ request.path }}">
+    <button type="submit" class="text-white px-5 py-2 border-2 border-lip dark:border-[#1a4cda] rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 dark:from-[#1a4cda] dark:to-[#293c72] transition"ы >
+      Clear Database
+    </button>
+  </form>
+</div>
+
+{#{% block photos_content %}#}
+{##}
+{#<div class="flex justify-center">#}
+{#    <h2 class='text-sm flex-bold text-white px-7 py-5 text-2xl'>Photo Example</h2>#}
+{#</div>#}
+{#<div class="flex justify-center rounded-lg">#}
+{#    <img class="object-scale-down h-48 w-96 ..." src={{ photo}}#}
+{#        onclick="showModal(src) " >#}
+{##}
+{#</div>#}
+{#    <div id="divID"></div>#}
 
     <!-- Change colors -->
     <script>
