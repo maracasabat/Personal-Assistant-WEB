@@ -6,3 +6,6 @@
 .auth-form {
   @apply  w-96 bg-transparent bg-opacity-80 absolute z-20 transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 rounded-lg backdrop-blur-md border-2 border-gray-200 border-opacity-10 shadow-lg p-10;
 }
+.nav-button {
+  @apply text-gray-100 px-5 py-2 border-2 border-primary bg-primary shadow-lg rounded-lg transition
+}
