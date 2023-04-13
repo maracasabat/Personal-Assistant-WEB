@@ -6,8 +6,8 @@
 {% block content %}
     <div class="h-screen py-6 w-96" >
       <nav class="mb-5 border-b-4" >
-        <ul class="flex items-center justify-center gap-3 mb-10">
-          <li><a class="text-white px-5 py-2 border-2 border-lip dark:border-[#1a4cda] rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 dark:from-[#1a4cda] dark:to-[#293c72] transition" href="/note_app/" role="button"> Go back to the main page </a></li>
+        <ul class="flex items-center justify-center md:gap-3 flex-wrap gap-7 mb-10">
+          <li><a class="nav-button" href="/note_app/" role="button"> Go back </a></li>
         </ul>
       </nav>
       <form method="POST" action="{% url 'note' %}">
@@ -23,9 +23,9 @@
         <div class="font-medium flex-col justify-center items-center pb-3">
           <label for="tags" class="text-gray-300 flex">Select tags:</label>
             <select class="flex w-full border border-lip rounded-lg h-20" name="tags" multiple="multiple" id="tags" required>
-              {% for tag in tags %}
+{#              {% for tag in tags %}#}
               <option value="{{tag.name}}">{{tag.name}}</option>
-              {% endfor %}
+{#              {% endfor %}#}
             </select>
         </div>
         <div class="flex items-center justify-between mt-5 gap-5">

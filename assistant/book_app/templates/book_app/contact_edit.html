@@ -5,27 +5,29 @@
 
 {% block content %}
     <div class="h-screen py-6 w-2/3 overflow-auto" >
-      <nav class="border-b-4 flex items-center justify-between pb-10" >
+      <nav class="flex justify-center items-center gap-2 md:gap-3  flex-wrap w-full" >
         <ul>
-          <li><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/book_app/" role="button"> Go back to the main page </a></li>
+          <li><a class="nav-button" href="/book_app/" role="button"> Go back </a></li>
         </ul>
-        <h3><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/book_app/nick_edit/{{nickname.id}}">Edit information to the contact {{nickname.nickname}}</a></h3>
+          <h3><a class="nav-button" href="/book_app/nick_edit/{{nickname.id}}">Edit information</a></h3>
+
+{#        <h3><a class="nav-button" href="/book_app/nick_edit/{{nickname.id}}">Edit information to the contact {{nickname.nickname}}</a></h3>#}
       </nav>
       <form method="POST" action="{% url 'contact_edit' nickname.id %}">
         {% csrf_token %}
 
         <div class="font-medium flex-col justify-center items-center py-3">
-            <label for="telephone" class="text-gray-300 flex">Additional phone <b>{{ telephone.telephone }}</b>:</label>
-              <input class="flex w-full border border-lip rounded-lg" type="tel" id="telephone" name="telephone" placeholder="+380960001122" pattern="^\+?1?\d{8,15}$" />
+            <label for="telephone" class="text-gray-800 dark:text-gray-300 flex">Additional phone <b>{{ telephone.telephone }}</b>:</label>
+              <input class="flex w-full border border-lip rounded-lg " type="tel" id="telephone" name="telephone" placeholder="+380960001122" pattern="^\+?1?\d{8,15}$" />
           </div>
 
         <div class="font-medium flex-col justify-center items-center py-3">
-            <label for="name" class="text-gray-300 flex">First Name <b>{{ name.name }}</b>:</label>
+            <label for="name" class="text-gray-800 dark:text-gray-300 flex">First Name <b>{{ name.name }}</b>:</label>
               <input class="flex w-full border border-lip rounded-lg" type="text" id="name" name="name" />
           </div>
 
         <div class="font-medium flex-col justify-center items-center py-3">
-            <label for="surname" class="text-gray-300 flex">Last name <b>{{ surname.surname }}</b>:</label>
+            <label for="surname" class="text-gray-800 dark:text-gray-300 flex">Last name <b>{{ surname.surname }}</b>:</label>
               <input class="flex w-full border border-lip rounded-lg" type="text" id="surname" name="surname" />
           </div>
 
@@ -38,21 +40,21 @@
             </div>
             {% endif %}
 
-            <label for="email" class="text-gray-300 flex">Email <b>{{ email.email }}</b> :</label>
+            <label for="email" class="text-gray-800 dark:text-gray-300 flex">Email <b>{{ email.email }}</b> :</label>
               <input class="flex w-full border border-lip rounded-lg" type="email" id="email" name="email" />
           </div>
 
         <div class="font-medium flex-col justify-center items-center py-3">
-            <label for="birthday" class="text-gray-300 flex" >Birthday <b>{{ birthday.birthday }}</b>:</label>
+            <label for="birthday" class="text-gray-800 dark:text-gray-300 flex" >Birthday <b>{{ birthday.birthday }}</b>:</label>
               <input class="flex w-full border border-lip rounded-lg" type="date" id="birthday" name="birthday" />
           </div>
 
         <div class="font-medium flex-col justify-center items-center py-3">
-            <label for="country" class="text-gray-300 flex">Country <b>{{ country.country }}</b>:</label>
+            <label for="country" class="text-gray-800 dark:text-gray-300 flex">Country <b>{{ country.country }}</b>:</label>
               <input class="flex w-full border border-lip rounded-lg" type="text" id="country" name="country" />
           </div>
         <div class="font-medium flex-col justify-center items-center py-3">
-            <label for="address" class="text-gray-300 flex">Address <b>{{ address.address }}</b> :</label>
+            <label for="address" class="text-gray-800 dark:text-gray-300 flex">Address <b>{{ address.address }}</b> :</label>
               <input class="flex w-full border border-lip rounded-lg" type="text" id="address" name="address" />
           </div>
 

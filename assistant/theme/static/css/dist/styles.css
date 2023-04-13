@@ -995,8 +995,8 @@ select {
   width: 2rem;
 }
 
-.w-96 {
-  width: 24rem;
+.w-7\/12 {
+  width: 58.333333%;
 }
 
 .w-1\/2 {
@@ -1029,6 +1029,10 @@ select {
 
 .w-screen {
   width: 100vw;
+}
+
+.w-96 {
+  width: 24rem;
 }
 
 .min-w-full {
@@ -1108,16 +1112,16 @@ select {
   gap: 1.25rem;
 }
 
-.gap-4 {
-  gap: 1rem;
-}
-
 .gap-2 {
   gap: 0.5rem;
 }
 
 .gap-7 {
   gap: 1.75rem;
+}
+
+.gap-4 {
+  gap: 1rem;
 }
 
 .gap-x-6 {
@@ -1174,12 +1178,12 @@ select {
   border-top-right-radius: 0.5rem;
 }
 
-.border-2 {
-  border-width: 2px;
-}
-
 .border {
   border-width: 1px;
+}
+
+.border-2 {
+  border-width: 2px;
 }
 
 .border-4 {
@@ -1313,14 +1317,14 @@ select {
   background-color: #012210c4;
 }
 
-.bg-gray-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
-}
-
 .bg-purple-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(168 85 247 / var(--tw-bg-opacity));
+}
+
+.bg-gray-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
 }
 
 .bg-lip {
@@ -1509,12 +1513,12 @@ select {
   padding-top: 1rem;
 }
 
-.pb-10 {
-  padding-bottom: 2.5rem;
-}
-
 .pb-4 {
   padding-bottom: 1rem;
+}
+
+.pb-10 {
+  padding-bottom: 2.5rem;
 }
 
 .pb-2 {
@@ -1835,6 +1839,30 @@ select {
   transition-duration: 150ms;
 }
 
+.reset {
+  width: 50%;
+  border-radius: 0.5rem;
+  border-width: 1px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.reset:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(127 29 29 / var(--tw-bg-opacity));
+}
+
 .placeholder\:opacity-50::-moz-placeholder {
   opacity: 0.5;
 }
@@ -2136,12 +2164,12 @@ select {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  .md\:gap-8 {
-    gap: 2rem;
-  }
-
   .md\:gap-3 {
     gap: 0.75rem;
+  }
+
+  .md\:gap-8 {
+    gap: 2rem;
   }
 
   .md\:border-t-0 {

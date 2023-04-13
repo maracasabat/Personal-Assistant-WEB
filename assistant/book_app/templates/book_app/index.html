@@ -34,7 +34,7 @@
                 </thead>
                 <tbody class="bg-gray-50 text-centre">
                   {% for nickname in page_obj %}
-                    <tr class="border-b shadow hover:bg-indigo-100">
+                    <tr class="border-b shadow hover:bg-indigo-100 text-gray-800">
                       <td><a  href="/book_app/detail/{{nickname.id}}">{{ nickname.nickname }}</a></td>
                       <td>{{ nickname.phone }}</td>
 <!--                      <th><a href="/book_app/info/{{nickname.id}}">Add Info</a></th>-->

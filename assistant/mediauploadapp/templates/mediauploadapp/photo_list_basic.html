@@ -15,9 +15,9 @@
 <div class=" flex flex-col justify-center items-center gap-3">
   <div class="row text-accent flex flex-col">
     <div class="col-md-3">
-      <div class="flex justify-center">
+      <div class="flex items-center justify-center md:gap-3 flex-wrap gap-7 mb-10">
 {#          <div class="text-white px-5 py-2 pb-5 border-2 border-lip dark:border-[#1a4cda] rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 dark:from-[#1a4cda] dark:to-[#293c72] transition">#}
-            <a href="{% url 'basic_upload' %}" class="text-white px-5 py-2 mb-5 border-2 border-lip dark:border-[#1a4cda] rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 dark:from-[#1a4cda] dark:to-[#293c72] transition">
+            <a href="{% url 'basic_upload' %}" class="nav-button">
                  Upload Your Photo
             </a>
         </div>
@@ -33,11 +33,11 @@
     <div id="divID"></div>
 
 
-<div class="flex justify-center mb-5">
+<div class="flex items-center justify-center md:gap-3 flex-wrap gap-7 mb-10">
   <form method="post" action="{% url 'clear_database' %}">
     {% csrf_token %}
     <input type="hidden" name="next" value="{{ request.path }}">
-    <button type="submit" class="text-white px-5 py-2 border-2 border-lip dark:border-[#1a4cda] rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 dark:from-[#1a4cda] dark:to-[#293c72] transition"ы >
+    <button type="submit" class="nav-button" >
       Clear Database
     </button>
   </form>

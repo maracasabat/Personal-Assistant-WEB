@@ -9,3 +9,7 @@
 .nav-button {
   @apply text-gray-100 px-5 py-2 border-2 border-primary bg-primary shadow-lg rounded-lg transition
 }
+
+.reset {
+  @apply text-white w-1/2 px-5 py-2 border-2 border rounded-lg bg-red-600 hover:bg-red-900 transition
+}
