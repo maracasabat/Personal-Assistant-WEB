@@ -1,7 +1,7 @@
 <div class="text-gray-300 flex justify-center items-center">
-    <div class="select " type="button" >
+    <div class="select" type="button" >
 
-             <form method="post" action="{% url 'delete_all' %}" class="px-5 py-2 border-1 shadow-lg rounded-lg transition bg-[#293c72] border dark:border-amber-50 text-gray-100 hover:text-white hover:border-white dark:hover:bg-primary">
+             <form method="post" action="{% url 'delete_all' %}" class="clear-button">
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ request.path }}">
                 <button type="submit" class="" >

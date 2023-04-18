@@ -4,9 +4,9 @@
     {% endblock %}
 
 {% block content %}
-    <div class="h-screen py-6" >
+    <div class="h-screen py-6 w-full md:w-2/3" >
       <nav class="mb-5 border-b-4" >
-        <ul class="flex items-center justify-center md:gap-3 flex-wrap gap-7 mb-10">
+        <ul class="flex items-center justify-between md:justify-center md:gap-3 mb-10">
           <li><a class="nav-button" href="/note_app/note/" role="button">Add note</a></li>
           <li><a class="nav-button" href="/note_app/tag/" role="button">Add Tag</a></li>
           <li><a class="nav-button" href="/note_app/" role="button"> Go back </a></li>
@@ -21,7 +21,7 @@
 
 
         <table class="min-w-full text-center border shadow">
-            <thead class="bg-lip dark:bg-[#1a4cda] text-gray-300 border-b ">
+            <thead class="bg-primary text-gray-300 border-b ">
                 <tr>
                   <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">TASK</th>
                   <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">STATUS</th>
