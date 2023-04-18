@@ -243,9 +243,22 @@ def clear_database(request):
     return redirect(request.POST.get('next'))
 
 
-@login_required
+
+
 def delete_photo(request, pk):
     if request.method == 'POST':
         file = Photo.objects.get(pk=pk, author_id=request.user)
         file.delete()
     return redirect('basic_upload')
+
+@login_required
+def delete_all(request):
+    if request.method == 'POST':
+        for photo in Photo.objects.filter(author_id=request.user).all():
+            photo.delete()
+        for file in File.objects.filter(author_id=request.user).all():
+            file.delete()
+        for book in Book.objects.filter(author_id=request.user).all():
+            book.delete()
+
+        return redirect('file_list')
