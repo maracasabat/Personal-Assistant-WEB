@@ -16,23 +16,23 @@
       <form method="POST" action="{% url 'contact_edit' nickname.id %}">
         {% csrf_token %}
 
-        <div class="font-medium flex-col justify-center items-center py-3">
+        <div class="font-medium flex-col justify-center items-center">
             <label for="telephone" class="text-gray-800 dark:text-gray-300 flex">Additional phone <b>{{ telephone.telephone }}</b>:</label>
               <input class="flex w-full border border-lip rounded-lg " type="tel" id="telephone" name="telephone" placeholder="+380960001122" pattern="^\+?1?\d{8,15}$" />
           </div>
 
-        <div class="font-medium flex-col justify-center items-center py-3">
+        <div class="font-medium flex-col justify-center items-center">
             <label for="name" class="text-gray-800 dark:text-gray-300 flex">First Name <b>{{ name.name }}</b>:</label>
               <input class="flex w-full border border-lip rounded-lg" type="text" id="name" name="name" />
           </div>
 
-        <div class="font-medium flex-col justify-center items-center py-3">
+        <div class="font-medium flex-col justify-center items-center">
             <label for="surname" class="text-gray-800 dark:text-gray-300 flex">Last name <b>{{ surname.surname }}</b>:</label>
               <input class="flex w-full border border-lip rounded-lg" type="text" id="surname" name="surname" />
           </div>
 
 
-        <div class="font-medium flex-col justify-center items-center py-3">
+        <div class="font-medium flex-col justify-center items-center">
 
             {% if error %}
             <div>
@@ -44,24 +44,22 @@
               <input class="flex w-full border border-lip rounded-lg" type="email" id="email" name="email" />
           </div>
 
-        <div class="font-medium flex-col justify-center items-center py-3">
+        <div class="font-medium flex-col justify-center items-center">
             <label for="birthday" class="text-gray-800 dark:text-gray-300 flex" >Birthday <b>{{ birthday.birthday }}</b>:</label>
               <input class="flex w-full border border-lip rounded-lg" type="date" id="birthday" name="birthday" />
           </div>
 
-        <div class="font-medium flex-col justify-center items-center py-3">
+        <div class="font-medium flex-col justify-center items-center">
             <label for="country" class="text-gray-800 dark:text-gray-300 flex">Country <b>{{ country.country }}</b>:</label>
               <input class="flex w-full border border-lip rounded-lg" type="text" id="country" name="country" />
           </div>
-        <div class="font-medium flex-col justify-center items-center py-3">
+        <div class="font-medium flex-col justify-center items-center">
             <label for="address" class="text-gray-800 dark:text-gray-300 flex">Address <b>{{ address.address }}</b> :</label>
               <input class="flex w-full border border-lip rounded-lg" type="text" id="address" name="address" />
           </div>
 
-        <div class="flex items-center justify-between mt-5 gap-5">
-          <button type="reset" class="text-white w-1/2 px-5 py-2 border-2 border rounded-lg bg-gray-500 hover:bg-gray-700 transition">Reset</button>
-          <button type="submit" class="text-white w-1/2 px-5 py-2 border-2 border rounded-lg bg-purple-500 hover:bg-purple-700 transition" >Edit</button>
-        </div>
+      {% include 'includes/reset_submit_btn.html' %}
+
       </form>
     </div>
 {% endblock %}

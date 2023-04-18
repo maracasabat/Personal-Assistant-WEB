@@ -13,10 +13,10 @@
         </ul>
       </nav>
 
-      <h4 class="font-medium leading-tight text-lg text-gray-300 mb-1" >Search:</h4>
+      <h4 class="font-medium leading-tight text-lg dark:text-gray-300 mb-1" >Search:</h4>
 
       <form action="{% url 'search_note' %}" method="get">
-        <input class="w-full rounded-lg border-lip mb-8" name="q" type="text" placeholder="Search...">
+        <input class="w-full rounded-lg border-lip mb-8 text-gray-700" name="q" type="text" placeholder="Search...">
       </form>
 
 
@@ -72,7 +72,7 @@
 <!--        {% endfor %}-->
 <!--       </div>-->
 
-      <div class="pagination text-gray-300 mt-3 text-center">
+      <div class="pagination dark:text-gray-300 mt-3 text-center">
         <span class="step-links">
             {% if page_obj.has_previous %}
                 <a href="?page=1">&laquo; first</a>
@@ -92,4 +92,3 @@
 
     </div>
 {% endblock %}
-
