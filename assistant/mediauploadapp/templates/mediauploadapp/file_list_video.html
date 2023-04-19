@@ -1,62 +1,24 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <div class="flex-col items-center" style='align-items: center; justify-content: center; display: flex'>
-        <h2 class='flex font-bold text-3xl text-gray-900 tracking-tight uppercase mb-5'> Files</h2>
+    <div class="flex mt-10 flex-col items-center justify-center">
+        <h2 class='title'> Video files</h2>
         <div class="flex">{% include 'mediauploadapp/includes/tabs.html' %}</div>
     </div>
 {% endblock %}
 
 {% block content %}
-    {% block content_header %}
-    <p>
-        <a href="{% url 'upload_file' %}" class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 ">Upload file</a>
-    </p>
-  {% endblock %}
+
+
+<div class="w-full">
+    <div class="flex flex-row items-center justify-between" >
+        {% include 'includes/select_category.html' %}
+        {% include 'includes/clear_button.html' %}
     </div>
-  <table class=" my-10 h-px min-w-full text-center text-gray-300">
-    <thead class="border-b bg-gray-800">
-
-    <tr class="text-gray-300">
-          <td>
-            <a href="{% url 'file_list' %}" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:text-white rounded-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800" type="button">All Categories</a>
-          </td>
-          <td>
-            <a href="{% url 'file_list_image' %}" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:text-white rounded-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800" type="button"> Images</a>
-          </td>
-          <td>
-            <a href="{% url 'file_list_video' %}" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:text-white rounded-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800" type="button"> Videos</a>
-          </td>
-         <td>
-            <a href="{% url 'file_list_document' %}" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:text-white rounded-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800" type="button"> Documents</a>
-          </td>
-          <td>
-            <a href="{% url 'file_list_music' %}" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:text-white rounded-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800" type="button"> Musics</a>
-          </td>
-          <td>
-            <a href="{% url 'file_list_other' %}" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:text-white rounded-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800" type="button">Others</a>
-          </td>
-        </tr>
-
-    </thead>
-  </table>
-  <div class="flex-col items-center" style='align-items: center; justify-content: center; display: flex'>
-    <h1 class="text-sm font-medium text-white px-6 py-4">
-      Hello <span class="animate-waving-hand">👋🏻</span>, here are your VIDEO files
-    </h1>
-  </div>
-  <hr class="my-10 h-px bg-opacity g-gray-200 dark:bg-opacity">
-  <table class="min-w-full text-center text-gray-300">
-    <thead class="border-b bg-gray-800">
-      <tr>
-        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Title</th>
-        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Category</th>
-        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Publication date</th>
-        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Download</th>
-        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Delete</th>
-      </tr>
-    </thead>
+    <table class="min-w-full text-center text-gray-300">
+        {% include 'includes/thead_files.html' %}
     <tbody>
+    {% if files %}
       {% for file in files_video %}
         <tr class="text-gray-300">
           <td>{{ file.title }}</td>
@@ -80,8 +42,11 @@
           </td>
         </tr>
       {% endfor %}
-    </tbody>
+        {% else %}
+            {% include 'includes/placeholder.html' %}
+        </tbody>
+    {% endif %}
   </table>
-
+</div>
 
 {% endblock %}

@@ -15,7 +15,7 @@
 
       <div class="mt-5">
           <div class="card-body">
-            <h4 class="font-medium leading-tight text-2xl pb-3 text-gray-300">Search Results</h4>
+            <h4 class="font-medium leading-tight text-2xl pb-3 dark:text-gray-300">Search Results</h4>
               <table class="min-w-full text-center border shadow ">
                 <thead class="bg-lip text-gray-300 border-b ">
                     <tr class="">
@@ -26,7 +26,7 @@
                       <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">Delete</th>
                     </tr>
                 </thead>
-                <tbody class="bg-gray-50 text-centre">
+                <tbody class="bg-gray-50 text-centre text-primary">
                   {% for nickname in nicknames %}
                     <tr class="border-b shadow hover:bg-indigo-100">
                       <th class="pointer px-6 py-4">{{ nickname.nickname }}</th>

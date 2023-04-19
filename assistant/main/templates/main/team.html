@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block header %}
+    <h2 class='flex font-bold text-3xl text-gray-900 dark:text-gray-300 tracking-tight uppercase mt-10'>Meet the team</h2>
+{% endblock %}
+
+{% block content %}
+
+<div class="container px-6 mx-auto bg-transparent  ">
+
+  <!-- Section: Design Block -->
+<section class="mt-32 text-gray-800 text-center">
+    <div class="grid gap-x-6 lg:gap-x-12 md:grid-cols-4">
+        <div class="mb-24 md:mb-0">
+        <div class="rounded-lg shadow-lg h-full block bg-primary  text-white  dark:bg-white dark:text-gray-700">
+          <div class="flex justify-center">
+            <div class="flex justify-center" style="margin-top: -75px">
+              <img src="{% static 'images/anna.png'%}" class="rounded-full mx-auto shadow-lg" alt=""
+                style="width: 180px" />
+            </div>
+          </div>
+          <div class="p-6">
+            <h5 class="text-lg font-bold mb-4">Anna Saifulina</h5>
+            <p class="mb-6">Backend Developer & Data Scientist</p>
+            <ul class="list-inside flex mx-auto justify-center">
+              <a href="https://github.com/SaifuliAnna" class="px-2">
+
+                {%  include "includes/icons/github.svg" %}
+
+              </a>
+              <a href="https://t.me/SaifuliAnna" class="px-2">
+
+                {%  include "includes/icons/telegram.svg" %}
+              </a>
+              <a href="https://www.linkedin.com/in/saifulianna/" class="px-2">
+                {%  include "includes/icons/linkedin.svg" %}
+              </a>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+        <div class="mb-24 md:mb-0">
+        <div class="rounded-lg shadow-lg h-full block bg-primary text-white  dark:bg-white dark:text-gray-700">
+          <div class="flex justify-center">
+            <div class="flex justify-center" style="margin-top: -75px">
+              <img src="{% static 'images/me.jpeg'%}" class="rounded-full mx-auto shadow-lg object-fill" alt=""
+                style="width: 180px" />
+            </div>
+          </div>
+          <div class="p-6">
+            <h5 class="text-lg font-bold mb-4">Aleksandra Boldysheva</h5>
+            <p class="mb-6">Scrum Master <br> Fullstack Developer & Data Scientist </p>
+            <ul class="list-inside flex mx-auto justify-center">
+              <a href="https://github.com/Aleksandra0001" class="px-2">
+               {%  include "includes/icons/github.svg" %}
+              </a>
+              <a href="https://t.me/sash029" class="px-2">
+                {%  include "includes/icons/telegram.svg" %}
+              </a>
+              <a href="https://www.linkedin.com/in/aleksandra-boldysheva-77ba99240/" class="px-2">
+                {%  include "includes/icons/linkedin.svg" %}
+              </a>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+        <div class="mb-24 md:mb-0">
+        <div class="rounded-lg shadow-lg h-full block bg-primary  text-white  dark:bg-white dark:text-gray-700">
+          <div class="flex justify-center">
+            <div class="flex justify-center" style="margin-top: -75px">
+              <img src="{% static 'images/vanya.jpeg'%}" class="rounded-full mx-auto shadow-lg" alt=""
+                style="width: 180px" />
+            </div>
+          </div>
+          <div class="p-6">
+            <h5 class="text-lg font-bold mb-4">Ivan Yevpat</h5>
+            <p class="mb-6">Team Lead <br> Backend Developer & Data Scientist</p>
+            <ul class="list-inside flex mx-auto justify-center">
+              <a href="https://github.com/maracasabat" class="px-2">
+                {%  include "includes/icons/github.svg" %}
+              </a>
+              <a href="https://t.me/maracasabat" class="px-2">
+                {%  include "includes/icons/telegram.svg" %}
+              </a>
+              <a href="https://www.linkedin.com/in/ivan-yevpat/" class="px-2">
+                {%  include "includes/icons/linkedin.svg" %}
+              </a>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+        <div class="mb-24 md:mb-0">
+        <div class="rounded-lg shadow-lg h-full block bg-primary  text-white  dark:bg-white dark:text-gray-700">
+          <div class="flex justify-center">
+            <div class="flex justify-center" style="margin-top: -75px">
+              <img src="{% static 'images/nataliiak.jpeg' %}" class="rounded-full mx-auto shadow-lg" alt=""
+                   style="width: 180px" />
+            </div>
+          </div>
+          <div class="p-6">
+            <h5 class="text-lg font-bold mb-4">Nataliia Kovalchuk</h5>
+            <p class="mb-6">Backend Developer & Data Scientist</p>
+            <ul class="list-inside flex mx-auto justify-center">
+              <a href="https://github.com/kovalch" class="px-2">
+               {%  include "includes/icons/github.svg" %}
+              </a>
+                <a href="#" class="px-2">
+               {%  include "includes/icons/telegram.svg" %}
+              </a>
+                <a href="https://www.linkedin.com/in/nataliia-kovalchuk-48186811a/" class="px-2">
+                {%  include "includes/icons/linkedin.svg" %}
+              </a>
+
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Section: Design Block -->
+
+</div>
+{% endblock %}

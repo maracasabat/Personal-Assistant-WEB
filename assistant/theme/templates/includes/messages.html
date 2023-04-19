@@ -1,9 +1,9 @@
 {% if messages %}
     {% for message in messages %}
         {% if message.tags == 'success' %}
-             <div class="mb-2 bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3 alert" role="alert">
+             <div class="w-52 mb-2 bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3 alert" role="alert">
                 <p class="font-bold">Success</p>
-                <p class="text-sm">{{ message }}</p>
+                <p class="text-sm text-center">{{ message }}</p>
             </div>
         {% elif message.tags == 'error' %}
              <div class="mb-2 bg-red-100 border-t border-b border-red-500 text-red-700 px-4 py-3 alert translate-x-0 transition" role="alert">

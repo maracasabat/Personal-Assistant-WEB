@@ -1,0 +1,27 @@
+  <div class="text-gray-300 flex mb-5 justify-center items-center">
+        <label for="category" class="select" type="button">
+            <select id="category" onchange="selectCategory()" class="select-button"  type="button">
+                <option value="" label="All Categories">All Categories</option>
+                <option value="image" label="Images">Images</option>
+                <option value="video" label="Videos" >Videos</option>ray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gr
+                <option value="document" label="Documents">Documents</option>
+                <option value="music" label="Musics">Musics</option>
+                <option value="book" label="Books">Books</option>
+                <option value="other" label="Others">Others</option>
+            </select>
+        </label>
+    </div>
+
+
+  <script >
+  function selectCategory() {
+    let category = document.getElementById("category").value;
+
+     if (category === 'book') {
+        window.location.href = "{% url 'book_list' %}";
+    }
+    else {
+        window.location.href = "{% url 'file_list' %}" + category;
+    }
+  }
+  </script>

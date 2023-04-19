@@ -5,7 +5,7 @@ from .filechecker import file_size, book_size, book_extension
 
 
 class FileForm(forms.ModelForm):
-    file = forms.FileField(required=True, validators=[file_size])
+    file = forms.FileField(required=True, validators=[file_size], widget=forms.FileInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = File
@@ -13,7 +13,8 @@ class FileForm(forms.ModelForm):
 
 
 class BookForm(forms.ModelForm):
-    pdf = forms.FileField(required=True, validators=[book_size, book_extension])
+    pdf = forms.FileField(required=True, validators=[book_size, book_extension], widget=forms.FileInput(attrs={'class': 'form-control'}))
+    cover = forms.FileField(required=True, validators=[file_size], widget=forms.FileInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Book
@@ -21,7 +22,7 @@ class BookForm(forms.ModelForm):
 
 
 class PhotoForm(forms.ModelForm):
-    file = forms.FileField(required=True, validators=[file_size])
+    file = forms.FileField(required=True, validators=[file_size], widget=forms.FileInput(attrs={'class': 'form-control'}))
     class Meta:
         model = Photo
         fields = ('file', )

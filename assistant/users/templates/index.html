@@ -1,0 +1,31 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="{% static 'images/favicon.svg' %}">
+    <title>My Book</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/slider.css' %}">
+     {% tailwind_css %}
+
+</head>
+<body >
+<div class="flex  w-full h-screen ">
+    <div class="hidden lg:flex lg:w-1/2 justify-center">
+        {% include 'includes/slider.html' %}
+    </div>
+    <div class="flex w-full lg:w-1/2 justify-center relative z-20 bg-primary">
+        {% block content %}{% endblock %}
+    </div>
+</div>
+</body>
+</html>
+
+{#background: #c7c7c7#}
