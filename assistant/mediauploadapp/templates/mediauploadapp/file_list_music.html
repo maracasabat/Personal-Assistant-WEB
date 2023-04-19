@@ -14,15 +14,15 @@
         {% include 'includes/select_category.html' %}
         {% include 'includes/clear_button.html' %}
     </div>
-    <table class="min-w-full text-center text-gray-300">
+    <table class="min-w-full text-center dark:text-gray-300">
         {% include 'includes/thead_files.html' %}
-    {% if files %}
+    {% if files_music %}
     <tbody>
       {% for file in files_music %}
-        <tr class="text-gray-300">
+        <tr class="dark:text-gray-300">
           <td>{{ file.title }}</td>
           <td>{{ file.category }}</td>
-          <td>{{ file.publication_date }}</td>
+          <td class="hidden md:table-cell">{{ file.publication_date }}</td>
           <td>
             <a class="pointer px-6 py-4 flex items-center justify-center text-green-600" href="{{ file.file.url }}" target="_blank">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -35,17 +35,16 @@
               {% csrf_token %}
               <button class="pointer px-6 py-4 flex-inline items-center justify-center text-red-600" type="submit" ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m6 4.125l2.25 2.25m0 0l2.25 2.25M12 13.875l2.25-2.25M12 13.875l-2.25 2.25M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
-                  </svg></button>
+                  </svg>
+              </button>
             </form>
           </td>
         </tr>
       {% endfor %}
-      {% else %}
-            {% include 'includes/placeholder.html' %}
-        </tbody>
+    </tbody>
+    {% else %}
+      {% include 'includes/placeholder.html' %}
     {% endif %}
   </table>
 </div>
-
-
 {% endblock %}

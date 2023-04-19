@@ -14,16 +14,16 @@
         {% include 'includes/select_category.html' %}
         {% include 'includes/clear_button.html' %}
     </div>
-  <table class="min-w-full text-center text-gray-300">
+  <table class="min-w-full text-center dark:text-gray-300">
     {% include 'includes/thead_files.html' %}
 
-      {% if files %}
+      {% if files_image %}
     <tbody>
       {% for file in files_image %}
-        <tr class="text-gray-300">
+        <tr class="dark:text-gray-300">
           <td>{{ file.title }}</td>
           <td>{{ file.category }}</td>
-          <td>{{ file.publication_date }}</td>
+          <td class="hidden md:table-cell">{{ file.publication_date }}</td>
           <td>
             <a class="pointer px-6 py-4 flex items-center justify-center text-green-600" href="{{ file.file.url }}" target="_blank">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
