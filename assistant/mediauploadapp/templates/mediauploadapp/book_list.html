@@ -23,8 +23,8 @@
     {%  if books %}
         <tbody>
       {% for book in books %}
-        <tr class="text-gray-600 dark:text-gray-300 border-b-2 ">
-          <td class="hidden md:block">
+        <tr class="h-full text-gray-600 dark:text-gray-300 border-b-2 ">
+          <td class="hidden md:table-cell">
             {% if book.cover %}
               <img src="{{ book.cover.url }}" alt="{{ book.title }}" style="width:100px;">
             {% else %}
@@ -33,7 +33,7 @@
           </td>
           <td>{{ book.title }}</td>
           <td>{{ book.author }}</td>
-          <td class="hidden md:block">{{ book.publication_date }}</td>
+          <td class="hidden md:table-cell">{{ book.publication_date }}</td>
           <td>
             <a href="{{ book.pdf.url }}" class="pointer px-6 py-4 flex items-center justify-center text-green-600" target="_blank">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

@@ -88,6 +88,8 @@ def file_list_document(request):
 @login_required
 def file_list_music(request):
     files_music = File.objects.all().filter(category="music", author_id=request.user)
+    for el in files_music:
+        print('MUSIC', el.title, el.category, el.publication_date)
     return render(request, 'mediauploadapp/file_list_music.html', {
         'files_music': files_music,
     })
