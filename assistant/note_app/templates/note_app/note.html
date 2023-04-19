@@ -23,9 +23,9 @@
         <div class="font-medium flex-col justify-center items-center pb-3">
           <label for="tags" class="text-gray-700 dark:text-gray-300 flex">Select tags:</label>
             <select class="flex w-full border border-lip rounded-lg h-20" name="tags" multiple="multiple" id="tags" required>
-{#              {% for tag in tags %}#}
+              {% for tag in tags %}
               <option value="{{tag.name}}">{{tag.name}}</option>
-{#              {% endfor %}#}
+             {% endfor %}
             </select>
         </div>
             {% include 'includes/reset_submit_btn.html' %}
