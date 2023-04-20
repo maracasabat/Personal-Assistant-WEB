@@ -4,19 +4,19 @@
 {% endblock %}
 
 {% block content %}
-    <div class="h-screen py-6 w-1/2 overflow-auto" >
+    <div class="h-screen py-6 w-2/3 md:w-1/2 overflow-auto" >
       <nav class="border-b-4 flex items-center justify-between pb-10" >
         <ul>
-          <li><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/book_app/" role="button"> Go back to the main page </a></li>
+          <li><a class="nav-button" href="/book_app/" role="button"> Go back </a></li>
         </ul>
-        <h3><a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href="/book_app/nick_edit/{{nickname.id}}">Edit information to the contact {{nickname.nickname}}</a></h3>
+        <h3><a class="nav-button" href="/book_app/nick_edit/{{nickname.id}}">Edit </a></h3>
       </nav>
       <form method="POST" action="{% url 'edit_email' nickname.id %}">
         {% csrf_token %}
 
           <div class="font-medium flex-col justify-center items-center py-3">
 
-            <label for='email' class="dark:text-gray-300 flex pb-2">Email <b>{{ email.email }}</b>:</label>
+            <label for='email' class="text-gray-600 dark:text-gray-300 flex pb-2">Email <b>{{ email.email }}</b>:</label>
               <input class="flex w-full border border-lip rounded-lg" type="email" name="email" id="email"/>
 
           </div>
