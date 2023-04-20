@@ -417,6 +417,10 @@ def day_to_birthday(request):
         date_now = datetime.now().date()
         days = []
         all_contacts = Nickname.objects.filter(author=request.user)
+        paginator = Paginator(all_contacts, 5)
+
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
         for user in all_contacts:
             users = {}
             users['nickname'] = Nickname.objects.get(pk=user.id)
@@ -431,7 +435,7 @@ def day_to_birthday(request):
                 users['happy'] = happy
             days.append(users)
         days.sort(key=lambda x: x['happy'])
-        return render(request, 'book_app/day_to_birthday.html', {'days': days})
+        return render(request, 'book_app/day_to_birthday.html', {'days': days, "page_obj": page_obj})
     except ObjectDoesNotExist:
         days = None
         return render(request, 'book_app/day_to_birthday.html', {'days': days})

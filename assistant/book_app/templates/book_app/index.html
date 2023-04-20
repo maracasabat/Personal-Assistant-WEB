@@ -25,10 +25,10 @@
               <table class="min-w-full text-center border shadow">
                 <thead class="bg-primary text-gray-300 border-b ">
                     <tr>
-                      <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">Nicknames</th>
+                      <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">Names</th>
                       <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">Phones</th>
 <!--                      <th scope="col">Info</th>-->
-                      <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">Edit contact</th>
+                      <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">Edit</th>
                       <th class="text-sm font-medium text-gray-300  px-6 py-4" scope="col">Delete</th>
                     </tr>
                 </thead>
@@ -41,7 +41,7 @@
                       <td>
                           <a class="pointer px-6 py-4 flex items-center justify-center text-green-600" href="{% url 'contact_edit' nickname.id %}">
                           {% include 'includes/edit.svg' %}
-                          {{ nickname.nickname }}
+{#                          {{ nickname.nickname }}#}
                       </a></td>
                       <td>
                           <a class="pointer px-6 py-4 flex items-center justify-center text-red-600" href="{% url 'delete_all' nickname.id %}">
@@ -57,7 +57,7 @@
           </div>
       </div>
 
-      <div class="pagination text-gray-300 mt-3 text-center">
+      <div class="pagination dark:text-gray-300 mt-3 text-center">
         <span class="step-links">
             {% if page_obj.has_previous %}
                 <a href="?page=1">&laquo; first</a>
