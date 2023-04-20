@@ -1,5 +1,4 @@
 import random
-
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
@@ -16,12 +15,12 @@ from django.urls import reverse_lazy
 
 # Create your views here.
 class Home(TemplateView):
-    template_name = 'mediauploadapp/index.html'
+    template_name = 'mediauploadapp/file_list.html'
 
 
 @login_required
 def main(request):
-    return render(request, 'mediauploadapp/index.html', {})
+    return render(request, 'mediauploadapp/file_list.html', {})
 
 
 """ Add method for the simple upload """
@@ -89,6 +88,8 @@ def file_list_document(request):
 @login_required
 def file_list_music(request):
     files_music = File.objects.all().filter(category="music", author_id=request.user)
+    for el in files_music:
+        print('MUSIC', el.title, el.category, el.publication_date)
     return render(request, 'mediauploadapp/file_list_music.html', {
         'files_music': files_music,
     })
@@ -244,9 +245,22 @@ def clear_database(request):
     return redirect(request.POST.get('next'))
 
 
-@login_required
+
+
 def delete_photo(request, pk):
     if request.method == 'POST':
         file = Photo.objects.get(pk=pk, author_id=request.user)
         file.delete()
     return redirect('basic_upload')
+
+@login_required
+def delete_all(request):
+    if request.method == 'POST':
+        for photo in Photo.objects.filter(author_id=request.user).all():
+            photo.delete()
+        for file in File.objects.filter(author_id=request.user).all():
+            file.delete()
+        for book in Book.objects.filter(author_id=request.user).all():
+            book.delete()
+
+        return redirect('file_list')

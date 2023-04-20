@@ -1,10 +1,10 @@
-{% extends 'auth/index.html' %}
+{% extends 'index.html' %}
 {% load crispy_forms_tags %}
 {% load socialaccount %}
 {% block content %}
-    <form   method="post">
+    <form class="auth-form"  method="post">
     {% csrf_token %}
-        <h3>Login Here</h3>
+        <h3 class = 'auth-title'>Login Here</h3>
        {{ form|crispy }}
 
         {% if messages %}
@@ -15,7 +15,7 @@
             </ul>
         {% endif %}
 
-        <button class="btn" >Log In</button>
+        <button class="auth-btn" >Log In</button>
 
         <div class="mt-2.5"  >
             <span>Don't have an account?</span>
@@ -23,10 +23,9 @@
                 <span class="text-accent cursor-pointer underline">Sign Up</span>
             </a>
         </div>
-        <div class="social">
+        <div class="social google-btn">
             <p class="google flex items-center justify-center w-full p-2.5">
                 <a class="flex items-center justify-center" href="{% provider_login_url 'google'%}?next=/">
-                    {% include 'includes/googleIcon.svg' %}
                     <span class="text-gray-300 ml-3" >Sign in with Google</span>
                 </a>
             </p>

@@ -1,0 +1,13 @@
+<div class="text-gray-300 flex justify-center items-center">
+    <div class="select" type="button" >
+
+             <form method="post" action="{% url 'delete_all' %}" class="clear-button">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <button type="submit" class="" >
+                    Clear Database
+                </button>
+            </form>
+
+    </div>
+</div>

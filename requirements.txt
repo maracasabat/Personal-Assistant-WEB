@@ -1,0 +1,14 @@
+django
+django-tailwind
+django-tinymce
+psycopg2-binary
+django-dotenv
+django-crispy-forms==1.14.0
+fontawesomefree
+pillow
+bs4
+beautifulsoup4
+requests
+django-allauth
+cloudinary
+django-cloudinary-storage

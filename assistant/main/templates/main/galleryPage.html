@@ -1,19 +1,11 @@
 {% extends 'base.html' %}
-{#{% block title %}#}
-{#        {% include 'includes/headerGallery.html' %}#}
-{#{% endblock %}#}
 {% block header %}
-    <div class="flex gap-3">
-        <a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href='{% url 'upload' %}'>Simple Upload</a>
-        <a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href='{% url 'file_list' %}'>File Forms Upload</a>
-        <a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href='{% url 'book_list' %}'>Book Forms Upload</a>
-        <a class="text-white px-5 py-2 border-2 border-lip rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-400 hover:bg-gradient-to-l hover:from-indigo-600 hover:to-indigo-400 transition" href='{% url 'photo_list' %}'>Photos Upload</a>
+    <div class="flex items-center justify-center md:gap-3 flex-wrap gap-7 mb-10">
+        <a class="nav-button" href='{% url 'file_list' %}'>File Forms Upload</a>
+        <a class="nav-button" href='{% url 'book_list' %}'>Book Forms Upload</a>
+        <a class="nav-button" href='{% url 'photo_list' %}'>Photos Upload</a>
     </div>
-
 {% endblock %}
-{% block content %}
-
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" class="object-cover w-full"></img>
-
-
+{% block inputs %}
+{% include 'includes/inputs.html' %}
 {% endblock %}

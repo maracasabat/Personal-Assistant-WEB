@@ -12,9 +12,9 @@
     <main class="container">
       <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
         <ul>
-          <li><a href="/book_app/" role="button"> Go back to the main page </a></li>
+          <li><a class="nav-button" href="/book_app/" role="button"> Go back </a></li>
         </ul>
-        <h3><a href="/book_app/nick_edit/{{nickname.id}}">Edit information to the contact {{nickname.nickname}}</a></h3>
+        <h3><a href="/book_app/nick_edit/{{nickname.id}}">Edit</a></h3>
       </nav>
       <form method="POST" action="{% url 'edit_telephone' nickname.id %}">
         {% csrf_token %}
@@ -26,10 +26,7 @@
             </label>
           </div>
 
-          <div class="grid">
-            <button type="reset" class="secondary">Reset</button>
-            <button type="submit">Edit</button>
-          </div>
+            {% include 'includes/reset_submit_btn.html' %}
       </form>
     </main>
   </body>

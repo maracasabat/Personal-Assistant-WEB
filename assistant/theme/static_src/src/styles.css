@@ -1,3 +1,94 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.auth-form {
+  @apply w-96 bg-transparent bg-opacity-80 absolute z-20 transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 rounded-lg backdrop-blur-md border-2 border-gray-200 border-opacity-10 shadow-lg p-10 text-white;
+}
+
+
+.auth-title {
+  @apply text-3xl font-medium text-center mb-3;
+}
+
+label {
+  @apply block text-base font-medium text-gray-100 mt-5;
+}
+
+.google-btn {
+  @apply flex mt-8 items-center justify-center bg-[#ffffff11] rounded-lg text-sm font-light hover:bg-[#29323e] transition duration-300 ease-in-out
+}
+
+.auth-btn {
+  @apply w-full flex items-center justify-center bg-white mt-10 text-primary py-[10px] text-lg font-bold rounded-md cursor-pointer hover:bg-gray-200 transition duration-300 ease-in-out
+}
+
+.errorlist {
+  @apply list-none
+}
+
+.nav-button {
+  @apply text-gray-100 px-5 py-2 border-2 border-primary bg-primary shadow-lg rounded-lg transition
+}
+
+
+.selectLabel {
+  @apply inline-flex items-center py-1 px-2.5 text-sm font-medium text-center rounded-lg focus:outline-none focus:ring-gray-300 hover:border-amber-50
+}
+
+.select {
+  @apply inline-flex items-center py-1.5 px-1 text-sm font-medium text-center rounded-lg focus:outline-none focus:ring-gray-300 hover:border-amber-50
+}
+
+.select-button {
+    @apply px-1 md:px-7 py-2 border shadow-lg rounded-lg transition bg-[#293c72] dark:border-amber-50 text-base text-gray-100 hover:text-white hover:border-white dark:hover:bg-primary
+}
+
+.clear-button {
+    @apply px-3 py-2 border shadow-lg rounded-lg transition bg-[#b11a30] dark:border-amber-50 text-base text-gray-100 hover:text-white hover:border-white dark:hover:bg-primary
+}
+
+
+.form-control {
+  @apply w-full  text-base text-gray-700 placeholder-gray-100 bg-white rounded-md focus:outline-none  focus:border-transparent
+}
+
+
+.form-button {
+  @apply w-full gap-3 mt-5 px-3 py-2.5 text-base text-white bg-[#6366f1] border border-none outline-teal-800  rounded-lg focus:outline-none focus:ring-0 focus:border-transparent shadow-lg placeholder-gray-500 placeholder-opacity-50
+}
+
+
+ input[type=file]::file-selector-button {
+  @apply mr-5 border-none bg-[#6366f1] text-white px-5 py-2.5 rounded-lg shadow-lg cursor-pointer hover:bg-[#4f46e5] transition duration-300 ease-in-out
+}
+
+
+ .title {
+  @apply flex font-bold text-center text-3xl text-gray-900 dark:text-gray-300 tracking-tight uppercase mb-5
+}
+
+ .reset_button {
+  @apply text-white w-1/2 px-5 py-2 border-2 border rounded-lg bg-gray-500 hover:bg-gray-700 transition
+}
+
+ .confirm_button {
+  @apply text-white w-1/2 px-5 py-2 border-2 border rounded-lg bg-purple-500 hover:bg-purple-700 dark:bg-[#1a4cda] dark:hover:bg-[#293c72] transition
+}
+
+ .reset_btn {
+  @apply text-white w-1/2 px-5 py-2 border-2 border rounded-lg bg-[#8b9fbd] hover:bg-[#7391bd] transition
+}
+
+ .submit_btn {
+  @apply text-white w-1/2 px-5 py-2 border-2 border rounded-lg bg-[#a854f7] hover:bg-purple-700 dark:bg-[#5575ce] dark:hover:bg-[#293c72] transition
+}
+
+ .reset {
+     @apply text-white w-1/2 px-5 py-2 border-2 border rounded-lg bg-gray-500 hover:bg-gray-700 transition
+ }
+
+ .submit {
+     @apply text-white w-1/2 px-5 py-2 border-2 border rounded-lg bg-purple-500 hover:bg-purple-700 transition
+ }

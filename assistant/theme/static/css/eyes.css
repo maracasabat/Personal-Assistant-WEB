@@ -1,0 +1,46 @@
+.eyes {
+          position: relative;
+          width: 30px;
+          height: 30px;
+          background: transparent;
+          margin: -2px 0 0 0;
+          border-radius: 50%;
+            box-shadow: 0 5px 45px rgba(0, 0, 0, 0.5), inset 0 0 5px #6366f1, inset 0 0 15px #6366f1;
+          transition: border-radius 0.2s ease-in;
+        }
+
+        .eyesLogo {
+          position: relative;
+          width: 30px;
+          height: 30px;
+          background: white;
+          border-radius: 50%;
+            box-shadow: 0 5px 45px rgba(0, 0, 0, 0.5), inset 0 0 5px #6366f1, inset 0 0 15px #6366f1;
+          transition: border-radius 0.2s ease-in;
+        }
+
+        .eyesLogo::before {
+          content: '';
+          position: absolute;
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          background: #273444;
+          box-shadow: 0 0 5px #f5d142;
+          transform: translate(5%, 5%);
+          border: 2px solid #f6e751;
+          box-sizing: border-box;
+        }
+
+        .eyes::before {
+          content: '';
+          position: absolute;
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          background: #273444;
+          box-shadow: 0 0 5px #273444;
+          transform: translate(5%, 5%);
+          border: 2px solid #f7e852;
+          box-sizing: border-box;
+        }
