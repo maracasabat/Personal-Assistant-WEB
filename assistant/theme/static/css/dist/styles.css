@@ -1010,10 +1010,6 @@ select {
   width: 66.666667%;
 }
 
-.w-2\/5 {
-  width: 40%;
-}
-
 .w-11\/12 {
   width: 91.666667%;
 }
@@ -1273,16 +1269,6 @@ select {
   border-color: rgb(55 65 81 / var(--tw-border-opacity));
 }
 
-.border-green-600 {
-  --tw-border-opacity: 1;
-  border-color: rgb(22 163 74 / var(--tw-border-opacity));
-}
-
-.border-red-600 {
-  --tw-border-opacity: 1;
-  border-color: rgb(220 38 38 / var(--tw-border-opacity));
-}
-
 .border-gray-200 {
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
@@ -1365,11 +1351,6 @@ select {
   background-color: rgb(0 0 0 / 0.7);
 }
 
-.bg-\[\#b01930\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(176 25 48 / var(--tw-bg-opacity));
-}
-
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
@@ -1380,32 +1361,12 @@ select {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
-.from-green-600 {
-  --tw-gradient-from: #16a34a;
-  --tw-gradient-to: rgb(22 163 74 / 0);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
-.from-red-600 {
-  --tw-gradient-from: #dc2626;
-  --tw-gradient-to: rgb(220 38 38 / 0);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
 .to-indigo-900 {
   --tw-gradient-to: #312e81;
 }
 
 .to-indigo-400 {
   --tw-gradient-to: #818cf8;
-}
-
-.to-green-400 {
-  --tw-gradient-to: #4ade80;
-}
-
-.to-red-400 {
-  --tw-gradient-to: #f87171;
 }
 
 .object-cover {
@@ -2404,28 +2365,8 @@ input[type=file]::file-selector-button:hover {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
-.hover\:from-green-600:hover {
-  --tw-gradient-from: #16a34a;
-  --tw-gradient-to: rgb(22 163 74 / 0);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
-.hover\:from-red-600:hover {
-  --tw-gradient-from: #dc2626;
-  --tw-gradient-to: rgb(220 38 38 / 0);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
 .hover\:to-indigo-400:hover {
   --tw-gradient-to: #818cf8;
-}
-
-.hover\:to-green-400:hover {
-  --tw-gradient-to: #4ade80;
-}
-
-.hover\:to-red-400:hover {
-  --tw-gradient-to: #f87171;
 }
 
 .hover\:text-white:hover {
@@ -2621,6 +2562,10 @@ input[type=file]::file-selector-button:hover {
     width: 66.666667%;
   }
 
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+
   .md\:w-1\/3 {
     width: 33.333333%;
   }
@@ -2631,10 +2576,6 @@ input[type=file]::file-selector-button:hover {
 
   .md\:w-9\/12 {
     width: 75%;
-  }
-
-  .md\:w-1\/2 {
-    width: 50%;
   }
 
   .md\:grid-cols-2 {
